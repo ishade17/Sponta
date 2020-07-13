@@ -1,0 +1,6 @@
+framework module Pods_Sponta {
+  umbrella header "Pods-Sponta-umbrella.h"
+
+  export *
+  module * { export * }
+}
