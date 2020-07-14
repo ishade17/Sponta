@@ -3,13 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
+		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
 		48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088F724BCE69D00C83FE0 /* AppDelegate.m */; };
 		48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088FA24BCE69D00C83FE0 /* SceneDelegate.m */; };
-		48C088FE24BCE69D00C83FE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088FD24BCE69D00C83FE0 /* ViewController.m */; };
+		48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088FD24BCE69D00C83FE0 /* SignInViewController.m */; };
 		48C0890124BCE69D00C83FE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C088FF24BCE69D00C83FE0 /* Main.storyboard */; };
 		48C0890324BCE69F00C83FE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C0890224BCE69F00C83FE0 /* Assets.xcassets */; };
 		48C0890624BCE69F00C83FE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C0890424BCE69F00C83FE0 /* LaunchScreen.storyboard */; };
@@ -42,13 +44,17 @@
 		2704737CB1D12CFA73AD9C74 /* Pods-SpontaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpontaTests.release.xcconfig"; path = "Target Support Files/Pods-SpontaTests/Pods-SpontaTests.release.xcconfig"; sourceTree = "<group>"; };
 		338D5C76F8C83FEB63DE04B6 /* Pods-Sponta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta.debug.xcconfig"; path = "Target Support Files/Pods-Sponta/Pods-Sponta.debug.xcconfig"; sourceTree = "<group>"; };
 		39A851A2CE0DFB8CC0B315AC /* Pods-SpontaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpontaTests.debug.xcconfig"; path = "Target Support Files/Pods-SpontaTests/Pods-SpontaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		48979FDF24BE29B80048C5AC /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
+		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
+		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		48979FE424BE425E0048C5AC /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		48C088F324BCE69D00C83FE0 /* Sponta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C088F624BCE69D00C83FE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48C088F724BCE69D00C83FE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		48C088F924BCE69D00C83FE0 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		48C088FA24BCE69D00C83FE0 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		48C088FC24BCE69D00C83FE0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		48C088FD24BCE69D00C83FE0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		48C088FC24BCE69D00C83FE0 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		48C088FD24BCE69D00C83FE0 /* SignInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		48C0890024BCE69D00C83FE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C0890224BCE69F00C83FE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C0890524BCE69F00C83FE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -96,6 +102,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48922C2624BD417A00E95E57 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				48C088FC24BCE69D00C83FE0 /* SignInViewController.h */,
+				48C088FD24BCE69D00C83FE0 /* SignInViewController.m */,
+				48979FDF24BE29B80048C5AC /* MainFeedViewController.h */,
+				48979FE024BE29B80048C5AC /* MainFeedViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		48979FE224BE423F0048C5AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				48979FE324BE425E0048C5AC /* Post.h */,
+				48979FE424BE425E0048C5AC /* Post.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		48C088EA24BCE69D00C83FE0 = {
 			isa = PBXGroup;
 			children = (
@@ -121,12 +147,12 @@
 		48C088F524BCE69D00C83FE0 /* Sponta */ = {
 			isa = PBXGroup;
 			children = (
+				48979FE224BE423F0048C5AC /* Models */,
+				48922C2624BD417A00E95E57 /* ViewControllers */,
 				48C088F624BCE69D00C83FE0 /* AppDelegate.h */,
 				48C088F724BCE69D00C83FE0 /* AppDelegate.m */,
 				48C088F924BCE69D00C83FE0 /* SceneDelegate.h */,
 				48C088FA24BCE69D00C83FE0 /* SceneDelegate.m */,
-				48C088FC24BCE69D00C83FE0 /* ViewController.h */,
-				48C088FD24BCE69D00C83FE0 /* ViewController.m */,
 				48C088FF24BCE69D00C83FE0 /* Main.storyboard */,
 				48C0890224BCE69F00C83FE0 /* Assets.xcassets */,
 				48C0890424BCE69F00C83FE0 /* LaunchScreen.storyboard */,
@@ -164,7 +190,6 @@
 				39A851A2CE0DFB8CC0B315AC /* Pods-SpontaTests.debug.xcconfig */,
 				2704737CB1D12CFA73AD9C74 /* Pods-SpontaTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -416,10 +441,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48C088FE24BCE69D00C83FE0 /* ViewController.m in Sources */,
+				48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */,
+				48979FE524BE425E0048C5AC /* Post.m in Sources */,
 				48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */,
 				48C0890924BCE69F00C83FE0 /* main.m in Sources */,
 				48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */,
+				48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
