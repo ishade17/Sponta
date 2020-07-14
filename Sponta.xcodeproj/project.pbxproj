@@ -125,6 +125,8 @@
 		48C088EA24BCE69D00C83FE0 = {
 			isa = PBXGroup;
 			children = (
+				48979FE224BE423F0048C5AC /* Models */,
+				48922C2624BD417A00E95E57 /* ViewControllers */,
 				48C088F524BCE69D00C83FE0 /* Sponta */,
 				48C0891124BCE69F00C83FE0 /* SpontaTests */,
 				48C0891C24BCE69F00C83FE0 /* SpontaUITests */,
@@ -147,8 +149,6 @@
 		48C088F524BCE69D00C83FE0 /* Sponta */ = {
 			isa = PBXGroup;
 			children = (
-				48979FE224BE423F0048C5AC /* Models */,
-				48922C2624BD417A00E95E57 /* ViewControllers */,
 				48C088F624BCE69D00C83FE0 /* AppDelegate.h */,
 				48C088F724BCE69D00C83FE0 /* AppDelegate.m */,
 				48C088F924BCE69D00C83FE0 /* SceneDelegate.h */,

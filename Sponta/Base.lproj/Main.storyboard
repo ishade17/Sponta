@@ -73,7 +73,7 @@
         <!--Root View Controller-->
         <scene sceneID="VkY-H9-21P">
             <objects>
-                <tableViewController id="kzM-kN-Gvq" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainFeed" id="kzM-kN-Gvq" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sZV-Ee-jJd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="-517.39130434782612" y="1636.6071428571429"/>
         </scene>
-        <!--Item-->
+        <!--Main Feed Nav Controller-->
         <scene sceneID="CMM-Ds-oPM">
             <objects>
-                <navigationController id="IYU-OZ-ctI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainFeedNavController" title="Main Feed Nav Controller" id="IYU-OZ-ctI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="ho0-GT-6aa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5zc-Oz-cae">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -372,7 +372,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="VTL-UU-enn">
             <objects>
-                <tabBarController id="pQy-K4-qag" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="pQy-K4-qag" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="74c-j5-U9A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

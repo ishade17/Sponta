@@ -7,6 +7,8 @@
 //
 
 #import "MainFeedViewController.h"
+#import <Parse/Parse.h>
+#import "SignInViewController.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -16,7 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.mainFeedTableView.dataSource = self;
+    self.mainFeedTableView.delegate = self;
+    
+    [self fetchFeed];
+}
+
+- (void)fetchFeed {
+    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -24,7 +33,8 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return YES;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Table View Cell"];
+    return cell;
 }
 
 /*
