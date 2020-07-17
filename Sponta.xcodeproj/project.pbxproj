@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4828260524BE5A0400A65A72 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828260424BE5A0400A65A72 /* PostCell.m */; };
+		4828260924BF8CDE00A65A72 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828260824BF8CDE00A65A72 /* APIManager.m */; };
+		4828260D24BF908F00A65A72 /* SearchLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828260C24BF908F00A65A72 /* SearchLocationsViewController.m */; };
+		4828261024BF911A00A65A72 /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828260F24BF911A00A65A72 /* LocationCell.m */; };
+		4828261324BF9B8000A65A72 /* CreateTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828261224BF9B8000A65A72 /* CreateTripViewController.m */; };
+		4828261624BFCD2500A65A72 /* SelectPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828261524BFCD2500A65A72 /* SelectPreviewViewController.m */; };
+		4828261924BFDAA400A65A72 /* LocationPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828261824BFDAA400A65A72 /* LocationPreviewCell.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
 		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
 		48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088F724BCE69D00C83FE0 /* AppDelegate.m */; };
@@ -44,6 +51,20 @@
 		2704737CB1D12CFA73AD9C74 /* Pods-SpontaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpontaTests.release.xcconfig"; path = "Target Support Files/Pods-SpontaTests/Pods-SpontaTests.release.xcconfig"; sourceTree = "<group>"; };
 		338D5C76F8C83FEB63DE04B6 /* Pods-Sponta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta.debug.xcconfig"; path = "Target Support Files/Pods-Sponta/Pods-Sponta.debug.xcconfig"; sourceTree = "<group>"; };
 		39A851A2CE0DFB8CC0B315AC /* Pods-SpontaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpontaTests.debug.xcconfig"; path = "Target Support Files/Pods-SpontaTests/Pods-SpontaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4828260324BE5A0400A65A72 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		4828260424BE5A0400A65A72 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		4828260724BF8CDE00A65A72 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		4828260824BF8CDE00A65A72 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		4828260B24BF908F00A65A72 /* SearchLocationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchLocationsViewController.h; sourceTree = "<group>"; };
+		4828260C24BF908F00A65A72 /* SearchLocationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchLocationsViewController.m; sourceTree = "<group>"; };
+		4828260E24BF911A00A65A72 /* LocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
+		4828260F24BF911A00A65A72 /* LocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
+		4828261124BF9B8000A65A72 /* CreateTripViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateTripViewController.h; sourceTree = "<group>"; };
+		4828261224BF9B8000A65A72 /* CreateTripViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateTripViewController.m; sourceTree = "<group>"; };
+		4828261424BFCD2500A65A72 /* SelectPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectPreviewViewController.h; sourceTree = "<group>"; };
+		4828261524BFCD2500A65A72 /* SelectPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectPreviewViewController.m; sourceTree = "<group>"; };
+		4828261724BFDAA400A65A72 /* LocationPreviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationPreviewCell.h; sourceTree = "<group>"; };
+		4828261824BFDAA400A65A72 /* LocationPreviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationPreviewCell.m; sourceTree = "<group>"; };
 		48979FDF24BE29B80048C5AC /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -102,6 +123,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4828260224BE59E100A65A72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4828260324BE5A0400A65A72 /* PostCell.h */,
+				4828260424BE5A0400A65A72 /* PostCell.m */,
+				4828260E24BF911A00A65A72 /* LocationCell.h */,
+				4828260F24BF911A00A65A72 /* LocationCell.m */,
+				4828261724BFDAA400A65A72 /* LocationPreviewCell.h */,
+				4828261824BFDAA400A65A72 /* LocationPreviewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4828260624BF8CAB00A65A72 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4828260724BF8CDE00A65A72 /* APIManager.h */,
+				4828260824BF8CDE00A65A72 /* APIManager.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		48922C2624BD417A00E95E57 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +152,12 @@
 				48C088FD24BCE69D00C83FE0 /* SignInViewController.m */,
 				48979FDF24BE29B80048C5AC /* MainFeedViewController.h */,
 				48979FE024BE29B80048C5AC /* MainFeedViewController.m */,
+				4828261124BF9B8000A65A72 /* CreateTripViewController.h */,
+				4828261224BF9B8000A65A72 /* CreateTripViewController.m */,
+				4828260B24BF908F00A65A72 /* SearchLocationsViewController.h */,
+				4828260C24BF908F00A65A72 /* SearchLocationsViewController.m */,
+				4828261424BFCD2500A65A72 /* SelectPreviewViewController.h */,
+				4828261524BFCD2500A65A72 /* SelectPreviewViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -125,6 +174,8 @@
 		48C088EA24BCE69D00C83FE0 = {
 			isa = PBXGroup;
 			children = (
+				4828260624BF8CAB00A65A72 /* API */,
+				4828260224BE59E100A65A72 /* Views */,
 				48979FE224BE423F0048C5AC /* Models */,
 				48922C2624BD417A00E95E57 /* ViewControllers */,
 				48C088F524BCE69D00C83FE0 /* Sponta */,
@@ -442,11 +493,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */,
+				4828261324BF9B8000A65A72 /* CreateTripViewController.m in Sources */,
 				48979FE524BE425E0048C5AC /* Post.m in Sources */,
+				4828261024BF911A00A65A72 /* LocationCell.m in Sources */,
 				48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */,
 				48C0890924BCE69F00C83FE0 /* main.m in Sources */,
+				4828260D24BF908F00A65A72 /* SearchLocationsViewController.m in Sources */,
+				4828260924BF8CDE00A65A72 /* APIManager.m in Sources */,
+				4828260524BE5A0400A65A72 /* PostCell.m in Sources */,
+				4828261624BFCD2500A65A72 /* SelectPreviewViewController.m in Sources */,
 				48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */,
 				48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */,
+				4828261924BFDAA400A65A72 /* LocationPreviewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

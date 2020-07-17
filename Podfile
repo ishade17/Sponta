@@ -7,6 +7,9 @@ target 'Sponta' do
 
   # Pods for Sponta
   pod 'Parse'
+  pod 'Parse/UI'
+  pod 'BDBOAuth1Manager'
+  pod 'AFNetworking'
 
   target 'SpontaTests' do
     inherit! :search_paths
