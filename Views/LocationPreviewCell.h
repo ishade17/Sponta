@@ -12,11 +12,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LocationPreviewCell : UICollectionViewCell
+@interface LocationPreviewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *previewImage;
 
-//- (void)updateWithPreview:(NSDictionary *)venueImages;
 - (void)updateWithPreview:(NSDictionary *)photoObject;
 
 
