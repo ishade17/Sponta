@@ -11,14 +11,11 @@
 #import <Parse/Parse.h>
 #import "PFImageView.h"
 
-static NSString * const clientID = @"D11E2LIRKX0L1OQHSLAHGY0GO2WG4Z3ZNBJNUDKVA2LCIFX5";
-static NSString * const clientSecret = @"MTHKEDQ2HZ3G3LK1V4NQEJF3NIXHETYNF3D22K2R5OBZIUQ0";
 static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 
 @interface SelectPreviewViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *previewImages;
 @property (nonatomic, strong) NSMutableArray *photoReferences;
 
 @end
@@ -28,9 +25,12 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    SelectPreviewViewController *SPViewController = [SelectPreviewViewController new];
+//    SPViewController.delegate = self;
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+     
     self.tableView.rowHeight = 224;
     
     [self fetchPreviews];
@@ -50,10 +50,7 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            //NSLog(@"response: %@", responseDictionary);
-            //NSLog(@"%@", [responseDictionary valueForKeyPath:@"result.photos"]);
             self.photoReferences = [responseDictionary valueForKeyPath:@"result.photos"];
-            //NSLog(@"previewImages: %@", self.previewImages);
             [self.tableView reloadData];
         }
     }];
@@ -69,6 +66,13 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.photoReferences.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    LocationPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationPreviewCell"];
+    NSLog(@"%@", self.delegate);
+    [self.delegate didSelectPreview:cell.previewImage.image];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

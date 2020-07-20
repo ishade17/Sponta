@@ -54,10 +54,6 @@
     
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//   return 476;
-//}
-
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.postsArray.count;
 }
@@ -67,6 +63,9 @@
     Post *postInfo = self.postsArray[indexPath.row];
 
     cell.post = postInfo;
+    cell.profilePicImage.layer.cornerRadius = 50;
+    [cell.profilePicImage.layer setBorderColor: [[UIColor blackColor] CGColor]];
+    [cell.profilePicImage.layer setBorderWidth: 0.5];
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@ Likes", postInfo.likeCount];

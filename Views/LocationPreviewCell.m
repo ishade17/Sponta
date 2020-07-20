@@ -18,7 +18,6 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 
     // GOOGLE API
 - (void)updateWithPreview:(NSDictionary *)photoObject {
-    NSLog(@"%@", photoObject);
     NSString *baseURLString = @"https://maps.googleapis.com/maps/api/place/photo?";
     NSString *queryString = [NSString stringWithFormat:@"maxwidth=500&maxheight=500&photoreference=%@&key=%@", [photoObject valueForKeyPath:@"photo_reference"], clientKey];
     queryString = [queryString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -30,7 +29,6 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
         if (data) {
             NSURL *URL = [response valueForKeyPath:@"URL"];
             [self.previewImage setImageWithURL:URL];
-            NSLog(@"%@", self.previewImage.image);
         }
     }];
     [task resume];

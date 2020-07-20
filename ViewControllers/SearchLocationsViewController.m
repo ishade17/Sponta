@@ -10,7 +10,7 @@
 #import "LocationCell.h"
 #import "SelectPreviewViewController.h"
 
-static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA"; // GOOGLE API
+static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 
 @interface SearchLocationsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -49,15 +49,9 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA"; 
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSDictionary *venue = self.results[indexPath.row];
-     
-     // GOOGLE API
     self.previewID = [venue valueForKeyPath:@"place_id"];
-    
-    
     [self performSegueWithIdentifier:@"toPreviewSelectorView" sender:self];
-    
 }
 
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -71,7 +65,6 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA"; 
 }
 
 - (void)fetchLocationsWithQuery:(NSString *)query nearCity:(NSString *)city {
-    
     // GOOGLE API
     NSString *baseURLString = @"https://maps.googleapis.com/maps/api/place/textsearch/json?";
     NSString *queryString = [NSString stringWithFormat:@"query=%@&key=%@", query, clientKey];

@@ -15,10 +15,9 @@
 @dynamic author;
 @dynamic title;
 @dynamic description;
-@dynamic preview;
+@dynamic previewImage;
 @dynamic likeCount;
-@dynamic startAddress;
-@dynamic endAddress;
+@dynamic address;
 @dynamic tripDate;
 @dynamic startTime;
 @dynamic endTime;
@@ -30,18 +29,18 @@
     return @"Post";
 }
 
-+ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withStartAddress: ( NSString * _Nullable )startAddress withEndAddress: ( NSString * _Nullable )endAddress withTripDate:  ( NSDate * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSNumber * _Nullable )spots withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withCompletion: (PFBooleanResultBlock  _Nullable)completion {
 
     Post *newPost = [Post new];
     newPost.author = [PFUser currentUser];
     newPost.title = title;
     newPost.description = description;
-    newPost.preview = [self getPFFileFromImage:previewImage];
-    newPost.startAddress = startAddress;
-    newPost.endAddress = endAddress;
+    newPost.previewImage = [self getPFFileFromImage:previewImage];
+    newPost.address = address;
+    newPost.tripDate = [self stringToDate:tripDate];
     newPost.startTime = startTime;
     newPost.endTime = endTime;
-    newPost.spots = spots;
+    newPost.spots = [self stringToNumber:spots];
     newPost.guestList = [NSMutableArray new];
     newPost.likeCount = @(0);
 
@@ -52,16 +51,34 @@
  
     // check if image is not nil
     if (!image) {
+        NSLog(@"nil image1");
         return nil;
     }
     
     NSData *imageData = UIImagePNGRepresentation(image);
     // get image data and check if that is not nil
     if (!imageData) {
+        NSLog(@"nil image2");
         return nil;
     }
     
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+}
+
++ (NSDate *)stringToDate: (NSString *)dateString {
+    //FIX BUG: returning nil
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    NSDate *dateFromString = [dateFormatter dateFromString:dateString];
+    NSLog(@"%@", dateFromString);
+    return dateFromString;
+}
+
++ (NSNumber *)stringToNumber: (NSString *)spotsString {
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:spotsString];
+    return myNumber;
 }
 
 @end
