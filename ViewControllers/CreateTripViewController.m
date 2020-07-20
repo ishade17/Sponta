@@ -8,11 +8,12 @@
 
 #import "CreateTripViewController.h"
 #import "SelectPreviewViewController.h"
+#import "SearchLocationsViewController.h"
 #import <Parse/Parse.h>
 #import "PFImageView.h"
 #import "Post.h"
 
-@interface CreateTripViewController () <SelectPreviewViewControllerDelegate>
+@interface CreateTripViewController () <SearchLocationsViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *uploadImageLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
@@ -90,6 +91,8 @@
     NSLog(@"test");
 }
 
+
+
 - (IBAction)tappedPost:(id)sender {
     if (self.selectedImage.image == nil) NSLog(@"shucks!");
     if (self.selectedImage.image != nil && ![self.addressTextView.text isEqual: @""] && ![self.tripNameTextView.text isEqual: @""] && ![self.startTimeTextView.text isEqual: @""] && ![self.endTimeTextView.text isEqual: @""] && ![self.descriptionBodyTextView.text isEqual: @""]) {
@@ -124,19 +127,22 @@
                                                          }];
         // add the OK action to the alert controller
         [alert addAction:okAction];
-        
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"toSearchSegue"]) {
+        SearchLocationsViewController *searchLocationsViewController = [segue destinationViewController];
+        searchLocationsViewController.delegate = self;
+    }
 }
-*/
+
 
 @end

@@ -48,7 +48,7 @@
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
- 
+    NSLog(@"chegggg");
     // check if image is not nil
     if (!image) {
         NSLog(@"nil image1");
@@ -68,7 +68,7 @@
 + (NSDate *)stringToDate: (NSString *)dateString {
     //FIX BUG: returning nil
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     NSDate *dateFromString = [dateFormatter dateFromString:dateString];
     NSLog(@"%@", dateFromString);
     return dateFromString;

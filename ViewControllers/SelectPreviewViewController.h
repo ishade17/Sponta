@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol SelectPreviewViewControllerDelegate
 
 @required
-- (void)didSelectPreview:(nonnull UIImage *)preview;
+- (void)passPreview:(nonnull UIImage *)preview;
 
 @end
 

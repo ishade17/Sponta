@@ -12,7 +12,7 @@
 
 static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 
-@interface SearchLocationsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface SearchLocationsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, SelectPreviewViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -85,6 +85,10 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
     
 }
 
+- (void)passPreview:(nonnull UIImage *)preview {
+    [self.delegate didSelectPreview:preview];
+}
+
 
 #pragma mark - Navigation
 
@@ -95,8 +99,11 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
     if ([segue.identifier isEqual:@"toPreviewSelectorView"]) {
         SelectPreviewViewController *selectPreviewViewController = [segue destinationViewController];
         selectPreviewViewController.previewID = self.previewID;
+        selectPreviewViewController.delegate = self;
     }
 }
+
+
 
 
 @end

@@ -63,13 +63,13 @@
     Post *postInfo = self.postsArray[indexPath.row];
 
     cell.post = postInfo;
-    cell.profilePicImage.layer.cornerRadius = 50;
+    cell.profilePicImage.layer.cornerRadius = cell.profilePicImage.frame.size.height /2;
     [cell.profilePicImage.layer setBorderColor: [[UIColor blackColor] CGColor]];
     [cell.profilePicImage.layer setBorderWidth: 0.5];
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@ Likes", postInfo.likeCount];
-    cell.previewImage.file = postInfo[@"preview"];
+    cell.previewImage.file = postInfo[@"previewImage"];
     [cell.previewImage loadInBackground];
     
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];

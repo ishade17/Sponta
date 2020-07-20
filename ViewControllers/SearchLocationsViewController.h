@@ -7,23 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@class SearchLocationsViewController;
+//@class SearchLocationsViewController;
 
 @protocol SearchLocationsViewControllerDelegate
 
-- (void)searchLocationsViewController:(SearchLocationsViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude;
+@required
+
+- (void)didSelectPreview:(nonnull UIImage *)preview;
 
 @end
-
 
 @interface SearchLocationsViewController : UIViewController
 
 @property (weak, nonatomic) id<SearchLocationsViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSString *previewID;
+@property (weak, nonatomic) UIImage *passedPreview;
 
 @end
+
+//@protocol SearchLocationsViewControllerDelegate
+//
+//- (void)searchLocationsViewController:(SearchLocationsViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude;
+//
+//@end
 
 NS_ASSUME_NONNULL_END

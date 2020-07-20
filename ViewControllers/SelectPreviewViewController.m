@@ -71,7 +71,7 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LocationPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationPreviewCell"];
     NSLog(@"%@", self.delegate);
-    [self.delegate didSelectPreview:cell.previewImage.image];
+    [self.delegate passPreview:cell.previewImage.image];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
