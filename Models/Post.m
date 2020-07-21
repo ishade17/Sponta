@@ -23,13 +23,13 @@
 @dynamic endTime;
 @dynamic guestList;
 @dynamic spots;
-
+@dynamic publicTrip;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
 }
 
-+ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withPublicOption: ( BOOL ) publicOption withCompletion: (PFBooleanResultBlock  _Nullable)completion {
 
     Post *newPost = [Post new];
     newPost.author = [PFUser currentUser];
@@ -43,6 +43,7 @@
     newPost.spots = [self stringToNumber:spots];
     newPost.guestList = [NSMutableArray new];
     newPost.likeCount = @(0);
+    newPost.publicTrip = publicOption;
 
     [newPost saveInBackgroundWithBlock: completion];
 }

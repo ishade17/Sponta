@@ -71,6 +71,11 @@
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@ Likes", postInfo.likeCount];
     cell.previewImage.file = postInfo[@"previewImage"];
     [cell.previewImage loadInBackground];
+    if (postInfo.publicTrip) {
+        cell.publicTag.text = @"Public";
+    } else {
+        cell.publicTag.text = @"";
+    }
     
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];

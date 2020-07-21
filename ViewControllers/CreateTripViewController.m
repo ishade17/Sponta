@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dashLabel;
 @property (weak, nonatomic) IBOutlet UITextField *tripDateTextView;
 @property (weak, nonatomic) IBOutlet UITextField *numSpotsTextView;
+@property (weak, nonatomic) IBOutlet UISwitch *postSettingSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *postLabel;
 
 @end
 
@@ -47,6 +49,8 @@
     
     self.descriptionTextView.layer.borderWidth = 0.5f;
     self.descriptionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.postLabel.text = @"Private Post";
+    [self.postSettingSwitch setOn:false];
     
 }
 
@@ -88,16 +92,22 @@
 - (void)didSelectPreview:(nonnull UIImage *)preview {
     self.selectedImage.image = preview;
     self.uploadImageLabel.alpha = 0;
-    NSLog(@"test");
 }
 
+- (IBAction)tappedMakePublic:(id)sender {
+    if (self.postSettingSwitch.on) {
+        self.postLabel.text = @"Public Post";
+    } else {
+        self.postLabel.text = @"Private Post";
+    }
+}
 
 
 - (IBAction)tappedPost:(id)sender {
     if (self.selectedImage.image == nil) NSLog(@"shucks!");
     if (self.selectedImage.image != nil && ![self.addressTextView.text isEqual: @""] && ![self.tripNameTextView.text isEqual: @""] && ![self.startTimeTextView.text isEqual: @""] && ![self.endTimeTextView.text isEqual: @""] && ![self.descriptionBodyTextView.text isEqual: @""]) {
         
-        [Post postUserTrip:self.tripNameTextView.text withDescription:self.descriptionBodyTextView.text withImage:self.selectedImage.image withAddress:self.addressTextView.text withTripDate:self.tripDateTextView.text withStartTime:self.startTimeTextView.text withEndTime:self.endTimeTextView.text withSpots:self.numSpotsTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Post postUserTrip:self.tripNameTextView.text withDescription:self.descriptionBodyTextView.text withImage:self.selectedImage.image withAddress:self.addressTextView.text withTripDate:self.tripDateTextView.text withStartTime:self.startTimeTextView.text withEndTime:self.endTimeTextView.text withSpots:self.numSpotsTextView.text withPublicOption:self.postSettingSwitch.isOn withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Successful post!");
             self.tabBarController.selectedIndex = 0;
@@ -110,6 +120,7 @@
             self.startTimeTextView.text = @"";
             self.endTimeTextView.text = @"";
             self.numSpotsTextView.text = @"";
+            [self.postSettingSwitch setOn:false];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }

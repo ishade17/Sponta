@@ -55,7 +55,6 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
         }
     }];
     [task resume];
-    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -65,12 +64,15 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"%lu", (unsigned long)self.photoReferences.count);
     return self.photoReferences.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //NSLog(@"index path: %ld", (long)indexPath.row);
     LocationPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationPreviewCell"];
-    NSLog(@"%@", self.delegate);
+    //NSLog(@"dequeue cell: %@", cell.previewImage.image);
+    NSLog(@"selected object: %@", self.photoReferences[indexPath.row]);
     [self.delegate passPreview:cell.previewImage.image];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

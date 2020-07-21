@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *previewImage;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicImage;
+@property (weak, nonatomic) IBOutlet UILabel *publicTag;
 
 @end
 

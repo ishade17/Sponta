@@ -25,8 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *endTime;
 @property (nonatomic, strong) NSMutableArray *guestList;
 @property (nonatomic, strong) NSNumber *spots;
+@property (nonatomic) BOOL publicTrip;
 
-+ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withPublicOption: ( Boolean ) publicOption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 
