@@ -51,6 +51,10 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *venue = self.results[indexPath.row];
     self.previewID = [venue valueForKeyPath:@"place_id"];
+    self.address = [venue valueForKeyPath:@"formatted_address"];
+    self.latitude = [venue valueForKeyPath:@"geometry.location.lat"];
+    self.longitude = [venue valueForKeyPath:@"geometry.location.lng"];
+    
     [self performSegueWithIdentifier:@"toPreviewSelectorView" sender:self];
 }
 
@@ -86,7 +90,7 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 }
 
 - (void)passPreview:(nonnull UIImage *)preview {
-    [self.delegate didSelectPreview:preview];
+    [self.delegate didSelectPreview:preview withAddress:self.address withLatitude:self.latitude withLongitude:self.longitude];
 }
 
 

@@ -12,8 +12,9 @@
 #import <Parse/Parse.h>
 #import "PFImageView.h"
 #import "Post.h"
+#import <MapKit/MapKit.h>
 
-@interface CreateTripViewController () <SearchLocationsViewControllerDelegate>
+@interface CreateTripViewController () <SearchLocationsViewControllerDelegate, UITextViewDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *uploadImageLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
@@ -21,13 +22,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressTextView;
 @property (weak, nonatomic) IBOutlet UITextField *startTimeTextView;
 @property (weak, nonatomic) IBOutlet UITextField *endTimeTextView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionHeaderLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionBodyTextView;
 @property (weak, nonatomic) IBOutlet UILabel *dashLabel;
 @property (weak, nonatomic) IBOutlet UITextField *tripDateTextView;
 @property (weak, nonatomic) IBOutlet UITextField *numSpotsTextView;
 @property (weak, nonatomic) IBOutlet UISwitch *postSettingSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
+@property (nonatomic, strong) NSNumber *latitude;
+@property (nonatomic, strong) NSNumber *longitude;
+
+//@property (nonatomic, strong) MKLocalSearchCompleter *searchCompleter;
+//@property (nonatomic, strong) NSArray <MKLocalSearchCompletion *> *searchResults;
+//@property (nonatomic, strong) UITableView *searchResultsTableView;
 
 @end
 
@@ -36,22 +42,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-//    CreateTripViewController *createView = [[CreateTripViewController alloc]initWithNibName:Nil bundle:Nil];
-//    [self presentViewController:createView animated:NO completion:nil];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createView];
-//    [self.navigationController pushViewController:navigationController animated:YES];
-    
     [self.selectedImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [self.selectedImage.layer setBorderWidth: 0.5];
     self.selectedImage.image = nil;
     self.uploadImageLabel.alpha = 1;
     
-    self.descriptionTextView.layer.borderWidth = 0.5f;
-    self.descriptionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
     self.postLabel.text = @"Private Post";
     [self.postSettingSwitch setOn:false];
+    self.postLabel.textColor = UIColor.linkColor;
     
+    self.descriptionTextView.layer.borderWidth = 0.5f;
+    self.descriptionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.descriptionTextView.delegate = self;
+    self.descriptionTextView.text = @"Add a description...";
+    self.descriptionTextView.textColor = UIColor.lightGrayColor;
+    
+//    self.searchCompleter = [MKLocalSearchCompleter new];
+//    self.searchResults = [MKLocalSearchCompletion new];
+//    self.searchCompleter.delegate = self;
+//    self.searchCompleter.queryFragment = self.addressTextView.text;
 }
 
 - (IBAction)tappedSelectImage:(id)sender {
@@ -89,25 +98,29 @@
     return newImage;
 }
 
-- (void)didSelectPreview:(nonnull UIImage *)preview {
+- (void)didSelectPreview:(nonnull UIImage *)preview withAddress:(nonnull NSString *)address withLatitude:(NSNumber *)latitude withLongitude:(NSNumber *)longitude {
     self.selectedImage.image = preview;
     self.uploadImageLabel.alpha = 0;
+    self.addressTextView.text = address;
+    self.latitude = latitude;
+    self.longitude = longitude;
 }
 
 - (IBAction)tappedMakePublic:(id)sender {
     if (self.postSettingSwitch.on) {
         self.postLabel.text = @"Public Post";
+        self.postLabel.textColor = UIColor.greenColor;
     } else {
         self.postLabel.text = @"Private Post";
+        self.postLabel.textColor = UIColor.linkColor;
     }
 }
 
 
 - (IBAction)tappedPost:(id)sender {
-    if (self.selectedImage.image == nil) NSLog(@"shucks!");
     if (self.selectedImage.image != nil && ![self.addressTextView.text isEqual: @""] && ![self.tripNameTextView.text isEqual: @""] && ![self.startTimeTextView.text isEqual: @""] && ![self.endTimeTextView.text isEqual: @""] && ![self.descriptionBodyTextView.text isEqual: @""]) {
         
-        [Post postUserTrip:self.tripNameTextView.text withDescription:self.descriptionBodyTextView.text withImage:self.selectedImage.image withAddress:self.addressTextView.text withTripDate:self.tripDateTextView.text withStartTime:self.startTimeTextView.text withEndTime:self.endTimeTextView.text withSpots:self.numSpotsTextView.text withPublicOption:self.postSettingSwitch.isOn withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Post postUserTrip:self.tripNameTextView.text withDescription:self.descriptionBodyTextView.text withImage:self.selectedImage.image withAddress:self.addressTextView.text withTripDate:self.tripDateTextView.text withStartTime:self.startTimeTextView.text withEndTime:self.endTimeTextView.text withSpots:self.numSpotsTextView.text withPublicOption:self.postSettingSwitch.isOn withLatitude: self.latitude withLongitude: self.longitude withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Successful post!");
             self.tabBarController.selectedIndex = 0;
@@ -139,6 +152,40 @@
         // add the OK action to the alert controller
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+//- (void)completerDidUpdateResults:(MKLocalSearchCompleter *)completer {
+//    self.searchResults = completer.results;
+//    [self.searchResultsTableView reloadData];
+//}
+//
+//- (void)completer:(MKLocalSearchCompleter *)completer didFailWithError:(NSError *)error {
+//    NSLog(@"Completer failed with error: %@",error.description);
+//}
+
+//- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+//    MKLocalSearchCompletion *searchResult = self.searchResults[indexPath];
+//    UITableViewCell *cell  = [UITableViewCell ];
+//    cell.textLabel.text = searchResult.title;
+//    cell.detailTextLabel.text = searchResult.subtitle;
+//    return cell;
+//
+//}
+
+
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:@"Add a description..."]) {
+        textView.text = @"";
+        self.descriptionTextView.textColor = UIColor.blackColor;
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Add a description...";
+        self.descriptionTextView.textColor = UIColor.lightGrayColor;
     }
 }
 

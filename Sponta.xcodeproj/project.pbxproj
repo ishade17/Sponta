@@ -163,14 +163,14 @@
 				48C088FD24BCE69D00C83FE0 /* SignInViewController.m */,
 				48979FDF24BE29B80048C5AC /* MainFeedViewController.h */,
 				48979FE024BE29B80048C5AC /* MainFeedViewController.m */,
+				486D3AB524C67C2A00D7C3E6 /* DetailsViewController.h */,
+				486D3AB624C67C2A00D7C3E6 /* DetailsViewController.m */,
 				4828261124BF9B8000A65A72 /* CreateTripViewController.h */,
 				4828261224BF9B8000A65A72 /* CreateTripViewController.m */,
 				4828260B24BF908F00A65A72 /* SearchLocationsViewController.h */,
 				4828260C24BF908F00A65A72 /* SearchLocationsViewController.m */,
 				4828261424BFCD2500A65A72 /* SelectPreviewViewController.h */,
 				4828261524BFCD2500A65A72 /* SelectPreviewViewController.m */,
-				486D3AB524C67C2A00D7C3E6 /* DetailsViewController.h */,
-				486D3AB624C67C2A00D7C3E6 /* DetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

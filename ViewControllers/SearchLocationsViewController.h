@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
-- (void)didSelectPreview:(nonnull UIImage *)preview;
+- (void)didSelectPreview:(nonnull UIImage *)preview withAddress:(nonnull NSString *)address withLatitude:(NSNumber *)latitude withLongitude:(NSNumber *)longitude;
 
 @end
 
@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id<SearchLocationsViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSString *previewID;
 @property (weak, nonatomic) UIImage *passedPreview;
+@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSNumber *latitude;
+@property (nonatomic, strong) NSNumber *longitude;
 
 @end
 

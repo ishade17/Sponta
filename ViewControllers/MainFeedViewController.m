@@ -12,6 +12,7 @@
 #import "SignInViewController.h"
 #import "PostCell.h"
 #import "Post.h"
+#import "DetailsViewController.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -88,15 +89,22 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.mainFeedTableView indexPathForCell:tappedCell];
+    Post *post = self.postsArray[indexPath.row];
+
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = post;
 }
-*/
+
 
 
 

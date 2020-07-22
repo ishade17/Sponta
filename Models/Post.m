@@ -14,7 +14,7 @@
 @dynamic userID;
 @dynamic author;
 @dynamic title;
-@dynamic description;
+@dynamic tripDescription;
 @dynamic previewImage;
 @dynamic likeCount;
 @dynamic address;
@@ -24,17 +24,19 @@
 @dynamic guestList;
 @dynamic spots;
 @dynamic publicTrip;
+@dynamic latitude;
+@dynamic longitude;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
 }
 
-+ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withPublicOption: ( BOOL ) publicOption withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withPublicOption: ( BOOL ) publicOption withLatitude: ( NSNumber * _Nullable ) latitude withLongitude: ( NSNumber * _Nullable) longitude withCompletion: (PFBooleanResultBlock  _Nullable)completion {
 
     Post *newPost = [Post new];
     newPost.author = [PFUser currentUser];
     newPost.title = title;
-    newPost.description = description;
+    newPost.tripDescription = description;
     newPost.previewImage = [self getPFFileFromImage:previewImage];
     newPost.address = address;
     newPost.tripDate = [self stringToDate:tripDate];
@@ -44,6 +46,9 @@
     newPost.guestList = [NSMutableArray new];
     newPost.likeCount = @(0);
     newPost.publicTrip = publicOption;
+    newPost.latitude = latitude;
+    newPost.longitude = longitude;
+    
 
     [newPost saveInBackgroundWithBlock: completion];
 }
