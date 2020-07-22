@@ -72,7 +72,7 @@
         if (error) {
             NSLog(@"%@", error.localizedDescription);
         } else {
-            self.commentsArray = comments;
+            self.commentsArray = (NSMutableArray *)comments;
             [self.refreshControl endRefreshing];
             [self.commentsTableView reloadData];
         }
@@ -105,7 +105,6 @@
 }
 
 - (void)locationsViewController:(id)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
-    // Milestone 5
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude.floatValue, longitude.floatValue);
     
     // Add annotation

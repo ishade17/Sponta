@@ -17,6 +17,7 @@
 		486D3AB724C67C2A00D7C3E6 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AB624C67C2A00D7C3E6 /* DetailsViewController.m */; };
 		486D3ABA24C698A800D7C3E6 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AB924C698A800D7C3E6 /* CommentCell.m */; };
 		486D3ABD24C69A4A00D7C3E6 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3ABC24C69A4A00D7C3E6 /* Comment.m */; };
+		486D3AC424C8185F00D7C3E6 /* ExploreMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
 		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
 		48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088F724BCE69D00C83FE0 /* AppDelegate.m */; };
@@ -74,6 +75,8 @@
 		486D3AB924C698A800D7C3E6 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		486D3ABB24C69A4A00D7C3E6 /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		486D3ABC24C69A4A00D7C3E6 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		486D3AC224C8185F00D7C3E6 /* ExploreMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreMapViewController.h; sourceTree = "<group>"; };
+		486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreMapViewController.m; sourceTree = "<group>"; };
 		48979FDF24BE29B80048C5AC /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -156,21 +159,55 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		48922C2624BD417A00E95E57 /* ViewControllers */ = {
+		486D3ABE24C817D100D7C3E6 /* Sign In */ = {
 			isa = PBXGroup;
 			children = (
 				48C088FC24BCE69D00C83FE0 /* SignInViewController.h */,
 				48C088FD24BCE69D00C83FE0 /* SignInViewController.m */,
+			);
+			path = "Sign In";
+			sourceTree = "<group>";
+		};
+		486D3ABF24C817E100D7C3E6 /* Main Feed */ = {
+			isa = PBXGroup;
+			children = (
 				48979FDF24BE29B80048C5AC /* MainFeedViewController.h */,
 				48979FE024BE29B80048C5AC /* MainFeedViewController.m */,
 				486D3AB524C67C2A00D7C3E6 /* DetailsViewController.h */,
 				486D3AB624C67C2A00D7C3E6 /* DetailsViewController.m */,
+			);
+			path = "Main Feed";
+			sourceTree = "<group>";
+		};
+		486D3AC024C817FD00D7C3E6 /* Create Trip */ = {
+			isa = PBXGroup;
+			children = (
 				4828261124BF9B8000A65A72 /* CreateTripViewController.h */,
 				4828261224BF9B8000A65A72 /* CreateTripViewController.m */,
 				4828260B24BF908F00A65A72 /* SearchLocationsViewController.h */,
 				4828260C24BF908F00A65A72 /* SearchLocationsViewController.m */,
 				4828261424BFCD2500A65A72 /* SelectPreviewViewController.h */,
 				4828261524BFCD2500A65A72 /* SelectPreviewViewController.m */,
+			);
+			path = "Create Trip";
+			sourceTree = "<group>";
+		};
+		486D3AC124C8181E00D7C3E6 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				486D3AC224C8185F00D7C3E6 /* ExploreMapViewController.h */,
+				486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		48922C2624BD417A00E95E57 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				486D3ABE24C817D100D7C3E6 /* Sign In */,
+				486D3ABF24C817E100D7C3E6 /* Main Feed */,
+				486D3AC124C8181E00D7C3E6 /* Explore */,
+				486D3AC024C817FD00D7C3E6 /* Create Trip */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -510,6 +547,7 @@
 				48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */,
 				4828261324BF9B8000A65A72 /* CreateTripViewController.m in Sources */,
 				48979FE524BE425E0048C5AC /* Post.m in Sources */,
+				486D3AC424C8185F00D7C3E6 /* ExploreMapViewController.m in Sources */,
 				4828261024BF911A00A65A72 /* LocationCell.m in Sources */,
 				48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */,
 				48C0890924BCE69F00C83FE0 /* main.m in Sources */,
