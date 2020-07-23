@@ -212,6 +212,7 @@
                     <navigationItem key="navigationItem" id="hzQ-43-KJu"/>
                     <connections>
                         <outlet property="map" destination="bWp-KT-a2F" id="Uiu-SY-ldi"/>
+                        <segue destination="b1c-ix-Svt" kind="showDetail" identifier="toMapDetails" id="5DJ-iV-53M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CE1-kd-WK4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -340,26 +341,95 @@
             </objects>
             <point key="canvasLocation" x="-517.39130434782612" y="2321.6517857142858"/>
         </scene>
-        <!--View Controller-->
+        <!--Map Details View Controller-->
         <scene sceneID="E68-de-lIr">
             <objects>
-                <viewController id="b1c-ix-Svt" sceneMemberID="viewController">
+                <viewController title="Map Details View Controller" id="b1c-ix-Svt" customClass="MapDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hda-ao-fNi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6:30 pm – 9:30 pm on Wednesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgE-oe-gbL">
+                                <rect key="frame" x="20" y="407" width="303" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1115 Ashland Ave, River Forest, IL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulF-lZ-E3A">
+                                <rect key="frame" x="20" y="443" width="289" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JpN-wE-Gv4">
+                                <rect key="frame" x="0.0" y="150" width="414" height="247"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RM9-u6-WS5" customClass="PFImageView">
+                                <rect key="frame" x="20" y="43" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdt-DR-18K">
+                                <rect key="frame" x="24" y="15" width="75" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spots filled: 4 / 6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPE-yM-UR6">
+                                <rect key="frame" x="122" y="84.5" width="148" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mB-Zu-hJC">
+                                <rect key="frame" x="286" y="80.5" width="35" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="plus.circle" catalog="system">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Title!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siA-kB-55W">
+                                <rect key="frame" x="122" y="43" width="102" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description.. yayayayayay come to the trip trip and stuff ya know" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjP-PJ-XQd">
+                                <rect key="frame" x="20" y="485" width="374" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="tt7-wG-SW2"/>
                     </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="ulF-lZ-E3A" id="Esb-3l-8mA"/>
+                        <outlet property="descriptionLabel" destination="pjP-PJ-XQd" id="laX-aK-CgN"/>
+                        <outlet property="previewImageView" destination="JpN-wE-Gv4" id="aTf-sL-6G0"/>
+                        <outlet property="profilePicImageView" destination="RM9-u6-WS5" id="Ghf-dB-mr5"/>
+                        <outlet property="spotsFilledLabel" destination="zPE-yM-UR6" id="IOM-Rn-DCY"/>
+                        <outlet property="timeDateLabel" destination="OgE-oe-gbL" id="Ssn-4I-Ps7"/>
+                        <outlet property="tripTitleLabel" destination="siA-kB-55W" id="qRa-QT-Se7"/>
+                        <outlet property="usernameLabel" destination="Fdt-DR-18K" id="tMW-v1-gyq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LhU-UH-roa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261" y="2322"/>
+            <point key="canvasLocation" x="260.86956521739131" y="2321.6517857142858"/>
         </scene>
         <!--Main Feed Nav Controller-->
         <scene sceneID="CMM-Ds-oPM">
             <objects>
                 <navigationController storyboardIdentifier="MainFeedNavController" title="Main Feed Nav Controller" id="IYU-OZ-ctI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ho0-GT-6aa"/>
+                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" selectedImage="house" id="ho0-GT-6aa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5zc-Oz-cae">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -372,11 +442,11 @@
             </objects>
             <point key="canvasLocation" x="-516" y="933"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="txg-Vl-0vf">
             <objects>
                 <navigationController id="5DM-e9-MwK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="PyL-7u-9bs"/>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="PyL-7u-9bs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZYk-7y-8GN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -389,11 +459,11 @@
             </objects>
             <point key="canvasLocation" x="261" y="933"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="eyv-Qe-hLT">
             <objects>
                 <navigationController id="hmg-3h-CEU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="vdS-df-K3F"/>
+                    <tabBarItem key="tabBarItem" title="" image="plus.app" catalog="system" selectedImage="plus.app" id="vdS-df-K3F"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vGg-lJ-6Hj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -666,11 +736,11 @@
             </objects>
             <point key="canvasLocation" x="1048" y="3019"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="ObK-Oj-oln">
             <objects>
                 <navigationController id="nen-0x-iav" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gat-LU-TIn"/>
+                    <tabBarItem key="tabBarItem" title="" image="bell" catalog="system" selectedImage="bell" id="gat-LU-TIn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WqU-Jf-0vJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -680,11 +750,11 @@
             </objects>
             <point key="canvasLocation" x="1835" y="933"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="FW1-QU-7rU">
             <objects>
                 <navigationController id="kqg-Aw-3Te" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="mui-oY-hDU"/>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="person.circle" catalog="system" id="mui-oY-hDU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vu0-YZ-sbj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -717,11 +787,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bell" catalog="system" width="128" height="124"/>
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="house" catalog="system" width="128" height="110"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
+        <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

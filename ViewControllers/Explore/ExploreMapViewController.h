@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExploreMapViewController : UIViewController <CLLocationManagerDelegate>
+@interface ExploreMapViewController : UIViewController
+
+@property (nonatomic, weak) Post *post;
 
 @end
 

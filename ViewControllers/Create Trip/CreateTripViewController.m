@@ -116,6 +116,12 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.postLabel.text = @"Private Post";
+    [self.postSettingSwitch setOn:false];
+    self.postLabel.textColor = UIColor.linkColor;
+}
+
 
 - (IBAction)tappedPost:(id)sender {
     if (self.selectedImage.image != nil && ![self.addressTextView.text isEqual: @""] && ![self.tripNameTextView.text isEqual: @""] && ![self.startTimeTextView.text isEqual: @""] && ![self.endTimeTextView.text isEqual: @""] && ![self.descriptionBodyTextView.text isEqual: @""]) {
