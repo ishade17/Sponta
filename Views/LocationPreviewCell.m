@@ -17,6 +17,7 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
 @implementation LocationPreviewCell
 
     // GOOGLE API
+    // Don't need??
 - (void)updateWithPreview:(NSDictionary *)photoObject {
     //NSLog(@"%@", photoObject[@"html_attributions"]);
     NSString *baseURLString = @"https://maps.googleapis.com/maps/api/place/photo?";

@@ -12,14 +12,17 @@
 #import "Post.h"
 #import "MapDetailsViewController.h"
 #import <Parse/Parse.h>
+#import "MaterialBottomSheet.h"
 
 @interface ExploreMapViewController () <MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (nonatomic, strong) NSMutableArray *publicPostsArray;
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) CLLocation* currentLocation;
-@property (nonatomic, strong) NSMutableDictionary<MKPointAnnotation *, NSString *> *postsToPins;
+@property (nonatomic, strong) CLLocation *currentLocation;
+@property (nonatomic, strong) Post *selectedPost;
+@property (nonatomic, strong) NSMutableDictionary <NSString *, NSMutableArray<Post *> *> *pinToPost; // key: @"latitude longitude" value: {post, post, ...}
+@property (nonatomic, strong) MDCBottomSheetController *bottomSheet;
 
 @end
 
@@ -37,9 +40,10 @@
     MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667), MKCoordinateSpanMake(0.3, 0.3));
     [self.map setRegion:region animated:false];
     
-    self.postsToPins = [NSMutableDictionary new];
- 
-    /*
+    self.bottomSheet = [[MDCBottomSheetController alloc] initWithContentViewController:self.presentedViewController];
+    
+    
+    /* Current Location???
     if ([CLLocationManager locationServicesEnabled]) {
         if (self.locationManager == nil) {
             self.locationManager = [[CLLocationManager alloc] init];
@@ -58,6 +62,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+//    self.bottomSheet.preferredContentSize = CGSizeMake(self.presentedViewController.accessibilityFrame.size.width, self.presentedViewController.accessibilityFrame.size.height / 2);
+//    [self presentViewController:self.bottomSheet animated:true completion:nil];
+    
+    
+    self.pinToPost = [NSMutableDictionary new];
+    
     // construct query
    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
    [query includeKey:@"author"];
@@ -68,16 +78,37 @@
    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
        if (posts != nil) {
            self.publicPostsArray = (NSMutableArray *)posts;
+           
            for (Post *post in self.publicPostsArray) {
-               CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(post.latitude.floatValue, post.longitude.floatValue);
+               NSString *latLong = [NSString stringWithFormat:@"%.04f %.04f", post.latitude.floatValue, post.longitude.floatValue];
+               if ([self.pinToPost objectForKey:latLong]) {
+                   // existing location
+                   NSMutableArray *postArray = [self.pinToPost objectForKey:latLong];
+                   [postArray addObject:post];
+                   [self.pinToPost setObject:postArray forKey:latLong];
+               } else {
+                   // new location
+                   NSMutableArray *postArray = [NSMutableArray new];
+                   [postArray addObject:post];
+                   [self.pinToPost setObject:postArray forKey:latLong];
+               }
+           }
+           
+           for (NSString *key in self.pinToPost) {
                MKPointAnnotation *annotation = [MKPointAnnotation new];
-               annotation.coordinate = coordinate;
-               annotation.title = post.title;
-               annotation.subtitle = post.author.username;
-               //[self.postsToPins setObject:post.objectId forKey:annotation];
+               Post *post = [self.pinToPost objectForKey:key][0];
+               if ([self.pinToPost objectForKey:key].count > 1) {
+                   CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(post.latitude.floatValue, post.longitude.floatValue);
+                   annotation.coordinate = coordinate;
+                   annotation.title = [NSString stringWithFormat:@"%lu Different Trips", (unsigned long)[self.pinToPost objectForKey:key].count];
+                   annotation.subtitle = @"Select a Trip";
+               } else {
+                   CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(post.latitude.floatValue, post.longitude.floatValue);
+                   annotation.coordinate = coordinate;
+                   annotation.title = post.title;
+                   annotation.subtitle = post.author.username;
+               }
                [self.map addAnnotation:annotation];
-               
-               NSLog(@"P2P: %@", self.postsToPins);
            }
        } else {
            NSLog(@"%@", error.localizedDescription);
@@ -107,28 +138,32 @@
         annotationView.canShowCallout = true;
         annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 50.0)];
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        
-        //NSString *postId = self.postsToPins[annotation]; //fix
-        
-        for (Post *post in self.publicPostsArray) {
-            if ([post.title isEqualToString:annotation.title] && [post.author.username isEqualToString:annotation.subtitle]) {
+       
+        for (NSString *key in self.pinToPost) {
+            if ([key isEqualToString:[NSString stringWithFormat:@"%.04f %.04f", annotationView.annotation.coordinate.latitude, annotationView.annotation.coordinate.longitude]]) {
+                NSMutableArray *postArray = [self.pinToPost objectForKey:key];
+                Post *post = postArray[0];
                 [post.previewImage getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
                     UIImage *annotationImage = [UIImage imageWithData:data];
                     UIImageView *imageView = (UIImageView*)annotationView.leftCalloutAccessoryView;
                     imageView.image = [self resizeImage:annotationImage withSize:CGSizeMake(50.0, 50.0)];
                     annotationView.leftCalloutAccessoryView = imageView;
+                    
                 }];
             }
         }
-//        annotationView.image = [self resizeImage:post[@"image"] withSize:CGSizeMake(50.0, 50.0)];
-//        UIImageView *imageView = (UIImageView*)annotationView.leftCalloutAccessoryView;
-//        imageView.image = post[@"image"];
-        
     }
     return annotationView;
 }
 
 - (void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    NSString *latLong = [NSString stringWithFormat:@"%.04f %.04f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude];
+    NSMutableArray *pinnedPosts = [self.pinToPost objectForKey:latLong];
+    if (pinnedPosts.count > 1) {
+        // pop up view then select which post, then set self.selectedPost = pinnedPosts[indexPath.row];
+    } else {
+        self.selectedPost = pinnedPosts[0];
+    }
     [self performSegueWithIdentifier:@"toMapDetails" sender:self];
 }
 
@@ -156,7 +191,8 @@
 
     if ([segue.identifier isEqual:@"toMapDetails"]) {
         MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];
-        //mapDetailsViewController.post = self.post;
+        NSLog(@"selected post: %@", self.selectedPost);
+        mapDetailsViewController.post = self.selectedPost;
     }
 }
 

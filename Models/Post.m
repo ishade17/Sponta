@@ -72,11 +72,9 @@
 }
 
 + (NSDate *)stringToDate: (NSString *)dateString {
-    //FIX BUG: returning nil
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     NSDate *dateFromString = [dateFormatter dateFromString:dateString];
-    NSLog(@"%@", dateFromString);
     return dateFromString;
 }
 

@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withPublicOption: ( Boolean ) publicOption withLatitude: ( NSNumber * _Nullable ) latitude withLongitude: ( NSNumber * _Nullable ) longitude withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
++ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
+
 @end
 
 NS_ASSUME_NONNULL_END

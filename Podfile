@@ -10,6 +10,7 @@ target 'Sponta' do
   pod 'Parse/UI'
   pod 'BDBOAuth1Manager'
   pod 'AFNetworking'
+  pod 'MaterialComponents/BottomSheet'
 
   target 'SpontaTests' do
     inherit! :search_paths

@@ -26,7 +26,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tripTitleLabel.text = self.post.title;
+    self.usernameLabel.text = self.post.author.username;
+    self.profilePicImageView.layer.cornerRadius = self.profilePicImageView.frame.size.height /2;
+    [self.profilePicImageView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+    [self.profilePicImageView.layer setBorderWidth: 0.5];
+    NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
+    NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:self.post.tripDate];
+    self.timeDateLabel.text = [NSString stringWithFormat:@"%@ – %@ on %@", self.post.startTime, self.post.endTime, [daysOfWeek objectAtIndex:weekday]];
+    self.addressLabel.text = self.post.address;
+    self.descriptionLabel.text = self.post.tripDescription;
+    self.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots filled: %lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
+    [self.post.previewImage getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        self.previewImageView.image = [UIImage imageWithData:data];
+    }];
+    
 }
 
 /*
