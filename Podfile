@@ -11,6 +11,7 @@ target 'Sponta' do
   pod 'BDBOAuth1Manager'
   pod 'AFNetworking'
   pod 'MaterialComponents/BottomSheet'
+  pod 'FloatingPanel'
 
   target 'SpontaTests' do
     inherit! :search_paths

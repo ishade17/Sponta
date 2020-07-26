@@ -13,6 +13,7 @@
 #import "MapDetailsViewController.h"
 #import <Parse/Parse.h>
 #import "MaterialBottomSheet.h"
+#import "ExploreTripsViewController.h"
 
 @interface ExploreMapViewController () <MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -21,8 +22,8 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) Post *selectedPost;
-@property (nonatomic, strong) NSMutableDictionary <NSString *, NSMutableArray<Post *> *> *pinToPost; // key: @"latitude longitude" value: {post, post, ...}
-@property (nonatomic, strong) MDCBottomSheetController *bottomSheet;
+@property (nonatomic, strong) NSMutableArray<Post *> *selectedPosts;
+@property (nonatomic, strong) NSMutableDictionary <NSString *, NSMutableArray<Post *> *> *pinToPost;
 
 @end
 
@@ -39,10 +40,7 @@
     
     MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667), MKCoordinateSpanMake(0.3, 0.3));
     [self.map setRegion:region animated:false];
-    
-    self.bottomSheet = [[MDCBottomSheetController alloc] initWithContentViewController:self.presentedViewController];
-    
-    
+        
     /* Current Location???
     if ([CLLocationManager locationServicesEnabled]) {
         if (self.locationManager == nil) {
@@ -62,10 +60,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    self.bottomSheet.preferredContentSize = CGSizeMake(self.presentedViewController.accessibilityFrame.size.width, self.presentedViewController.accessibilityFrame.size.height / 2);
-//    [self presentViewController:self.bottomSheet animated:true completion:nil];
-    
-    
     self.pinToPost = [NSMutableDictionary new];
     
     // construct query
@@ -77,6 +71,7 @@
    // fetch data asynchronously
    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
        if (posts != nil) {
+           // complex algorithm
            self.publicPostsArray = (NSMutableArray *)posts;
            
            for (Post *post in self.publicPostsArray) {
@@ -156,15 +151,33 @@
     return annotationView;
 }
 
+//- (void)presentBottomSheet:(NSMutableArray *)pinnedPosts {
+//    // View controller the bottom sheet will hold
+//    UIViewController *viewController = [UIViewController new];
+//    viewController.view.backgroundColor = [UIColor redColor];
+//    //viewController.pinnedPosts = pinnedPosts;
+//     
+//    // Initialize the bottom sheet with the view controller just created
+//    MDCBottomSheetController *bottomSheet = [[MDCBottomSheetController alloc] initWithContentViewController:viewController];
+//    bottomSheet.preferredContentSize = CGSizeMake(self.presentedViewController.accessibilityFrame.size.width, self.presentedViewController.accessibilityFrame.size.height * 0.3);
+//    
+//    // Present the bottom sheet
+//    [self presentViewController:bottomSheet animated:true completion:nil];
+//}
+
+
+
 - (void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSString *latLong = [NSString stringWithFormat:@"%.04f %.04f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude];
     NSMutableArray *pinnedPosts = [self.pinToPost objectForKey:latLong];
     if (pinnedPosts.count > 1) {
-        // pop up view then select which post, then set self.selectedPost = pinnedPosts[indexPath.row];
+        self.selectedPosts = pinnedPosts;
+        [self performSegueWithIdentifier:@"toExploreTripsDetails" sender:self];
     } else {
         self.selectedPost = pinnedPosts[0];
+        [self performSegueWithIdentifier:@"toMapDetails" sender:self];
     }
-    [self performSegueWithIdentifier:@"toMapDetails" sender:self];
+    
 }
 
 /*
@@ -191,9 +204,12 @@
 
     if ([segue.identifier isEqual:@"toMapDetails"]) {
         MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];
-        NSLog(@"selected post: %@", self.selectedPost);
         mapDetailsViewController.post = self.selectedPost;
+    } else if ([segue.identifier isEqual:@"toExploreTripsDetails"]) {
+        ExploreTripsViewController *exploreTripsViewController = [segue destinationViewController];
+        exploreTripsViewController.postsArray = self.selectedPosts;
     }
+    
 }
 
 

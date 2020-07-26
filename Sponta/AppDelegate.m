@@ -26,35 +26,6 @@
     
     [Parse initializeWithConfiguration:config];
     
-//    PFObject *post = [PFObject objectWithClassName:@"Post"];
-//
-//    post[@"author"] = [PFUser currentUser];
-//    post[@"title"] = @"Hello World!";
-//    post[@"description"] = @"This is my first trip";
-//    post[@"likeCount"] = @(1);
-//    post[@"startAddress"] = @"1115 Ashland Ave, River Forest, IL";
-//    post[@"endAddress"] = @"604 S Elmwood Ave, Oak Park, IL";
-//    post[@"startTime"] = @"10 am";
-//    post[@"endTime"] = @"5 pm";
-//    post[@"guestList"] = [NSMutableArray new];
-//    post[@"spots"] = @(2);
-//
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    [comps setDay:6];
-//    [comps setMonth:5];
-//    [comps setYear:2004];
-//    NSCalendar *gregorian = [[NSCalendar alloc]
-//                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//    post[@"tripDate"] = [gregorian dateFromComponents:comps];
-//
-//    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//      if (succeeded) {
-//         NSLog(@"Object saved!");
-//      } else {
-//         NSLog(@"Error: %@", error.description);
-//      }
-//    }];
-    
     return YES;
 }
 

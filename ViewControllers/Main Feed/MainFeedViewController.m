@@ -28,8 +28,10 @@
     [super viewDidLoad];
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
+    self.mainFeedTableView.rowHeight = 440;
+    
     [self fetchFeed];
-    self.mainFeedTableView.rowHeight = 476;
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchFeed) forControlEvents:UIControlEventValueChanged];
     [self.mainFeedTableView insertSubview:self.refreshControl atIndex:0];
@@ -65,8 +67,8 @@
 
     cell.post = postInfo;
     cell.profilePicImage.layer.cornerRadius = cell.profilePicImage.frame.size.height /2;
-    [cell.profilePicImage.layer setBorderColor: [[UIColor blackColor] CGColor]];
-    [cell.profilePicImage.layer setBorderWidth: 0.5];
+    [cell.profilePicImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [cell.profilePicImage.layer setBorderWidth: 1.0];
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@ Likes", postInfo.likeCount];

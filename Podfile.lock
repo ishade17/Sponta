@@ -17,6 +17,7 @@ PODS:
   - BDBOAuth1Manager (2.0.0):
     - AFNetworking/NSURLSession (~> 3.0.0)
   - Bolts/Tasks (1.9.1)
+  - FloatingPanel (1.7.5)
   - MaterialComponents/Availability (111.0.0)
   - MaterialComponents/BottomSheet (111.0.0):
     - MaterialComponents/Elevation
@@ -56,6 +57,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
+  - FloatingPanel
   - MaterialComponents/BottomSheet
   - Parse
   - Parse/UI
@@ -65,6 +67,7 @@ SPEC REPOS:
     - AFNetworking
     - BDBOAuth1Manager
     - Bolts
+    - FloatingPanel
     - MaterialComponents
     - Parse
 
@@ -72,9 +75,10 @@ SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  FloatingPanel: bb17fd6fc7ae519f877f7bd30f4f6115a78acf07
   MaterialComponents: 533042da998b97ad13a6f544268f8026e8161cc5
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: 5effcb87d7e52608f42ee2e16747379b257d6008
+PODFILE CHECKSUM: 8bc3f563f7318f4a71561aaa3c40ab20bf899bf6
 
 COCOAPODS: 1.9.3

@@ -30,8 +30,8 @@
     self.tripTitleLabel.text = self.post.title;
     self.usernameLabel.text = self.post.author.username;
     self.profilePicImageView.layer.cornerRadius = self.profilePicImageView.frame.size.height /2;
-    [self.profilePicImageView.layer setBorderColor: [[UIColor blackColor] CGColor]];
-    [self.profilePicImageView.layer setBorderWidth: 0.5];
+    [self.profilePicImageView.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [self.profilePicImageView.layer setBorderWidth: 1.0];
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:self.post.tripDate];
     self.timeDateLabel.text = [NSString stringWithFormat:@"%@ – %@ on %@", self.post.startTime, self.post.endTime, [daysOfWeek objectAtIndex:weekday]];

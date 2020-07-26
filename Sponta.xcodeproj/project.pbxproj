@@ -19,6 +19,8 @@
 		486D3ABD24C69A4A00D7C3E6 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3ABC24C69A4A00D7C3E6 /* Comment.m */; };
 		486D3AC424C8185F00D7C3E6 /* ExploreMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */; };
 		486D3AC724C9183700D7C3E6 /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AC624C9183700D7C3E6 /* MapDetailsViewController.m */; };
+		486D3AD024CD0F0500D7C3E6 /* ExploreTripsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */; };
+		486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
 		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
 		48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088F724BCE69D00C83FE0 /* AppDelegate.m */; };
@@ -80,6 +82,10 @@
 		486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreMapViewController.m; sourceTree = "<group>"; };
 		486D3AC524C9183700D7C3E6 /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapDetailsViewController.h; path = ViewControllers/Explore/MapDetailsViewController.h; sourceTree = SOURCE_ROOT; };
 		486D3AC624C9183700D7C3E6 /* MapDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapDetailsViewController.m; path = ViewControllers/Explore/MapDetailsViewController.m; sourceTree = SOURCE_ROOT; };
+		486D3ACE24CD0F0500D7C3E6 /* ExploreTripsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreTripsCell.h; sourceTree = "<group>"; };
+		486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreTripsCell.m; sourceTree = "<group>"; };
+		486D3AD124CD192B00D7C3E6 /* ExploreTripsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreTripsViewController.h; sourceTree = "<group>"; };
+		486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreTripsViewController.m; sourceTree = "<group>"; };
 		48979FDF24BE29B80048C5AC /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -149,6 +155,8 @@
 				4828261824BFDAA400A65A72 /* LocationPreviewCell.m */,
 				486D3AB824C698A800D7C3E6 /* CommentCell.h */,
 				486D3AB924C698A800D7C3E6 /* CommentCell.m */,
+				486D3ACE24CD0F0500D7C3E6 /* ExploreTripsCell.h */,
+				486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +210,8 @@
 				486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */,
 				486D3AC524C9183700D7C3E6 /* MapDetailsViewController.h */,
 				486D3AC624C9183700D7C3E6 /* MapDetailsViewController.m */,
+				486D3AD124CD192B00D7C3E6 /* ExploreTripsViewController.h */,
+				486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -562,11 +572,13 @@
 				4828260524BE5A0400A65A72 /* PostCell.m in Sources */,
 				4828261624BFCD2500A65A72 /* SelectPreviewViewController.m in Sources */,
 				486D3AC724C9183700D7C3E6 /* MapDetailsViewController.m in Sources */,
+				486D3AD024CD0F0500D7C3E6 /* ExploreTripsCell.m in Sources */,
 				48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */,
 				486D3AB724C67C2A00D7C3E6 /* DetailsViewController.m in Sources */,
 				48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */,
 				486D3ABA24C698A800D7C3E6 /* CommentCell.m in Sources */,
 				4828261924BFDAA400A65A72 /* LocationPreviewCell.m in Sources */,
+				486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
