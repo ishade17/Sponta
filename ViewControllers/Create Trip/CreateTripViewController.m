@@ -32,9 +32,6 @@
 @property (nonatomic, strong) NSNumber *longitude;
 @property (weak, nonatomic) IBOutlet UIButton *searchLocationButton;
 
-//@property (nonatomic, strong) MKLocalSearchCompleter *searchCompleter;
-//@property (nonatomic, strong) NSArray <MKLocalSearchCompletion *> *searchResults;
-//@property (nonatomic, strong) UITableView *searchResultsTableView;
 
 @end
 
@@ -137,7 +134,7 @@
             self.descriptionBodyTextView.text = @"";
             self.selectedImage.image = nil;
             self.uploadImageLabel.alpha = 1;
-            self.addressTextView.text = @"";
+            //self.addressTextView.text = @"";
             [self.searchLocationButton setTitle:@" Search for destination location " forState:UIControlStateNormal];
             self.tripDateTextView.text = @"";
             self.startTimeTextView.text = @"";

@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSMutableArray *publicPostsArray;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;
-@property (nonatomic, strong) Post *selectedPost;
+//@property (nonatomic, strong) Post *selectedPost;
 @property (nonatomic, strong) NSMutableArray<Post *> *selectedPosts;
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSMutableArray<Post *> *> *pinToPost;
 
@@ -174,16 +174,6 @@
 - (void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSString *latLong = [NSString stringWithFormat:@"%.04f %.04f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude];
     NSMutableArray *pinnedPosts = [self.pinToPost objectForKey:latLong];
-    
-    // TODO: change to just one view controller because if its just one trip then the table view would be just one cell
-//    if (pinnedPosts.count > 1) {
-//        self.selectedPosts = pinnedPosts;
-//        [self performSegueWithIdentifier:@"toExploreTripsDetails" sender:self];
-//    } else {
-//        self.selectedPost = pinnedPosts[0];
-//        [self performSegueWithIdentifier:@"toMapDetails" sender:self];
-//    }
-    
     self.selectedPosts = pinnedPosts;
     [self performSegueWithIdentifier:@"toExploreTripsDetails" sender:self];
     
@@ -211,10 +201,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 
-    if ([segue.identifier isEqual:@"toMapDetails"]) {
-        MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];
-        mapDetailsViewController.post = self.selectedPost;
-    } else if ([segue.identifier isEqual:@"toExploreTripsDetails"]) {
+if ([segue.identifier isEqual:@"toExploreTripsDetails"]) {
         ExploreTripsViewController *exploreTripsViewController = [segue destinationViewController];
         exploreTripsViewController.postsArray = self.selectedPosts;
     }
