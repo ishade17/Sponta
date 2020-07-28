@@ -64,14 +64,16 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     Post *postInfo = self.postsArray[indexPath.row];
-
+    
+    // if current date/time is after trip date/time then return
+    
     cell.post = postInfo;
-    cell.profilePicImage.layer.cornerRadius = cell.profilePicImage.frame.size.height /2;
+    cell.profilePicImage.layer.cornerRadius = cell.profilePicImage.frame.size.height / 2;
     [cell.profilePicImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [cell.profilePicImage.layer setBorderWidth: 1.0];
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%@ Likes", postInfo.likeCount];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)postInfo.likedList.count];
     cell.previewImage.file = postInfo[@"previewImage"];
     [cell.previewImage loadInBackground];
     if (postInfo.publicTrip) {
@@ -80,12 +82,17 @@
         cell.publicTag.text = @"";
     }
     
+    // check if current user has liked this post
+    for (PFUser *user in postInfo.likedList) {
+        if ([user isEqual:PFUser.currentUser]) {
+            cell.likeButton.tintColor = [UIColor redColor];
+        }
+    }
+    
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];
     
     cell.tripStartLabel.text = [NSString stringWithFormat:@"%@ on %@", postInfo.startTime, [daysOfWeek objectAtIndex:weekday]];
-    //NSLog(@"%@", postInfo.tripDate);
-    //NSLog(@"%@", [daysOfWeek objectAtIndex:weekday]);
     cell.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots filled: %lu / %@", (unsigned long)postInfo.guestList.count, postInfo.spots];
         
     return cell;

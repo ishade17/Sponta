@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *tripDescription;
 @property (nonatomic, strong) PFFileObject *previewImage;
-@property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSDate *tripDate;
 @property (nonatomic, strong) NSString *startTime;
@@ -28,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL publicTrip;
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
+@property (nonatomic, strong) NSMutableArray *likedList;
 
 + (void) postUserTrip: ( NSString * _Nullable )title withDescription: ( NSString * _Nullable )description withImage: (UIImage * _Nullable )previewImage withAddress: ( NSString * _Nullable )address withTripDate:  ( NSString * _Nullable )tripDate withStartTime: ( NSString * _Nullable )startTime withEndTime: ( NSString * _Nullable )endTime withSpots: ( NSString * _Nullable )spots withPublicOption: ( Boolean ) publicOption withLatitude: ( NSNumber * _Nullable ) latitude withLongitude: ( NSNumber * _Nullable ) longitude withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 

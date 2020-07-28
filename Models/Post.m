@@ -16,7 +16,6 @@
 @dynamic title;
 @dynamic tripDescription;
 @dynamic previewImage;
-@dynamic likeCount;
 @dynamic address;
 @dynamic tripDate;
 @dynamic startTime;
@@ -26,6 +25,7 @@
 @dynamic publicTrip;
 @dynamic latitude;
 @dynamic longitude;
+@dynamic likedList;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -43,12 +43,11 @@
     newPost.startTime = startTime;
     newPost.endTime = endTime;
     newPost.spots = [self stringToNumber:spots];
-    newPost.guestList = [NSMutableArray new];
-    newPost.likeCount = @(0);
+    newPost.guestList = [NSMutableArray<PFUser *> new];
     newPost.publicTrip = publicOption;
     newPost.latitude = latitude;
     newPost.longitude = longitude;
-    
+    newPost.likedList = [NSMutableArray<PFUser *> new];
 
     [newPost saveInBackgroundWithBlock: completion];
 }

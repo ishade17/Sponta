@@ -23,6 +23,8 @@
 		486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
 		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
+		48A9C10024CF9E82003D9C31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C0FF24CF9E82003D9C31 /* ProfileViewController.m */; };
+		48A9C10324CF9FFA003D9C31 /* ProfilePostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C10224CF9FFA003D9C31 /* ProfilePostCell.m */; };
 		48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088F724BCE69D00C83FE0 /* AppDelegate.m */; };
 		48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088FA24BCE69D00C83FE0 /* SceneDelegate.m */; };
 		48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088FD24BCE69D00C83FE0 /* SignInViewController.m */; };
@@ -90,6 +92,10 @@
 		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		48979FE424BE425E0048C5AC /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		48A9C0FE24CF9E82003D9C31 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		48A9C0FF24CF9E82003D9C31 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		48A9C10124CF9FFA003D9C31 /* ProfilePostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfilePostCell.h; sourceTree = "<group>"; };
+		48A9C10224CF9FFA003D9C31 /* ProfilePostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfilePostCell.m; sourceTree = "<group>"; };
 		48C088F324BCE69D00C83FE0 /* Sponta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C088F624BCE69D00C83FE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48C088F724BCE69D00C83FE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -157,6 +163,8 @@
 				486D3AB924C698A800D7C3E6 /* CommentCell.m */,
 				486D3ACE24CD0F0500D7C3E6 /* ExploreTripsCell.h */,
 				486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */,
+				48A9C10124CF9FFA003D9C31 /* ProfilePostCell.h */,
+				48A9C10224CF9FFA003D9C31 /* ProfilePostCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,6 +227,7 @@
 		48922C2624BD417A00E95E57 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				48A9C0FD24CF9E5D003D9C31 /* Profile */,
 				486D3ABE24C817D100D7C3E6 /* Sign In */,
 				486D3ABF24C817E100D7C3E6 /* Main Feed */,
 				486D3AC124C8181E00D7C3E6 /* Explore */,
@@ -236,6 +245,15 @@
 				486D3ABC24C69A4A00D7C3E6 /* Comment.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		48A9C0FD24CF9E5D003D9C31 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				48A9C0FE24CF9E82003D9C31 /* ProfileViewController.h */,
+				48A9C0FF24CF9E82003D9C31 /* ProfileViewController.m */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		48C088EA24BCE69D00C83FE0 = {
@@ -562,7 +580,9 @@
 				48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */,
 				4828261324BF9B8000A65A72 /* CreateTripViewController.m in Sources */,
 				48979FE524BE425E0048C5AC /* Post.m in Sources */,
+				48A9C10324CF9FFA003D9C31 /* ProfilePostCell.m in Sources */,
 				486D3AC424C8185F00D7C3E6 /* ExploreMapViewController.m in Sources */,
+				48A9C10024CF9E82003D9C31 /* ProfileViewController.m in Sources */,
 				4828261024BF911A00A65A72 /* LocationCell.m in Sources */,
 				48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */,
 				48C0890924BCE69F00C83FE0 /* main.m in Sources */,

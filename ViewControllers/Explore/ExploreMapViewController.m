@@ -41,7 +41,7 @@
     MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667), MKCoordinateSpanMake(0.3, 0.3));
     [self.map setRegion:region animated:false];
         
-    /* Current Location???
+    /* TODO: Current Location
     if ([CLLocationManager locationServicesEnabled]) {
         if (self.locationManager == nil) {
             self.locationManager = [[CLLocationManager alloc] init];
@@ -71,7 +71,11 @@
    // fetch data asynchronously
    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
        if (posts != nil) {
-           // complex algorithm
+           /* complex algorithm:
+                n = number of public trips
+                m = number of unique public trip locations
+                time complexity = O(n + m)
+            */
            self.publicPostsArray = (NSMutableArray *)posts;
            
            for (Post *post in self.publicPostsArray) {
@@ -170,13 +174,18 @@
 - (void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSString *latLong = [NSString stringWithFormat:@"%.04f %.04f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude];
     NSMutableArray *pinnedPosts = [self.pinToPost objectForKey:latLong];
-    if (pinnedPosts.count > 1) {
-        self.selectedPosts = pinnedPosts;
-        [self performSegueWithIdentifier:@"toExploreTripsDetails" sender:self];
-    } else {
-        self.selectedPost = pinnedPosts[0];
-        [self performSegueWithIdentifier:@"toMapDetails" sender:self];
-    }
+    
+    // TODO: change to just one view controller because if its just one trip then the table view would be just one cell
+//    if (pinnedPosts.count > 1) {
+//        self.selectedPosts = pinnedPosts;
+//        [self performSegueWithIdentifier:@"toExploreTripsDetails" sender:self];
+//    } else {
+//        self.selectedPost = pinnedPosts[0];
+//        [self performSegueWithIdentifier:@"toMapDetails" sender:self];
+//    }
+    
+    self.selectedPosts = pinnedPosts;
+    [self performSegueWithIdentifier:@"toExploreTripsDetails" sender:self];
     
 }
 

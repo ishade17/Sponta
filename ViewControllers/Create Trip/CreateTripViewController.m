@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
+@property (weak, nonatomic) IBOutlet UIButton *searchLocationButton;
 
 //@property (nonatomic, strong) MKLocalSearchCompleter *searchCompleter;
 //@property (nonatomic, strong) NSArray <MKLocalSearchCompletion *> *searchResults;
@@ -57,10 +58,11 @@
     self.descriptionTextView.text = @"Add a description...";
     self.descriptionTextView.textColor = UIColor.lightGrayColor;
     
-//    self.searchCompleter = [MKLocalSearchCompleter new];
-//    self.searchResults = [MKLocalSearchCompletion new];
-//    self.searchCompleter.delegate = self;
-//    self.searchCompleter.queryFragment = self.addressTextView.text;
+    [self.searchLocationButton setTitle:@" Search for destination location " forState:UIControlStateNormal];
+    self.searchLocationButton.layer.borderWidth = 0.5f;
+    self.searchLocationButton.layer.borderColor = [UIColor blueColor].CGColor;
+    self.searchLocationButton.layer.cornerRadius = 20;
+    
 }
 
 - (IBAction)tappedSelectImage:(id)sender {
@@ -101,7 +103,8 @@
 - (void)didSelectPreview:(nonnull UIImage *)preview withAddress:(nonnull NSString *)address withLatitude:(NSNumber *)latitude withLongitude:(NSNumber *)longitude {
     self.selectedImage.image = preview;
     self.uploadImageLabel.alpha = 0;
-    self.addressTextView.text = address;
+    //self.addressTextView.text = address;
+    [self.searchLocationButton setTitle:[NSString stringWithFormat:@" %@ ", address] forState:UIControlStateNormal];
     self.latitude = latitude;
     self.longitude = longitude;
 }
@@ -124,9 +127,9 @@
 
 
 - (IBAction)tappedPost:(id)sender {
-    if (self.selectedImage.image != nil && ![self.addressTextView.text isEqual: @""] && ![self.tripNameTextView.text isEqual: @""] && ![self.startTimeTextView.text isEqual: @""] && ![self.endTimeTextView.text isEqual: @""] && ![self.descriptionBodyTextView.text isEqual: @""]) {
+    if (self.selectedImage.image != nil && ![self.searchLocationButton.titleLabel.text isEqual: @" Search for destination location "] && ![self.tripNameTextView.text isEqual: @""] && ![self.startTimeTextView.text isEqual: @""] && ![self.endTimeTextView.text isEqual: @""] && ![self.descriptionBodyTextView.text isEqual: @""]) {
         
-        [Post postUserTrip:self.tripNameTextView.text withDescription:self.descriptionBodyTextView.text withImage:self.selectedImage.image withAddress:self.addressTextView.text withTripDate:self.tripDateTextView.text withStartTime:self.startTimeTextView.text withEndTime:self.endTimeTextView.text withSpots:self.numSpotsTextView.text withPublicOption:self.postSettingSwitch.isOn withLatitude: self.latitude withLongitude: self.longitude withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Post postUserTrip:self.tripNameTextView.text withDescription:self.descriptionBodyTextView.text withImage:self.selectedImage.image withAddress:self.searchLocationButton.titleLabel.text withTripDate:self.tripDateTextView.text withStartTime:self.startTimeTextView.text withEndTime:self.endTimeTextView.text withSpots:self.numSpotsTextView.text withPublicOption:self.postSettingSwitch.isOn withLatitude: self.latitude withLongitude: self.longitude withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Successful post!");
             self.tabBarController.selectedIndex = 0;
@@ -135,6 +138,7 @@
             self.selectedImage.image = nil;
             self.uploadImageLabel.alpha = 1;
             self.addressTextView.text = @"";
+            [self.searchLocationButton setTitle:@" Search for destination location " forState:UIControlStateNormal];
             self.tripDateTextView.text = @"";
             self.startTimeTextView.text = @"";
             self.endTimeTextView.text = @"";
@@ -160,24 +164,6 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
-
-//- (void)completerDidUpdateResults:(MKLocalSearchCompleter *)completer {
-//    self.searchResults = completer.results;
-//    [self.searchResultsTableView reloadData];
-//}
-//
-//- (void)completer:(MKLocalSearchCompleter *)completer didFailWithError:(NSError *)error {
-//    NSLog(@"Completer failed with error: %@",error.description);
-//}
-
-//- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    MKLocalSearchCompletion *searchResult = self.searchResults[indexPath];
-//    UITableViewCell *cell  = [UITableViewCell ];
-//    cell.textLabel.text = searchResult.title;
-//    cell.detailTextLabel.text = searchResult.subtitle;
-//    return cell;
-//
-//}
 
 
 
