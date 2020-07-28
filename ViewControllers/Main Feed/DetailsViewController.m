@@ -32,8 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    myLabel.layer.borderColor = [UIColor greenColor].CGColor
-//    myLabel.layer.borderWidth = 3.0
     
     self.tripTitleLabel.text = self.post.title;
     self.timePeriodLabel.text = [NSString stringWithFormat:@"%@ – %@", self.post.startTime, self.post.endTime];
@@ -58,7 +56,6 @@
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.post.latitude.floatValue, self.post.longitude.floatValue);
     MKPointAnnotation *annotation = [MKPointAnnotation new];
     annotation.coordinate = coordinate;
-    //annotation.title = self.tripTitleLabel.text;
     [self.map addAnnotation:annotation];
 }
 
@@ -95,7 +92,6 @@
 - (IBAction)tappedPostComment:(id)sender {
     [Comment postComments:self.commentMessageField.text onPost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     if (succeeded) {
-        NSLog(@"Successful comment!");
         self.commentMessageField.text = @"";
         [self fetchComments];
     } else {

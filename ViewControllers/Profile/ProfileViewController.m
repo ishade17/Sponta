@@ -35,7 +35,7 @@
     [self.profilePicImageView.layer setBorderWidth: 1.0];
     
     self.editProfileButton.layer.borderWidth = 0.5;
-    self.editProfileButton.layer.cornerRadius = 2;
+    self.editProfileButton.layer.cornerRadius = 15;
     self.editProfileButton.layer.borderColor = UIColor.darkGrayColor.CGColor;
     
     PFUser *currentUser = [PFUser currentUser];
@@ -58,8 +58,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.profilePicImageView.layer.cornerRadius = self.profilePicImageView.frame.size.height / 2;
+    
     self.editProfileButton.layer.borderWidth = 0.5;
-    self.editProfileButton.layer.cornerRadius = 2;
+    self.editProfileButton.layer.cornerRadius = 15;
     self.editProfileButton.layer.borderColor = [[UIColor blueColor] CGColor];
     
     PFUser *currentUser = [PFUser currentUser];

@@ -100,13 +100,10 @@
 - (void)didSelectPreview:(nonnull UIImage *)preview withAddress:(nonnull NSString *)address withLatitude:(NSNumber *)latitude withLongitude:(NSNumber *)longitude {
     self.selectedImage.image = preview;
     self.uploadImageLabel.alpha = 0;
-    //self.addressTextView.text = address;
+    
     NSArray *chunks = [address componentsSeparatedByString: @", "];
-    NSLog(@"chunks: %@", chunks);
     [(NSMutableArray *)chunks removeObjectAtIndex:3];
-    NSLog(@"chunks: %@", chunks);
     NSString *addressTitle = [chunks componentsJoinedByString:@", "];
-    NSLog(@"addressTitle: %@", addressTitle);
     [self.searchLocationButton setTitle:[NSString stringWithFormat:@" %@", addressTitle] forState:UIControlStateNormal];
     self.searchLocationButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.searchLocationButton.contentScaleFactor = 0.8;
@@ -135,6 +132,7 @@
     if (self.selectedImage.image != nil && ![self.searchLocationButton.titleLabel.text isEqual: @" Search for destination location "] && ![self.tripNameTextView.text isEqual: @""] && ![self.startTimeTextView.text isEqual: @""] && ![self.endTimeTextView.text isEqual: @""] && ![self.descriptionBodyTextView.text isEqual: @""]) {
         
         [Post postUserTrip:self.tripNameTextView.text withDescription:self.descriptionBodyTextView.text withImage:self.selectedImage.image withAddress:self.searchLocationButton.titleLabel.text withTripDate:self.tripDateTextView.text withStartTime:self.startTimeTextView.text withEndTime:self.endTimeTextView.text withSpots:self.numSpotsTextView.text withPublicOption:self.postSettingSwitch.isOn withLatitude: self.latitude withLongitude: self.longitude withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            
         if (succeeded) {
             NSLog(@"Successful post!");
             self.tabBarController.selectedIndex = 0;
