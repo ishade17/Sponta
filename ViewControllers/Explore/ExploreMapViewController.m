@@ -10,9 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Post.h"
-#import "MapDetailsViewController.h"
 #import <Parse/Parse.h>
-#import "MaterialBottomSheet.h"
 #import "ExploreTripsViewController.h"
 
 @interface ExploreMapViewController () <MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -21,7 +19,6 @@
 @property (nonatomic, strong) NSMutableArray *publicPostsArray;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;
-//@property (nonatomic, strong) Post *selectedPost;
 @property (nonatomic, strong) NSMutableArray<Post *> *selectedPosts;
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSMutableArray<Post *> *> *pinToPost;
 
@@ -155,22 +152,6 @@
     return annotationView;
 }
 
-//- (void)presentBottomSheet:(NSMutableArray *)pinnedPosts {
-//    // View controller the bottom sheet will hold
-//    UIViewController *viewController = [UIViewController new];
-//    viewController.view.backgroundColor = [UIColor redColor];
-//    //viewController.pinnedPosts = pinnedPosts;
-//     
-//    // Initialize the bottom sheet with the view controller just created
-//    MDCBottomSheetController *bottomSheet = [[MDCBottomSheetController alloc] initWithContentViewController:viewController];
-//    bottomSheet.preferredContentSize = CGSizeMake(self.presentedViewController.accessibilityFrame.size.width, self.presentedViewController.accessibilityFrame.size.height * 0.3);
-//    
-//    // Present the bottom sheet
-//    [self presentViewController:bottomSheet animated:true completion:nil];
-//}
-
-
-
 - (void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSString *latLong = [NSString stringWithFormat:@"%.04f %.04f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude];
     NSMutableArray *pinnedPosts = [self.pinToPost objectForKey:latLong];
@@ -183,15 +164,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     self.currentLocation = [locations lastObject];
 }
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
-    if (annotationView == nil) {
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
-        annotationView.canShowCallout = true;
-    }
-    
-    return annotationView;
-}*/
+*/
 
 
 #pragma mark - Navigation

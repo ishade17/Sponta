@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		405D7EA4DAE1610386618082 /* libPods-Sponta-SpontaUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E04187AA4C9C276F21A066 /* libPods-Sponta-SpontaUITests.a */; };
 		4828260524BE5A0400A65A72 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828260424BE5A0400A65A72 /* PostCell.m */; };
 		4828260924BF8CDE00A65A72 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828260824BF8CDE00A65A72 /* APIManager.m */; };
 		4828260D24BF908F00A65A72 /* SearchLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828260C24BF908F00A65A72 /* SearchLocationsViewController.m */; };
@@ -18,7 +19,6 @@
 		486D3ABA24C698A800D7C3E6 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AB924C698A800D7C3E6 /* CommentCell.m */; };
 		486D3ABD24C69A4A00D7C3E6 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3ABC24C69A4A00D7C3E6 /* Comment.m */; };
 		486D3AC424C8185F00D7C3E6 /* ExploreMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */; };
-		486D3AC724C9183700D7C3E6 /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AC624C9183700D7C3E6 /* MapDetailsViewController.m */; };
 		486D3AD024CD0F0500D7C3E6 /* ExploreTripsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */; };
 		486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
@@ -34,9 +34,8 @@
 		48C0890924BCE69F00C83FE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0890824BCE69F00C83FE0 /* main.m */; };
 		48C0891324BCE69F00C83FE0 /* SpontaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0891224BCE69F00C83FE0 /* SpontaTests.m */; };
 		48C0891E24BCE69F00C83FE0 /* SpontaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0891D24BCE69F00C83FE0 /* SpontaUITests.m */; };
-		54F693827307C9700AB72419 /* Pods_SpontaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F6CEA6468A1CAC4DD37AB8 /* Pods_SpontaTests.framework */; };
-		E0B92FC5CC1A55E33162E8E2 /* Pods_Sponta_SpontaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47A03F8EF86A2A4F36A5B70 /* Pods_Sponta_SpontaUITests.framework */; };
-		E0BD79EE27A576FD9B4CBEAB /* Pods_Sponta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA8B17B39EA07A7828D81FB /* Pods_Sponta.framework */; };
+		7098A176F8E4BEB4605C7A1E /* libPods-Sponta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DD39D269093C117694A284 /* libPods-Sponta.a */; };
+		FA8E2A462602BEBB31679C07 /* libPods-SpontaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C03A6037C223DAD1A6F7EE /* libPods-SpontaTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15E04187AA4C9C276F21A066 /* libPods-Sponta-SpontaUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sponta-SpontaUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		19DD39D269093C117694A284 /* libPods-Sponta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sponta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2704737CB1D12CFA73AD9C74 /* Pods-SpontaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpontaTests.release.xcconfig"; path = "Target Support Files/Pods-SpontaTests/Pods-SpontaTests.release.xcconfig"; sourceTree = "<group>"; };
 		338D5C76F8C83FEB63DE04B6 /* Pods-Sponta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta.debug.xcconfig"; path = "Target Support Files/Pods-Sponta/Pods-Sponta.debug.xcconfig"; sourceTree = "<group>"; };
 		39A851A2CE0DFB8CC0B315AC /* Pods-SpontaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpontaTests.debug.xcconfig"; path = "Target Support Files/Pods-SpontaTests/Pods-SpontaTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,8 +83,6 @@
 		486D3ABC24C69A4A00D7C3E6 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		486D3AC224C8185F00D7C3E6 /* ExploreMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreMapViewController.h; sourceTree = "<group>"; };
 		486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreMapViewController.m; sourceTree = "<group>"; };
-		486D3AC524C9183700D7C3E6 /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapDetailsViewController.h; path = ViewControllers/Explore/MapDetailsViewController.h; sourceTree = SOURCE_ROOT; };
-		486D3AC624C9183700D7C3E6 /* MapDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapDetailsViewController.m; path = ViewControllers/Explore/MapDetailsViewController.m; sourceTree = SOURCE_ROOT; };
 		486D3ACE24CD0F0500D7C3E6 /* ExploreTripsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreTripsCell.h; sourceTree = "<group>"; };
 		486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreTripsCell.m; sourceTree = "<group>"; };
 		486D3AD124CD192B00D7C3E6 /* ExploreTripsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreTripsViewController.h; sourceTree = "<group>"; };
@@ -115,10 +114,8 @@
 		48C0891D24BCE69F00C83FE0 /* SpontaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpontaUITests.m; sourceTree = "<group>"; };
 		48C0891F24BCE69F00C83FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EED79704637BF000D6436C6 /* Pods-Sponta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta.release.xcconfig"; path = "Target Support Files/Pods-Sponta/Pods-Sponta.release.xcconfig"; sourceTree = "<group>"; };
-		85F6CEA6468A1CAC4DD37AB8 /* Pods_SpontaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpontaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C11DEE04F4D468CAB7CF09 /* Pods-Sponta-SpontaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta-SpontaUITests.release.xcconfig"; path = "Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests.release.xcconfig"; sourceTree = "<group>"; };
-		9FA8B17B39EA07A7828D81FB /* Pods_Sponta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sponta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B47A03F8EF86A2A4F36A5B70 /* Pods_Sponta_SpontaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sponta_SpontaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C03A6037C223DAD1A6F7EE /* libPods-SpontaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpontaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC384C10F8F089EB91AB97C8 /* Pods-Sponta-SpontaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta-SpontaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0BD79EE27A576FD9B4CBEAB /* Pods_Sponta.framework in Frameworks */,
+				7098A176F8E4BEB4605C7A1E /* libPods-Sponta.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54F693827307C9700AB72419 /* Pods_SpontaTests.framework in Frameworks */,
+				FA8E2A462602BEBB31679C07 /* libPods-SpontaTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0B92FC5CC1A55E33162E8E2 /* Pods_Sponta_SpontaUITests.framework in Frameworks */,
+				405D7EA4DAE1610386618082 /* libPods-Sponta-SpontaUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,8 +213,6 @@
 			children = (
 				486D3AC224C8185F00D7C3E6 /* ExploreMapViewController.h */,
 				486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */,
-				486D3AC524C9183700D7C3E6 /* MapDetailsViewController.h */,
-				486D3AC624C9183700D7C3E6 /* MapDetailsViewController.m */,
 				486D3AD124CD192B00D7C3E6 /* ExploreTripsViewController.h */,
 				486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */,
 			);
@@ -227,11 +222,11 @@
 		48922C2624BD417A00E95E57 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				48A9C0FD24CF9E5D003D9C31 /* Profile */,
 				486D3ABE24C817D100D7C3E6 /* Sign In */,
 				486D3ABF24C817E100D7C3E6 /* Main Feed */,
 				486D3AC124C8181E00D7C3E6 /* Explore */,
 				486D3AC024C817FD00D7C3E6 /* Create Trip */,
+				48A9C0FD24CF9E5D003D9C31 /* Profile */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -332,9 +327,9 @@
 		7597AB948228700410154987 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9FA8B17B39EA07A7828D81FB /* Pods_Sponta.framework */,
-				B47A03F8EF86A2A4F36A5B70 /* Pods_Sponta_SpontaUITests.framework */,
-				85F6CEA6468A1CAC4DD37AB8 /* Pods_SpontaTests.framework */,
+				19DD39D269093C117694A284 /* libPods-Sponta.a */,
+				15E04187AA4C9C276F21A066 /* libPods-Sponta-SpontaUITests.a */,
+				95C03A6037C223DAD1A6F7EE /* libPods-SpontaTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -350,7 +345,7 @@
 				48C088EF24BCE69D00C83FE0 /* Sources */,
 				48C088F024BCE69D00C83FE0 /* Frameworks */,
 				48C088F124BCE69D00C83FE0 /* Resources */,
-				94DAE3C33922842DD4154ADE /* [CP] Embed Pods Frameworks */,
+				AF39596CC390633F49B22574 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -388,7 +383,7 @@
 				48C0891524BCE69F00C83FE0 /* Sources */,
 				48C0891624BCE69F00C83FE0 /* Frameworks */,
 				48C0891724BCE69F00C83FE0 /* Resources */,
-				38EE923E490333DF8B0903AE /* [CP] Embed Pods Frameworks */,
+				8E9C6034A50820D58BB2B23E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -470,23 +465,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		38EE923E490333DF8B0903AE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4BE42B99BA4ED1FCBD4AEAB8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -509,21 +487,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94DAE3C33922842DD4154ADE /* [CP] Embed Pods Frameworks */ = {
+		8E9C6034A50820D58BB2B23E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sponta/Pods-Sponta-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sponta/Pods-Sponta-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sponta/Pods-Sponta-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ACC6537E350B279F1BF4E223 /* [CP] Check Pods Manifest.lock */ = {
@@ -546,6 +524,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF39596CC390633F49B22574 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sponta/Pods-Sponta-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sponta/Pods-Sponta-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sponta/Pods-Sponta-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DF6547A8696D2DEBB25CFD02 /* [CP] Check Pods Manifest.lock */ = {
@@ -591,7 +586,6 @@
 				4828260924BF8CDE00A65A72 /* APIManager.m in Sources */,
 				4828260524BE5A0400A65A72 /* PostCell.m in Sources */,
 				4828261624BFCD2500A65A72 /* SelectPreviewViewController.m in Sources */,
-				486D3AC724C9183700D7C3E6 /* MapDetailsViewController.m in Sources */,
 				486D3AD024CD0F0500D7C3E6 /* ExploreTripsCell.m in Sources */,
 				48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */,
 				486D3AB724C67C2A00D7C3E6 /* DetailsViewController.m in Sources */,

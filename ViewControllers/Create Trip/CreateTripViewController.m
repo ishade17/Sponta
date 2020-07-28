@@ -101,7 +101,15 @@
     self.selectedImage.image = preview;
     self.uploadImageLabel.alpha = 0;
     //self.addressTextView.text = address;
-    [self.searchLocationButton setTitle:[NSString stringWithFormat:@" %@ ", address] forState:UIControlStateNormal];
+    NSArray *chunks = [address componentsSeparatedByString: @", "];
+    NSLog(@"chunks: %@", chunks);
+    [(NSMutableArray *)chunks removeObjectAtIndex:3];
+    NSLog(@"chunks: %@", chunks);
+    NSString *addressTitle = [chunks componentsJoinedByString:@", "];
+    NSLog(@"addressTitle: %@", addressTitle);
+    [self.searchLocationButton setTitle:[NSString stringWithFormat:@" %@", addressTitle] forState:UIControlStateNormal];
+    self.searchLocationButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.searchLocationButton.contentScaleFactor = 0.8;
     self.latitude = latitude;
     self.longitude = longitude;
 }

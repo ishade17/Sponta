@@ -59,8 +59,8 @@
             [self.post.guestList removeObject:PFUser.currentUser];
             self.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots filled: %lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
             self.spotsFilledLabel.textColor = [UIColor blueColor]; // idk if this right
-            self.addGuestButton.tintColor = [UIColor blueColor];
-            [self.addGuestButton setImage:[UIImage imageNamed:@"plus.circle"] forState:UIControlStateNormal];
+            //self.addGuestButton.tintColor = [UIColor blueColor];
+            //[self.addGuestButton setImage:[UIImage imageNamed:@"plus.circle"] forState:UIControlStateNormal];
             [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (succeeded) {
                     NSLog(@"Guest removed from trip!");
@@ -74,8 +74,8 @@
     [self.post.guestList addObject:PFUser.currentUser];
     self.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots filled: %lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
     self.spotsFilledLabel.textColor = [UIColor blueColor]; // idk if this right
-    self.addGuestButton.tintColor = [UIColor blueColor];
-    [self.addGuestButton setImage:[UIImage imageNamed:@"checkmark.circle.filled"] forState:UIControlStateNormal];
+    //self.addGuestButton.tintColor = [UIColor blueColor];
+    //[self.addGuestButton setImage:[UIImage imageNamed:@"checkmark.circle.filled"] forState:UIControlStateNormal];
     [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Guest added to trip!");

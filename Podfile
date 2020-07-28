@@ -3,15 +3,13 @@
 
 target 'Sponta' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+  # use_frameworks!
 
   # Pods for Sponta
   pod 'Parse'
   pod 'Parse/UI'
   pod 'BDBOAuth1Manager'
   pod 'AFNetworking'
-  pod 'MaterialComponents/BottomSheet'
-  pod 'FloatingPanel'
 
   target 'SpontaTests' do
     inherit! :search_paths

@@ -2,6 +2,4 @@ ${PODS_ROOT}/Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUI
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
 ${BUILT_PRODUCTS_DIR}/BDBOAuth1Manager/BDBOAuth1Manager.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
-${BUILT_PRODUCTS_DIR}/FloatingPanel/FloatingPanel.framework
-${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework

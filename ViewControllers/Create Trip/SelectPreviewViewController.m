@@ -56,9 +56,7 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             self.photoReferences = [responseDictionary valueForKeyPath:@"result.photos"];
             
-            NSLog(@"PHOTO REFS: %@", self.photoReferences);
             for (NSDictionary *photoObject in self.photoReferences) {
-                NSLog(@"PHOTO OBJECT: %@", photoObject);
                 [self updateWithPreview: photoObject];
             }
             [self.tableView reloadData];
@@ -81,13 +79,9 @@ static NSString * const clientKey = @"AIzaSyDaAdWMOh7uT3UUJpOF23UhY6IEQi6WHCA";
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             NSURL *URL = [response valueForKeyPath:@"URL"];
-            NSLog(@"%@", URL);
             NSData *imageData = (NSData *)[NSData dataWithContentsOfURL:URL];
-            NSLog(@"DATA: %@", imageData);
             UIImage *image = [UIImage imageWithData:imageData];
-            NSLog(@"IMAGE: %@", image);
             [self.photoArray addObject:image];
-            NSLog(@"PHOTO ARRAY: %@", self.photoArray);
             [self.tableView reloadData];
         }
     }];
