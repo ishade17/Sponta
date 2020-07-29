@@ -143,7 +143,7 @@
 }
 
 - (IBAction)tappedJoinTrip:(id)sender {
-    [JoinLeaveTrip joinLeaveTrip:self.post withLabel:self.spotsCountLabel withButton:self.addGuestButton];
+    [JoinLeaveTrip joinLeaveTrip:self.post withLabel:self.spotsCountLabel withLabelFormat:NO withButton:self.addGuestButton];
 }
 
 

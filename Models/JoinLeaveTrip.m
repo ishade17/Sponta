@@ -16,13 +16,17 @@
     return @"JoinLeaveTrip";
 }
 
-+ (void)joinLeaveTrip:(Post *)post withLabel:(UILabel *)spotsCountLabel withButton:(UIButton *)addGuestButton {
++ (void)joinLeaveTrip:(Post *)post withLabel:(UILabel *)spotsCountLabel withLabelFormat:(BOOL)longFormat withButton:(UIButton *)addGuestButton {
     //if (![post.author isEqual: PFUser.currentUser]) {
         for (PFUser *guest in post.guestList) {
             if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
                 [post.guestList removeObject:guest];
                 [post setObject:post.guestList forKey:@"guestList"];
-                spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
+                if (longFormat) {
+                    spotsCountLabel.text = [NSString stringWithFormat:@"Spots Filled: %lu / %@", (unsigned long)post.guestList.count, post.spots];
+                } else {
+                    spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
+                }
                 addGuestButton.backgroundColor = [UIColor blueColor];
                 [addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
                 [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -37,7 +41,11 @@
         }
         [post.guestList addObject:PFUser.currentUser];
         [post setObject:post.guestList forKey:@"guestList"];
-        spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
+        if (longFormat) {
+            spotsCountLabel.text = [NSString stringWithFormat:@"Spots Filled: %lu / %@", (unsigned long)post.guestList.count, post.spots];
+        } else {
+            spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
+        }
         addGuestButton.backgroundColor = [UIColor greenColor];
         [addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
         [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

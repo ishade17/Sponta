@@ -7,6 +7,7 @@
 //
 
 #import "ExploreTripsCell.h"
+#import "JoinLeaveTrip.h"
 
 @implementation ExploreTripsCell
 
@@ -21,5 +22,6 @@
 
     // Configure the view for the selected state
 }
+
 
 @end

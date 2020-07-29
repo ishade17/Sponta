@@ -9,6 +9,7 @@
 #import "ExploreTripsViewController.h"
 #import "ExploreTripsCell.h"
 #import "Post.h"
+#import "JoinLeaveTrip.h"
 
 @interface ExploreTripsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -33,7 +34,7 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ExploreTripsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExploreTripsCell"];
+    ExploreTripsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ExploreTripsCell"];
     Post *post = self.postsArray[indexPath.row];
     
     cell.tripTitleLabel.text = post.title;
@@ -52,8 +53,20 @@
     [post.previewImage getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         cell.previewImageView.image = [UIImage imageWithData:data];
     }];
+    [cell.addGuestButton addTarget:self action:@selector(joinLeaveTrip:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
+}
+
+- (IBAction)joinLeaveTrip:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    if (indexPath != nil) {
+        Post *post = self.postsArray[indexPath.row];
+        ExploreTripsCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [JoinLeaveTrip joinLeaveTrip:post withLabel:cell.spotsFilledLabel withLabelFormat:YES withButton:button];
+    }
 }
 
 
