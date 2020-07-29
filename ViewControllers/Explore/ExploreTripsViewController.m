@@ -41,6 +41,8 @@
     cell.profilePicImageView.layer.cornerRadius = cell.profilePicImageView.frame.size.height /2;
     [cell.profilePicImageView.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [cell.profilePicImageView.layer setBorderWidth: 1.0];
+    cell.profilePicImageView.file = [post.author objectForKey:@"profileImage"];
+    [cell.profilePicImageView loadInBackground];
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:post.tripDate];
     cell.timeDateLabel.text = [NSString stringWithFormat:@"%@ – %@ on %@", post.startTime, post.endTime, [daysOfWeek objectAtIndex:weekday]];

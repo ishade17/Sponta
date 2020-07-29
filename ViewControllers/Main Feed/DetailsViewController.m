@@ -15,6 +15,7 @@
 
 @interface DetailsViewController () <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *addGuestButton;
 @property (weak, nonatomic) IBOutlet UILabel *tripTitleLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (weak, nonatomic) IBOutlet UILabel *timePeriodLabel;
@@ -46,6 +47,17 @@
     
     self.descriptionLabel.text = self.post.tripDescription;
     self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
+    self.spotsCountLabel.textColor = [UIColor blueColor];
+    
+    self.addGuestButton.titleLabel.textColor = [UIColor whiteColor];
+    self.addGuestButton.backgroundColor = [UIColor blueColor];
+    [self.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
+    for (PFUser *guest in self.post.guestList) {
+        if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
+            self.addGuestButton.backgroundColor = [UIColor greenColor];
+            [self.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
+        }
+    }
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
@@ -66,6 +78,8 @@
     annotation.coordinate = coordinate;
     [self.map addAnnotation:annotation];
 }
+
+
 
 - (void)fetchComments {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Comment"];
@@ -127,6 +141,39 @@
     
     return annotationView;
 }
+
+- (IBAction)tappedJoinTrip:(id)sender {
+    for (PFUser *guest in self.post.guestList) {
+        if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
+            [self.post.guestList removeObject:guest];
+            [self.post setObject:self.post.guestList forKey:@"guestList"];
+            self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
+            self.addGuestButton.backgroundColor = [UIColor blueColor];
+            [self.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
+            [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    NSLog(@"Guest removed from trip!");
+                } else {
+                    NSLog(@"Error updating post: %@", error.localizedDescription);
+                }
+            }];
+            return;
+        }
+    }
+    [self.post.guestList addObject:PFUser.currentUser];
+    [self.post setObject:self.post.guestList forKey:@"guestList"];
+    self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
+    self.addGuestButton.backgroundColor = [UIColor greenColor];
+    [self.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"Guest added to trip!");
+        } else {
+            NSLog(@"Error updating post: %@", error.localizedDescription);
+        }
+    }];
+}
+
 
 /*
 #pragma mark - Navigation

@@ -27,6 +27,7 @@
 		48A9C10324CF9FFA003D9C31 /* ProfilePostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C10224CF9FFA003D9C31 /* ProfilePostCell.m */; };
 		48A9C10624D1087A003D9C31 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C10524D1087A003D9C31 /* EditProfileViewController.m */; };
 		48A9C10924D15B46003D9C31 /* ProfilePostDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C10824D15B46003D9C31 /* ProfilePostDetailsViewController.m */; };
+		48A9C10C24D1F539003D9C31 /* GuestProfilePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C10B24D1F539003D9C31 /* GuestProfilePicCell.m */; };
 		48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088F724BCE69D00C83FE0 /* AppDelegate.m */; };
 		48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088FA24BCE69D00C83FE0 /* SceneDelegate.m */; };
 		48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C088FD24BCE69D00C83FE0 /* SignInViewController.m */; };
@@ -101,6 +102,8 @@
 		48A9C10524D1087A003D9C31 /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		48A9C10724D15B46003D9C31 /* ProfilePostDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfilePostDetailsViewController.h; sourceTree = "<group>"; };
 		48A9C10824D15B46003D9C31 /* ProfilePostDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfilePostDetailsViewController.m; sourceTree = "<group>"; };
+		48A9C10A24D1F539003D9C31 /* GuestProfilePicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestProfilePicCell.h; sourceTree = "<group>"; };
+		48A9C10B24D1F539003D9C31 /* GuestProfilePicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuestProfilePicCell.m; sourceTree = "<group>"; };
 		48C088F324BCE69D00C83FE0 /* Sponta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C088F624BCE69D00C83FE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48C088F724BCE69D00C83FE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */,
 				48A9C10124CF9FFA003D9C31 /* ProfilePostCell.h */,
 				48A9C10224CF9FFA003D9C31 /* ProfilePostCell.m */,
+				48A9C10A24D1F539003D9C31 /* GuestProfilePicCell.h */,
+				48A9C10B24D1F539003D9C31 /* GuestProfilePicCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 				486D3ABD24C69A4A00D7C3E6 /* Comment.m in Sources */,
 				4828260924BF8CDE00A65A72 /* APIManager.m in Sources */,
 				48A9C10624D1087A003D9C31 /* EditProfileViewController.m in Sources */,
+				48A9C10C24D1F539003D9C31 /* GuestProfilePicCell.m in Sources */,
 				4828260524BE5A0400A65A72 /* PostCell.m in Sources */,
 				4828261624BFCD2500A65A72 /* SelectPreviewViewController.m in Sources */,
 				486D3AD024CD0F0500D7C3E6 /* ExploreTripsCell.m in Sources */,
