@@ -12,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import "Post.h"
 #import <Parse/Parse.h>
+#import "JoinLeaveTrip.h"
 
 @interface DetailsViewController () <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
@@ -80,7 +81,6 @@
 }
 
 
-
 - (void)fetchComments {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Comment"];
     [postQuery includeKey:@"author"];
@@ -143,35 +143,7 @@
 }
 
 - (IBAction)tappedJoinTrip:(id)sender {
-    for (PFUser *guest in self.post.guestList) {
-        if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
-            [self.post.guestList removeObject:guest];
-            [self.post setObject:self.post.guestList forKey:@"guestList"];
-            self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
-            self.addGuestButton.backgroundColor = [UIColor blueColor];
-            [self.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
-            [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (succeeded) {
-                    NSLog(@"Guest removed from trip!");
-                } else {
-                    NSLog(@"Error updating post: %@", error.localizedDescription);
-                }
-            }];
-            return;
-        }
-    }
-    [self.post.guestList addObject:PFUser.currentUser];
-    [self.post setObject:self.post.guestList forKey:@"guestList"];
-    self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
-    self.addGuestButton.backgroundColor = [UIColor greenColor];
-    [self.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
-    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"Guest added to trip!");
-        } else {
-            NSLog(@"Error updating post: %@", error.localizedDescription);
-        }
-    }];
+    [JoinLeaveTrip joinLeaveTrip:self.post withLabel:self.spotsCountLabel withButton:self.addGuestButton];
 }
 
 

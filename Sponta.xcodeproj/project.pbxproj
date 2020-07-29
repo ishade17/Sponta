@@ -21,6 +21,7 @@
 		486D3AC424C8185F00D7C3E6 /* ExploreMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AC324C8185F00D7C3E6 /* ExploreMapViewController.m */; };
 		486D3AD024CD0F0500D7C3E6 /* ExploreTripsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */; };
 		486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */; };
+		488120D524D20C46004EAC14 /* JoinLeaveTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120D424D20C46004EAC14 /* JoinLeaveTrip.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
 		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
 		48A9C10024CF9E82003D9C31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C0FF24CF9E82003D9C31 /* ProfileViewController.m */; };
@@ -90,6 +91,8 @@
 		486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreTripsCell.m; sourceTree = "<group>"; };
 		486D3AD124CD192B00D7C3E6 /* ExploreTripsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreTripsViewController.h; sourceTree = "<group>"; };
 		486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreTripsViewController.m; sourceTree = "<group>"; };
+		488120D324D20C46004EAC14 /* JoinLeaveTrip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoinLeaveTrip.h; sourceTree = "<group>"; };
+		488120D424D20C46004EAC14 /* JoinLeaveTrip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoinLeaveTrip.m; sourceTree = "<group>"; };
 		48979FDF24BE29B80048C5AC /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				48979FE424BE425E0048C5AC /* Post.m */,
 				486D3ABB24C69A4A00D7C3E6 /* Comment.h */,
 				486D3ABC24C69A4A00D7C3E6 /* Comment.m */,
+				488120D324D20C46004EAC14 /* JoinLeaveTrip.h */,
+				488120D424D20C46004EAC14 /* JoinLeaveTrip.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				486D3ABD24C69A4A00D7C3E6 /* Comment.m in Sources */,
 				4828260924BF8CDE00A65A72 /* APIManager.m in Sources */,
 				48A9C10624D1087A003D9C31 /* EditProfileViewController.m in Sources */,
+				488120D524D20C46004EAC14 /* JoinLeaveTrip.m in Sources */,
 				48A9C10C24D1F539003D9C31 /* GuestProfilePicCell.m in Sources */,
 				4828260524BE5A0400A65A72 /* PostCell.m in Sources */,
 				4828261624BFCD2500A65A72 /* SelectPreviewViewController.m in Sources */,
