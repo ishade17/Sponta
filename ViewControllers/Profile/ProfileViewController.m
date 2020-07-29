@@ -30,44 +30,48 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-    self.profilePicImageView.layer.cornerRadius = self.profilePicImageView.frame.size.height / 2;
-    [self.profilePicImageView.layer setBorderColor: [[UIColor blueColor] CGColor]];
-    [self.profilePicImageView.layer setBorderWidth: 1.0];
+    [self configureEditButton];
     
-    self.editProfileButton.layer.borderWidth = 0.5;
-    self.editProfileButton.layer.cornerRadius = 15;
-    self.editProfileButton.layer.borderColor = UIColor.darkGrayColor.CGColor;
-    
-    PFUser *currentUser = [PFUser currentUser];
-    self.usernameLabel.text = [currentUser objectForKey:@"username"];
-    self.bioLabel.text = [currentUser objectForKey:@"bio"];
-    self.profilePicImageView.file = [currentUser objectForKey:@"profilePicture"];
-    [self.profilePicImageView loadInBackground];
+    [self configureCollectionView];
+}
 
-    [self fetchUserPosts];
+- (void)viewWillAppear:(BOOL)animated {
+    [self styleProfilePicture];
+        
+    [self configureUserFields];
     
+    [self fetchUserPosts];
+}
+
+- (void)configureCollectionView {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
     CGFloat postersPerLine = 3;
-    //CGFloat itemWidth = (self.collectionsView.frame.size.width - (layout.minimumInteritemSpacing + 28)* (postersPerLine - 1)) / postersPerLine;
     CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)styleProfilePicture {
     self.profilePicImageView.layer.cornerRadius = self.profilePicImageView.frame.size.height / 2;
-    
-    self.editProfileButton.layer.borderWidth = 0.5;
-    self.editProfileButton.layer.cornerRadius = 15;
-    self.editProfileButton.layer.borderColor = [[UIColor blueColor] CGColor];
-    
+    [self.profilePicImageView.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [self.profilePicImageView.layer setBorderWidth: 1.0];
+}
+
+- (void)configureUserFields {
     PFUser *currentUser = [PFUser currentUser];
     self.usernameLabel.text = [currentUser objectForKey:@"username"];
     self.bioLabel.text = [currentUser objectForKey:@"bio"];
-    self.profilePicImageView.file = [currentUser objectForKey:@"profilePicture"];
+    self.nameLabel.text =[currentUser objectForKey:@"name"];
+    self.profilePicImageView.file = [currentUser objectForKey:@"profileImage"];
     [self.profilePicImageView loadInBackground];
+}
+
+- (void)configureEditButton {
+    self.editProfileButton.layer.borderWidth = 0.5;
+    self.editProfileButton.layer.cornerRadius = 15;
+    self.editProfileButton.layer.borderColor = [[UIColor blueColor] CGColor];
 }
 
 - (void) fetchUserPosts {
@@ -84,7 +88,6 @@
               // do something with the data fetched
               self.userPosts = [NSMutableArray arrayWithArray:posts];
               [self.collectionView reloadData];
-              //NSLog(@"%lu", posts.count);
           }
           else {
               // handle error

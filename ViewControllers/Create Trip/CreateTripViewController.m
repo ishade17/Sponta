@@ -102,7 +102,7 @@
     self.uploadImageLabel.alpha = 0;
     
     NSArray *chunks = [address componentsSeparatedByString: @", "];
-    [(NSMutableArray *)chunks removeObjectAtIndex:3];
+    [(NSMutableArray *)chunks removeObjectAtIndex: chunks.count - 1];
     NSString *addressTitle = [chunks componentsJoinedByString:@", "];
     [self.searchLocationButton setTitle:[NSString stringWithFormat:@" %@", addressTitle] forState:UIControlStateNormal];
     self.searchLocationButton.titleLabel.adjustsFontSizeToFitWidth = YES;

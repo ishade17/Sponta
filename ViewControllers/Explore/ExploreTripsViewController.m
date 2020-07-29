@@ -25,7 +25,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.tableView.rowHeight = 530;
+    self.tableView.rowHeight = 565;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
