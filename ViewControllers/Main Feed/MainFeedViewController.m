@@ -68,6 +68,8 @@
     // if current date/time is after trip date/time then return
     
     cell.post = postInfo;
+    cell.profilePicImage.file = [PFUser.currentUser objectForKey:@"profileImage"];
+    [cell.profilePicImage loadInBackground];
     cell.profilePicImage.layer.cornerRadius = cell.profilePicImage.frame.size.height / 2;
     [cell.profilePicImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [cell.profilePicImage.layer setBorderWidth: 1.0];
@@ -84,7 +86,7 @@
     
     // check if current user has liked this post
     for (PFUser *user in postInfo.likedList) {
-        if ([user isEqual:PFUser.currentUser]) {
+        if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
             cell.likeButton.tintColor = [UIColor redColor];
         }
     }

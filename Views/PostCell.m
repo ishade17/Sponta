@@ -22,9 +22,11 @@
 }
 
 - (IBAction)tappedLike:(id)sender {
+    //unlike
     for (PFUser *user in self.post.likedList) {
-        if ([user isEqual:PFUser.currentUser]) {
-            [self.post.likedList removeObject:PFUser.currentUser];
+        if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
+            [self.post.likedList removeObject:user];
+            [self.post setObject:self.post.likedList forKey:@"likedList"];
             self.likeButton.tintColor = [UIColor blueColor];
             self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)self.post.likedList.count];
             [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -37,7 +39,10 @@
             return;
         }
     }
+    
+    //like
     [self.post.likedList addObject:PFUser.currentUser];
+    [self.post setObject:self.post.likedList forKey:@"likedList"];
     self.likeButton.tintColor = [UIColor redColor];
     self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)self.post.likedList.count];
     

@@ -48,6 +48,7 @@
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
     CGFloat postersPerLine = 3;
+    //layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
@@ -63,7 +64,7 @@
     PFUser *currentUser = [PFUser currentUser];
     self.usernameLabel.text = [currentUser objectForKey:@"username"];
     self.bioLabel.text = [currentUser objectForKey:@"bio"];
-    self.nameLabel.text =[currentUser objectForKey:@"name"];
+    self.nameLabel.text = [currentUser objectForKey:@"name"];
     self.profilePicImageView.file = [currentUser objectForKey:@"profileImage"];
     [self.profilePicImageView loadInBackground];
 }

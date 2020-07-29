@@ -34,8 +34,16 @@
     [super viewDidLoad];
     
     self.tripTitleLabel.text = self.post.title;
-    self.timePeriodLabel.text = [NSString stringWithFormat:@"%@ – %@", self.post.startTime, self.post.endTime];
-    self.destinationAddress.text = self.post.address;
+    NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
+    NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:self.post.tripDate];
+    self.timePeriodLabel.text = [NSString stringWithFormat:@"%@ – %@ on %@", self.post.startTime, self.post.endTime, [daysOfWeek objectAtIndex:weekday]];
+    
+    NSArray *chunks = [self.post.address componentsSeparatedByString: @", "];
+    [(NSMutableArray *)chunks removeObjectAtIndex: chunks.count - 1];
+    NSString *addressTitle = [chunks componentsJoinedByString:@", "];
+    self.destinationAddress.text = [NSString stringWithFormat:@"%@", addressTitle];
+    
+    
     self.descriptionLabel.text = self.post.tripDescription;
     self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
     
