@@ -12,6 +12,8 @@
 #import "ProfilePostCell.h"
 #import "Post.h"
 #import "ProfilePostDetailsViewController.h"
+#import "SignInViewController.h"
+#import "SceneDelegate.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -110,6 +112,18 @@
     self.tripsHostedLabel.text = [NSString stringWithFormat:@"%lu Trips Hosted", (unsigned long)self.userPosts.count];
     return self.userPosts.count;
 }
+
+- (IBAction)tappedLogout:(id)sender {
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SignInViewController *signInViewController = [storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
+    sceneDelegate.window.rootViewController = signInViewController;
+    
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+    }];
+}
+
 
 
 #pragma mark - Navigation

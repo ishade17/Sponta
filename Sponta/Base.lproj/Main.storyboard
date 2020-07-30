@@ -640,7 +640,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="BG2-RX-2e4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="DfR-j0-iO9"/>
+                    <navigationItem key="navigationItem" title="Profile" id="DfR-j0-iO9">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="ckU-Kq-IsW">
+                            <connections>
+                                <action selector="tappedLogout:" destination="ygl-Qw-SB9" id="FYd-Th-qDi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bioLabel" destination="wYY-Wy-78U" id="wGg-cN-j5d"/>
                         <outlet property="collectionView" destination="dCU-qf-FjQ" id="yfJ-rK-NSQ"/>
