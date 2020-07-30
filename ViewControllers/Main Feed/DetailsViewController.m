@@ -45,7 +45,6 @@
     NSString *addressTitle = [chunks componentsJoinedByString:@", "];
     self.destinationAddress.text = [NSString stringWithFormat:@"%@", addressTitle];
     
-    
     self.descriptionLabel.text = self.post.tripDescription;
     self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
     self.spotsCountLabel.textColor = [UIColor blueColor];

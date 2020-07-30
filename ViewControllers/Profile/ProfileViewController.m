@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "ProfilePostCell.h"
 #import "Post.h"
+#import "ProfilePostDetailsViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -75,7 +76,7 @@
     self.editProfileButton.layer.borderColor = [[UIColor blueColor] CGColor];
 }
 
-- (void) fetchUserPosts {
+- (void)fetchUserPosts {
     // construct PFQuery
       PFQuery *postQuery = [Post query];
       [postQuery whereKey:@"author" equalTo:[PFUser currentUser]];
@@ -110,14 +111,22 @@
     return self.userPosts.count;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"toProfilePostDetails"]) {
+        UICollectionViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+        Post *post = self.userPosts[indexPath.row];
+        
+        ProfilePostDetailsViewController *profilePostDetailsViewController = [segue destinationViewController];
+        profilePostDetailsViewController.post = post;
+    }
 }
-*/
+
 
 @end

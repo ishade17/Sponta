@@ -75,15 +75,26 @@
     [cell.profilePicImage.layer setBorderWidth: 1.0];
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)postInfo.likedList.count];
-    cell.previewImage.file = postInfo[@"previewImage"];
-    [cell.previewImage loadInBackground];
-    if (postInfo.publicTrip) {
-        cell.publicTag.text = @"Public";
+    if (postInfo.likedList.count == 1) {
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)postInfo.likedList.count];
     } else {
-        cell.publicTag.text = @"";
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Like", (unsigned long)postInfo.likedList.count];
     }
     
+    cell.previewImage.file = postInfo[@"previewImage"];
+    [cell.previewImage loadInBackground];
+    
+    if (postInfo.publicTrip) {
+        cell.publicTag.text = @"Public";
+        cell.publicTag.layer.borderColor = [[UIColor blueColor] CGColor];
+        cell.publicTag.layer.borderWidth = 0.5f;
+        cell.publicTag.layer.cornerRadius = 8;
+    } else {
+        cell.publicTag.text = @"";
+        cell.publicTag.layer.borderColor = [[UIColor whiteColor] CGColor];
+    }
+    
+    NSLog(@"post liked list: %@", postInfo);
     // check if current user has liked this post
     for (PFUser *user in postInfo.likedList) {
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
@@ -95,7 +106,7 @@
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];
     
     cell.tripStartLabel.text = [NSString stringWithFormat:@"%@ on %@", postInfo.startTime, [daysOfWeek objectAtIndex:weekday]];
-    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots filled: %lu / %@", (unsigned long)postInfo.guestList.count, postInfo.spots];
+    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots Filled: %lu / %@", (unsigned long)postInfo.guestList.count, postInfo.spots];
         
     return cell;
 }
