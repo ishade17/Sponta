@@ -38,7 +38,6 @@
     MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667), MKCoordinateSpanMake(0.3, 0.3));
     [self.map setRegion:region animated:false];
         
-    /* TODO: Current Location
     if ([CLLocationManager locationServicesEnabled]) {
         if (self.locationManager == nil) {
             self.locationManager = [[CLLocationManager alloc] init];
@@ -51,7 +50,7 @@
             }
         }
         [self.locationManager startUpdatingLocation];
-    }*/
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

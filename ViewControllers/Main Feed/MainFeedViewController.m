@@ -76,9 +76,9 @@
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
     if (postInfo.likedList.count == 1) {
-        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)postInfo.likedList.count];
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)postInfo.likedList.count];
     } else {
-        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Like", (unsigned long)postInfo.likedList.count];
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)postInfo.likedList.count];
     }
     
     cell.previewImage.file = postInfo[@"previewImage"];
@@ -94,13 +94,17 @@
         cell.publicTag.layer.borderColor = [[UIColor whiteColor] CGColor];
     }
     
-    NSLog(@"post liked list: %@", postInfo);
+    //NSLog(@"post liked list: %@", postInfo);
     // check if current user has liked this post
+    cell.likeButton.tintColor = [UIColor blueColor];
     for (PFUser *user in postInfo.likedList) {
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
-            cell.likeButton.tintColor = [UIColor redColor];
+            //NSLog(@"called for %@", cell.post.title);
+            cell.likeButton.tintColor = [UIColor greenColor];
         }
     }
+    
+    NSLog(@"color of %@: %@", cell.post.title, cell.likeButton.tintColor);
     
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];

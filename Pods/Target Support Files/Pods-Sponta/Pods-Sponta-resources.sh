@@ -99,10 +99,24 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/ParseUI.bundle"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/CloseButton.png"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/CloseButton@2x.png"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/CloseButton@3x.png"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/inAppMessageLayout~ipad.xib"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/inAppMessageLayout~landscape.xib"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/inAppMessageLayout~portrait.xib"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/placeholder-image.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/ParseUI.bundle"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/CloseButton.png"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/CloseButton@2x.png"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/CloseButton@3x.png"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/inAppMessageLayout~ipad.xib"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/inAppMessageLayout~landscape.xib"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/inAppMessageLayout~portrait.xib"
+  install_resource "${PODS_ROOT}/Pushbots/Pushbots.framework/placeholder-image.png"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

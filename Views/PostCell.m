@@ -29,9 +29,9 @@
             [self.post setObject:self.post.likedList forKey:@"likedList"];
             self.likeButton.tintColor = [UIColor blueColor];
             if (self.post.likedList.count == 1) {
-                self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Like", (unsigned long)self.post.likedList.count];
+                self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
             } else {
-                self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)self.post.likedList.count];
+                self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)self.post.likedList.count];
             }
             [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (succeeded) {
@@ -47,11 +47,12 @@
     //like
     [self.post.likedList addObject:PFUser.currentUser];
     [self.post setObject:self.post.likedList forKey:@"likedList"];
-    self.likeButton.tintColor = [UIColor redColor];
+    self.likeButton.tintColor = [UIColor greenColor];
+    //NSLog(@"postcell called for %@", self.post.title);
     if (self.post.likedList.count == 1) {
-        self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Like", (unsigned long)self.post.likedList.count];
+        self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
     } else {
-        self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Likes", (unsigned long)self.post.likedList.count];
+        self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)self.post.likedList.count];
     }
     
     [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

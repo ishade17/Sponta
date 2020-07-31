@@ -8,6 +8,7 @@
 
 #import "SignInViewController.h"
 #import <Parse/Parse.h>
+#import "Post.h"
 
 @interface SignInViewController ()
 
@@ -60,6 +61,9 @@
 
 - (IBAction)tappedSignUp:(id)sender {
     [self registerUser];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    currentUser[@"bookmarkedList"] = [NSMutableArray<Post *> new];
 }
 
 

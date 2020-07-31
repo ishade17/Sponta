@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIImageView *previewImage;
 
-- (void)updateWithPreview:(NSDictionary *)photoObject;
+//- (void)updateWithPreview:(NSDictionary *)photoObject;
 
 
 

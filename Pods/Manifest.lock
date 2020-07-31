@@ -23,12 +23,14 @@ PODS:
     - Bolts/Tasks (= 1.9.1)
   - Parse/UI (1.18.0):
     - Parse/Core
+  - Pushbots (2.4.5)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
   - Parse
   - Parse/UI
+  - Pushbots
 
 SPEC REPOS:
   trunk:
@@ -36,13 +38,15 @@ SPEC REPOS:
     - BDBOAuth1Manager
     - Bolts
     - Parse
+    - Pushbots
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
+  Pushbots: f5705419ec3ef441db16d20b21720e2a0afbf8d2
 
-PODFILE CHECKSUM: 97554ab76bcce95dc2356fcfc75f9e97780d81c1
+PODFILE CHECKSUM: d4edad677d9ccd9ba8326e0e53bbf3bbc8b3ed6b
 
 COCOAPODS: 1.9.3

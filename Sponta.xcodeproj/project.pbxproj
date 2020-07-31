@@ -22,6 +22,9 @@
 		486D3AD024CD0F0500D7C3E6 /* ExploreTripsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3ACF24CD0F0500D7C3E6 /* ExploreTripsCell.m */; };
 		486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */; };
 		488120D524D20C46004EAC14 /* JoinLeaveTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120D424D20C46004EAC14 /* JoinLeaveTrip.m */; };
+		488120DA24D38799004EAC14 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120D924D38799004EAC14 /* Notifications.m */; };
+		488120DF24D3B24A004EAC14 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120DE24D3B24A004EAC14 /* NotificationsViewController.m */; };
+		488120E224D3E3CA004EAC14 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120E124D3E3CA004EAC14 /* NotificationCell.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
 		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
 		48A9C10024CF9E82003D9C31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C0FF24CF9E82003D9C31 /* ProfileViewController.m */; };
@@ -93,6 +96,12 @@
 		486D3AD224CD192B00D7C3E6 /* ExploreTripsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExploreTripsViewController.m; sourceTree = "<group>"; };
 		488120D324D20C46004EAC14 /* JoinLeaveTrip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoinLeaveTrip.h; sourceTree = "<group>"; };
 		488120D424D20C46004EAC14 /* JoinLeaveTrip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoinLeaveTrip.m; sourceTree = "<group>"; };
+		488120D824D38799004EAC14 /* Notifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		488120D924D38799004EAC14 /* Notifications.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Notifications.m; sourceTree = "<group>"; };
+		488120DD24D3B24A004EAC14 /* NotificationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		488120DE24D3B24A004EAC14 /* NotificationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		488120E024D3E3CA004EAC14 /* NotificationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
+		488120E124D3E3CA004EAC14 /* NotificationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
 		48979FDF24BE29B80048C5AC /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -176,6 +185,8 @@
 				48A9C10224CF9FFA003D9C31 /* ProfilePostCell.m */,
 				48A9C10A24D1F539003D9C31 /* GuestProfilePicCell.h */,
 				48A9C10B24D1F539003D9C31 /* GuestProfilePicCell.m */,
+				488120E024D3E3CA004EAC14 /* NotificationCell.h */,
+				488120E124D3E3CA004EAC14 /* NotificationCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,6 +244,24 @@
 			path = Explore;
 			sourceTree = "<group>";
 		};
+		488120DB24D3A2C8004EAC14 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				488120D324D20C46004EAC14 /* JoinLeaveTrip.h */,
+				488120D424D20C46004EAC14 /* JoinLeaveTrip.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		488120DC24D3B206004EAC14 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				488120DD24D3B24A004EAC14 /* NotificationsViewController.h */,
+				488120DE24D3B24A004EAC14 /* NotificationsViewController.m */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		48922C2624BD417A00E95E57 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +269,7 @@
 				486D3ABF24C817E100D7C3E6 /* Main Feed */,
 				486D3AC124C8181E00D7C3E6 /* Explore */,
 				486D3AC024C817FD00D7C3E6 /* Create Trip */,
+				488120DC24D3B206004EAC14 /* Notifications */,
 				48A9C0FD24CF9E5D003D9C31 /* Profile */,
 			);
 			path = ViewControllers;
@@ -252,8 +282,8 @@
 				48979FE424BE425E0048C5AC /* Post.m */,
 				486D3ABB24C69A4A00D7C3E6 /* Comment.h */,
 				486D3ABC24C69A4A00D7C3E6 /* Comment.m */,
-				488120D324D20C46004EAC14 /* JoinLeaveTrip.h */,
-				488120D424D20C46004EAC14 /* JoinLeaveTrip.m */,
+				488120D824D38799004EAC14 /* Notifications.h */,
+				488120D924D38799004EAC14 /* Notifications.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +304,7 @@
 		48C088EA24BCE69D00C83FE0 = {
 			isa = PBXGroup;
 			children = (
+				488120DB24D3A2C8004EAC14 /* Utils */,
 				4828260624BF8CAB00A65A72 /* API */,
 				4828260224BE59E100A65A72 /* Views */,
 				48979FE224BE423F0048C5AC /* Models */,
@@ -592,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488120E224D3E3CA004EAC14 /* NotificationCell.m in Sources */,
 				48C088FE24BCE69D00C83FE0 /* SignInViewController.m in Sources */,
 				4828261324BF9B8000A65A72 /* CreateTripViewController.m in Sources */,
 				48979FE524BE425E0048C5AC /* Post.m in Sources */,
@@ -606,6 +638,7 @@
 				4828260924BF8CDE00A65A72 /* APIManager.m in Sources */,
 				48A9C10624D1087A003D9C31 /* EditProfileViewController.m in Sources */,
 				488120D524D20C46004EAC14 /* JoinLeaveTrip.m in Sources */,
+				488120DA24D38799004EAC14 /* Notifications.m in Sources */,
 				48A9C10C24D1F539003D9C31 /* GuestProfilePicCell.m in Sources */,
 				4828260524BE5A0400A65A72 /* PostCell.m in Sources */,
 				4828261624BFCD2500A65A72 /* SelectPreviewViewController.m in Sources */,
@@ -617,6 +650,7 @@
 				4828261924BFDAA400A65A72 /* LocationPreviewCell.m in Sources */,
 				48A9C10924D15B46003D9C31 /* ProfilePostDetailsViewController.m in Sources */,
 				486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */,
+				488120DF24D3B24A004EAC14 /* NotificationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
