@@ -47,7 +47,7 @@
     [query includeKey:@"triggerUser"];
     [query includeKey:@"type"];
     [query includeKey:@"targetPost"];
-    [query whereKey:@"receiverUser" equalTo:PFUser.currentUser];
+    [query whereKey:@"receiverUser" equalTo:[PFUser currentUser]];
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
     

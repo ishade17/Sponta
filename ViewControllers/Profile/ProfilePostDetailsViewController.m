@@ -10,6 +10,7 @@
 #import "PFImageView.h"
 #import "Comment.h"
 #import "CommentCell.h"
+#import "Notifications.h"
 
 @interface ProfilePostDetailsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -95,6 +96,7 @@
     [Comment postComments:self.commentMessageField.text onPost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     if (succeeded) {
         self.commentMessageField.text = @"";
+        [Notifications sendNotification:[PFUser currentUser] withReceiver:self.post.author withPost:self.post withType:@"comment"];
         [self fetchComments];
     } else {
         NSLog(@"%@", error.localizedDescription);

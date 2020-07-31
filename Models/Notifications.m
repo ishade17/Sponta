@@ -19,15 +19,27 @@
     return @"Notifications";
 }
 
-+ (void) createNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)targetPost withType:(NSString *)type withCompletion: (PFBooleanResultBlock _Nullable)completion {
++ (void)createNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)targetPost withType:(NSString *)type withCompletion: (PFBooleanResultBlock _Nullable)completion {
     
     Notifications *newNotif = [Notifications new];
-    newNotif.triggerUser = receiverUser;
-    newNotif.receiverUser = triggerUser;
+    newNotif.triggerUser = triggerUser;
+    newNotif.receiverUser = receiverUser;
     newNotif.targetPost = targetPost;
     newNotif.type = type;
     
     [newNotif saveInBackgroundWithBlock:completion];
+}
+
++ (void)sendNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)post withType:(NSString *)type {
+    if (![receiverUser.objectId isEqualToString:triggerUser.objectId]) {
+        [Notifications createNotification:triggerUser withReceiver:receiverUser withPost:post withType:type withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                NSLog(@"Sent %@ notification", type);
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
 }
 
 @end

@@ -31,12 +31,13 @@
 }
 
 - (void)configureProfilePicView:(PFUser *)currentUser {
+    self.profilePicView.layer.cornerRadius = self.profilePicView.frame.size.height / 2;
+    [self.profilePicView.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [self.profilePicView.layer setBorderWidth: 1.0];
+    
     if ([currentUser objectForKey:@"profileImage"]) {
         self.profilePicView.file = [currentUser objectForKey:@"profileImage"];
         [self.profilePicView loadInBackground];
-        self.profilePicView.layer.cornerRadius = self.profilePicView.frame.size.height / 2;
-        [self.profilePicView.layer setBorderColor: [[UIColor blueColor] CGColor]];
-        [self.profilePicView.layer setBorderWidth: 1.0];
     }
 }
 

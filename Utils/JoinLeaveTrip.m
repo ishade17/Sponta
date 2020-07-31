@@ -9,6 +9,7 @@
 #import "JoinLeaveTrip.h"
 #import "Post.h"
 #import <Parse/Parse.h>
+#import "Notifications.h"
 
 @implementation JoinLeaveTrip
 
@@ -32,6 +33,7 @@
                 [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                     if (succeeded) {
                         NSLog(@"Guest removed from trip!");
+                        [Notifications sendNotification:[PFUser currentUser] withReceiver:post.author withPost:post withType:@"left"];
                     } else {
                         NSLog(@"Error updating post: %@", error.localizedDescription);
                     }
@@ -51,6 +53,7 @@
         [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"Guest added to trip!");
+                [Notifications sendNotification:[PFUser currentUser] withReceiver:post.author withPost:post withType:@"join"];
             } else {
                 NSLog(@"Error updating post: %@", error.localizedDescription);
             }

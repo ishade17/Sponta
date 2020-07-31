@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFUser *triggerUser;
 @property (nonatomic, strong) PFUser *receiverUser;
 
-+ (void) createNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)targetPost withType:(NSString *)type withCompletion: (PFBooleanResultBlock _Nullable)completion;
++ (void)createNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)targetPost withType:(NSString *)type withCompletion: (PFBooleanResultBlock _Nullable)completion;
++ (void)sendNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)post withType:(NSString *)type;
 
 @end
 

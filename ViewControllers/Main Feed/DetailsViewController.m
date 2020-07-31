@@ -121,15 +121,7 @@
     }
     }];
     
-    if (![self.post.author.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        [Notifications createNotification:[PFUser currentUser] withReceiver:self.post.author withPost:self.post withType:@"comment" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            if (succeeded) {
-                NSLog(@"Sent comment notification");
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-    }
+    [Notifications sendNotification:[PFUser currentUser] withReceiver:self.post.author withPost:self.post withType:@"comment"];
         
 }
 
