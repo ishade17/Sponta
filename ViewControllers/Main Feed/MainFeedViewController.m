@@ -68,13 +68,16 @@
     // if current date/time is after trip date/time then return
     
     cell.post = postInfo;
-    cell.profilePicImage.file = [PFUser.currentUser objectForKey:@"profileImage"];
+    
+    cell.profilePicImage.file = [postInfo.author objectForKey:@"profileImage"];
     [cell.profilePicImage loadInBackground];
     cell.profilePicImage.layer.cornerRadius = cell.profilePicImage.frame.size.height / 2;
     [cell.profilePicImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [cell.profilePicImage.layer setBorderWidth: 1.0];
+    
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
+    
     if (postInfo.likedList.count == 1) {
         cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)postInfo.likedList.count];
     } else {

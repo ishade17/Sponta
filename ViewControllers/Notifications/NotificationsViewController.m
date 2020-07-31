@@ -7,11 +7,16 @@
 //
 
 #import "NotificationsViewController.h"
+#import "NotificationCell.h"
+#import "Notifications.h"
 #import "PFImageView.h"
+#import <Parse/Parse.h>
 
 @interface NotificationsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *notifsArray;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -23,6 +28,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchNotifications) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -30,15 +39,45 @@
 }
 
 - (void)fetchNotifications {
+    PFQuery *query = [PFQuery queryWithClassName:@"Notifications"];
+    [query includeKey:@"receiverUser"];
+    [query whereKey:@"receiverUser" equalTo:PFUser.currentUser];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
     
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable notifs, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            self.notifsArray = (NSMutableArray *)notifs;
+            //[self.refreshControl endRefreshing];
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    <#code#>
+    NotificationCell *notifCell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
+    Notifications *notif = self.notifsArray[indexPath.row];
+    
+    notifCell.triggerUserLabel.text = [NSString stringWithFormat:@"%@", notif.triggerUser];
+    notifCell.profilePic.file = [notif.triggerUser objectForKey:@"profileImage"];
+    [notifCell.profilePic loadInBackground];
+    notifCell.post = notif.targetPost;
+    
+    if ([notif.type isEqualToString:@"joined"]) {
+        notifCell.notifTypeLabel.text = @"joined your trip!";
+    } else if ([notif.type isEqualToString:@"left"]) {
+        notifCell.notifTypeLabel.text = @"left your trip!";
+    } else if ([notif.type isEqualToString:@"commented"]) {
+        notifCell.notifTypeLabel.text = @"commented on your trip!";
+    }
+    
+    return notifCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    <#code#>
+    return self.notifsArray.count;
 }
 
 /*
