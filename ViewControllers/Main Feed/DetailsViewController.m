@@ -13,6 +13,7 @@
 #import "Post.h"
 #import <Parse/Parse.h>
 #import "JoinLeaveTrip.h"
+#import "Notifications.h"
 
 @interface DetailsViewController () <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
@@ -119,6 +120,17 @@
         NSLog(@"%@", error.localizedDescription);
     }
     }];
+    
+    if (![self.post.author.objectId isEqualToString:[PFUser currentUser].objectId]) {
+        [Notifications createNotification:[PFUser currentUser] withReceiver:self.post.author withPost:self.post withType:@"comment" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                NSLog(@"Sent comment notification");
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
+        
 }
 
 - (void)locationsViewController:(id)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {

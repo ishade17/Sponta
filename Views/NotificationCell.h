@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *triggerUserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notifTypeLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *targetPostPreviewImage;
 
 @end
 

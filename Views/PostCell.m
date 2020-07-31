@@ -48,7 +48,7 @@
     [self.post.likedList addObject:PFUser.currentUser];
     [self.post setObject:self.post.likedList forKey:@"likedList"];
     self.likeButton.tintColor = [UIColor greenColor];
-    //NSLog(@"postcell called for %@", self.post.title);
+    
     if (self.post.likedList.count == 1) {
         self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
     } else {

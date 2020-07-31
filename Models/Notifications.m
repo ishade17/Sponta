@@ -20,9 +20,10 @@
 }
 
 + (void) createNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)targetPost withType:(NSString *)type withCompletion: (PFBooleanResultBlock _Nullable)completion {
+    
     Notifications *newNotif = [Notifications new];
-    newNotif.triggerUser = triggerUser;
-    newNotif.receiverUser = receiverUser;
+    newNotif.triggerUser = receiverUser;
+    newNotif.receiverUser = triggerUser;
     newNotif.targetPost = targetPost;
     newNotif.type = type;
     

@@ -571,12 +571,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ei1-6w-U92" customClass="PFImageView">
+                                                    <rect key="frame" x="339" y="11" width="53" height="53"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="notifTypeLabel" destination="LnY-QR-P6L" id="Oco-EE-LR1"/>
                                             <outlet property="profilePic" destination="PfR-Fi-5X3" id="hRm-vr-JQy"/>
+                                            <outlet property="targetPostPreviewImage" destination="Ei1-6w-U92" id="P6w-AY-Bpc"/>
                                             <outlet property="triggerUserLabel" destination="34a-xB-wRv" id="zJI-bD-yQR"/>
+                                            <segue destination="ubU-4M-ll0" kind="showDetail" identifier="toDetailsFromNotif" id="Adx-oB-Dkf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1229,6 +1235,9 @@
             <point key="canvasLocation" x="1049" y="98"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Adx-oB-Dkf"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
