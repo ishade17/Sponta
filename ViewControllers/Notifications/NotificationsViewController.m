@@ -40,7 +40,6 @@
     
     [self configureCollectionView];
     
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchNotifications) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -54,8 +53,8 @@
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 20;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    CGFloat itemWidth = 186;
-    CGFloat itemHeight = 90;
+    CGFloat itemWidth = self.collectionView.frame.size.width / 2;
+    CGFloat itemHeight = self.collectionView.frame.size.height * 0.85;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     self.collectionViewBorder.layer.borderColor = [[UIColor blueColor] CGColor];
     self.collectionViewBorder.layer.borderWidth = 0.5;
@@ -185,6 +184,14 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         Notifications *notif = self.notifsArray[indexPath.row];
         Post *post = notif.targetPost;
+        
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = post;
+    } else if ([segue.identifier isEqual:@"toDetailsFromUpcoming"]) {
+        UICollectionViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+        UpcomingTrip *upcomingTrip = self.upcomingTripsArray[indexPath.row];
+        Post *post = upcomingTrip.trip;
         
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.post = post;

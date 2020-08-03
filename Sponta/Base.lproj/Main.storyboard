@@ -635,6 +635,7 @@
                                             <outlet property="hostNameLabel" destination="XxO-SS-X33" id="1cl-wn-4R7"/>
                                             <outlet property="hostProfilePic" destination="MQR-o8-cyM" id="VKh-4D-NMv"/>
                                             <outlet property="tripNameLabel" destination="yUp-WN-1nP" id="utd-xW-OVt"/>
+                                            <segue destination="ubU-4M-ll0" kind="showDetail" identifier="toDetailsFromUpcoming" id="HQr-31-CYZ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1290,7 +1291,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Adx-oB-Dkf"/>
+        <segue reference="HQr-31-CYZ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
