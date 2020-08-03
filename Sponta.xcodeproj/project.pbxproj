@@ -27,6 +27,9 @@
 		488120E224D3E3CA004EAC14 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120E124D3E3CA004EAC14 /* NotificationCell.m */; };
 		488120E524D4CF41004EAC14 /* UpcomingTripCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120E424D4CF41004EAC14 /* UpcomingTripCell.m */; };
 		488120E824D68757004EAC14 /* UpcomingTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120E724D68757004EAC14 /* UpcomingTrip.m */; };
+		488120EB24D8C8B6004EAC14 /* BookmarkedTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120EA24D8C8B5004EAC14 /* BookmarkedTrip.m */; };
+		488120EE24D8D5E3004EAC14 /* BookmarkedTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120ED24D8D5E3004EAC14 /* BookmarkedTripsViewController.m */; };
+		488120F124D8D6CF004EAC14 /* BookmarkedTripCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 488120F024D8D6CF004EAC14 /* BookmarkedTripCell.m */; };
 		48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE024BE29B80048C5AC /* MainFeedViewController.m */; };
 		48979FE524BE425E0048C5AC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 48979FE424BE425E0048C5AC /* Post.m */; };
 		48A9C10024CF9E82003D9C31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A9C0FF24CF9E82003D9C31 /* ProfileViewController.m */; };
@@ -108,6 +111,12 @@
 		488120E424D4CF41004EAC14 /* UpcomingTripCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpcomingTripCell.m; sourceTree = "<group>"; };
 		488120E624D68757004EAC14 /* UpcomingTrip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpcomingTrip.h; sourceTree = "<group>"; };
 		488120E724D68757004EAC14 /* UpcomingTrip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpcomingTrip.m; sourceTree = "<group>"; };
+		488120E924D8C8B5004EAC14 /* BookmarkedTrip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarkedTrip.h; sourceTree = "<group>"; };
+		488120EA24D8C8B5004EAC14 /* BookmarkedTrip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarkedTrip.m; sourceTree = "<group>"; };
+		488120EC24D8D5E3004EAC14 /* BookmarkedTripsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarkedTripsViewController.h; sourceTree = "<group>"; };
+		488120ED24D8D5E3004EAC14 /* BookmarkedTripsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarkedTripsViewController.m; sourceTree = "<group>"; };
+		488120EF24D8D6CF004EAC14 /* BookmarkedTripCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarkedTripCell.h; sourceTree = "<group>"; };
+		488120F024D8D6CF004EAC14 /* BookmarkedTripCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarkedTripCell.m; sourceTree = "<group>"; };
 		48979FDF24BE29B80048C5AC /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		48979FE024BE29B80048C5AC /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48979FE324BE425E0048C5AC /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -195,6 +204,8 @@
 				488120E124D3E3CA004EAC14 /* NotificationCell.m */,
 				488120E324D4CF41004EAC14 /* UpcomingTripCell.h */,
 				488120E424D4CF41004EAC14 /* UpcomingTripCell.m */,
+				488120EF24D8D6CF004EAC14 /* BookmarkedTripCell.h */,
+				488120F024D8D6CF004EAC14 /* BookmarkedTripCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +305,8 @@
 				488120D924D38799004EAC14 /* Notifications.m */,
 				488120E624D68757004EAC14 /* UpcomingTrip.h */,
 				488120E724D68757004EAC14 /* UpcomingTrip.m */,
+				488120E924D8C8B5004EAC14 /* BookmarkedTrip.h */,
+				488120EA24D8C8B5004EAC14 /* BookmarkedTrip.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -307,6 +320,8 @@
 				48A9C10524D1087A003D9C31 /* EditProfileViewController.m */,
 				48A9C10724D15B46003D9C31 /* ProfilePostDetailsViewController.h */,
 				48A9C10824D15B46003D9C31 /* ProfilePostDetailsViewController.m */,
+				488120EC24D8D5E3004EAC14 /* BookmarkedTripsViewController.h */,
+				488120ED24D8D5E3004EAC14 /* BookmarkedTripsViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -643,6 +658,7 @@
 				48A9C10024CF9E82003D9C31 /* ProfileViewController.m in Sources */,
 				4828261024BF911A00A65A72 /* LocationCell.m in Sources */,
 				48C088F824BCE69D00C83FE0 /* AppDelegate.m in Sources */,
+				488120EE24D8D5E3004EAC14 /* BookmarkedTripsViewController.m in Sources */,
 				48C0890924BCE69F00C83FE0 /* main.m in Sources */,
 				4828260D24BF908F00A65A72 /* SearchLocationsViewController.m in Sources */,
 				486D3ABD24C69A4A00D7C3E6 /* Comment.m in Sources */,
@@ -658,9 +674,11 @@
 				48C088FB24BCE69D00C83FE0 /* SceneDelegate.m in Sources */,
 				486D3AB724C67C2A00D7C3E6 /* DetailsViewController.m in Sources */,
 				48979FE124BE29B80048C5AC /* MainFeedViewController.m in Sources */,
+				488120F124D8D6CF004EAC14 /* BookmarkedTripCell.m in Sources */,
 				486D3ABA24C698A800D7C3E6 /* CommentCell.m in Sources */,
 				4828261924BFDAA400A65A72 /* LocationPreviewCell.m in Sources */,
 				48A9C10924D15B46003D9C31 /* ProfilePostDetailsViewController.m in Sources */,
+				488120EB24D8C8B6004EAC14 /* BookmarkedTrip.m in Sources */,
 				486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */,
 				488120DF24D3B24A004EAC14 /* NotificationsViewController.m in Sources */,
 			);

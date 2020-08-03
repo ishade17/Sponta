@@ -14,8 +14,10 @@
 #import <Parse/Parse.h>
 #import "JoinLeaveTrip.h"
 #import "Notifications.h"
+#import "UpcomingTrip.h"
+#import "GuestProfilePicCell.h"
 
-@interface DetailsViewController () <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
+@interface DetailsViewController () <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *addGuestButton;
 @property (weak, nonatomic) IBOutlet UILabel *tripTitleLabel;
@@ -25,7 +27,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *commentMessageField;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *commentsArray;
+@property (nonatomic, strong) NSMutableArray *guestsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 
@@ -63,7 +67,11 @@
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
     
-    [self fetchComments];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
+    [self fetchFeeds];
+    [self configureCollectionView];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchComments) forControlEvents:UIControlEventValueChanged];
@@ -80,6 +88,10 @@
     [self.map addAnnotation:annotation];
 }
 
+- (void)fetchFeeds {
+    [self fetchComments];
+    [self fetchGuests];
+}
 
 - (void)fetchComments {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Comment"];
@@ -96,6 +108,32 @@
             [self.commentsTableView reloadData];
         }
     }];
+}
+
+- (void)fetchGuests {
+    PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
+    [query includeKey:@"trip"];
+    [query includeKey:@"guest"];
+    [query whereKey:@"trip" equalTo:self.post];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *tripGuests, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            self.guestsArray = (NSMutableArray *)tripGuests;
+            [self.collectionView reloadData];
+        }
+    }];
+}
+
+- (void)configureCollectionView {
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 10;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    CGFloat itemWidth = self.collectionView.frame.size.width / 3.4;
+    CGFloat itemHeight = self.collectionView.frame.size.height;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -122,7 +160,6 @@
     }];
     
     [Notifications sendNotification:[PFUser currentUser] withReceiver:self.post.author withPost:self.post withType:@"comment"];
-        
 }
 
 - (void)locationsViewController:(id)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
@@ -145,9 +182,35 @@
     return annotationView;
 }
 
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    GuestProfilePicCell *guestProfilePicCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GuestProfilePicCell" forIndexPath:indexPath];
+    UpcomingTrip *upcomingTrip = self.guestsArray[indexPath.row];
+    
+    [self configureGuestProfilePic:guestProfilePicCell withUpcomingTrip:upcomingTrip];
+    guestProfilePicCell.guestUsername.text = upcomingTrip.guest.username;
+    
+    return guestProfilePicCell;
+}
+
+- (void)configureGuestProfilePic:(GuestProfilePicCell *)guestProfilePicCell withUpcomingTrip:(UpcomingTrip *)upcomingTrip {
+    guestProfilePicCell.guestProfilePic.file = [upcomingTrip.guest objectForKey:@"profileImage"];
+    [guestProfilePicCell.guestProfilePic loadInBackground];
+    guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
+    [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 1.0];
+}
+
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.guestsArray.count;
+}
+
 - (IBAction)tappedJoinTrip:(id)sender {
     [JoinLeaveTrip joinLeaveTrip:self.post withLabel:self.spotsCountLabel withLabelFormat:NO withButton:self.addGuestButton];
+    [self fetchGuests];
 }
+
+
 
 
 /*

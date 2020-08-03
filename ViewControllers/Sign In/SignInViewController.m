@@ -111,8 +111,6 @@
         } else {
             NSLog(@"User registered successfully");
             // manually segue to logged in view
-            newUser[@"upcomingTrips"] = [NSMutableArray<Post *> new];
-            newUser[@"bookmarkedList"] = [NSMutableArray<Post *> new];
             [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     NSLog(@"upcomingTrips updated");

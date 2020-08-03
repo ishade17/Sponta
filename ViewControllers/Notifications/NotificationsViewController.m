@@ -92,6 +92,7 @@
     [query includeKey:@"host"];
     [query includeKey:@"guest"];
     [query whereKey:@"guest" equalTo:PFUser.currentUser];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *upcomingTrips, NSError *error) {
         if (error) {
             NSLog(@"%@", error.localizedDescription);
@@ -152,19 +153,26 @@
     UpcomingTripCell *upcomingTripCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UpcomingTripCell" forIndexPath:indexPath];
     UpcomingTrip *upcomingTrip = self.upcomingTripsArray[indexPath.row];
     
-    upcomingTripCell.hostNameLabel.text = upcomingTrip.host.username;
-    upcomingTripCell.tripNameLabel.text = upcomingTrip.trip.title;
-    
-    upcomingTripCell.hostProfilePic.file = [upcomingTrip.host objectForKey:@"profileImage"];
-    [upcomingTripCell.hostProfilePic loadInBackground];
-    upcomingTripCell.hostProfilePic.layer.cornerRadius = upcomingTripCell.hostProfilePic.frame.size.height / 2;
-    [upcomingTripCell.hostProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
-    [upcomingTripCell.hostProfilePic.layer setBorderWidth: 1.0];
+    [self configureUpcomingTripLabels:upcomingTripCell withUpcomingTrip:upcomingTrip];
+    [self configureHostProfilePic:upcomingTripCell withUpcomingTrip:upcomingTrip];
     
     upcomingTripCell.layer.borderColor = [[UIColor blueColor] CGColor];
     upcomingTripCell.layer.borderWidth = 0.5;
     
     return upcomingTripCell;
+}
+
+- (void)configureHostProfilePic:(UpcomingTripCell *)upcomingTripCell withUpcomingTrip:(UpcomingTrip *)upcomingTrip {
+    upcomingTripCell.hostProfilePic.file = [upcomingTrip.host objectForKey:@"profileImage"];
+    [upcomingTripCell.hostProfilePic loadInBackground];
+    upcomingTripCell.hostProfilePic.layer.cornerRadius = upcomingTripCell.hostProfilePic.frame.size.height / 2;
+    [upcomingTripCell.hostProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [upcomingTripCell.hostProfilePic.layer setBorderWidth: 1.0];
+}
+
+- (void)configureUpcomingTripLabels:(UpcomingTripCell *)upcomingTripCell withUpcomingTrip:(UpcomingTrip *)upcomingTrip {
+    upcomingTripCell.hostNameLabel.text = upcomingTrip.host.username;
+    upcomingTripCell.tripNameLabel.text = upcomingTrip.trip.title;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -182,6 +190,7 @@
     if ([segue.identifier isEqual:@"toDetailsFromNotif"]) {
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        
         Notifications *notif = self.notifsArray[indexPath.row];
         Post *post = notif.targetPost;
         
@@ -190,6 +199,7 @@
     } else if ([segue.identifier isEqual:@"toDetailsFromUpcoming"]) {
         UICollectionViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+        
         UpcomingTrip *upcomingTrip = self.upcomingTripsArray[indexPath.row];
         Post *post = upcomingTrip.trip;
         

@@ -103,8 +103,7 @@
         cell.publicTag.layer.borderColor = [[UIColor whiteColor] CGColor];
     }
     
-    //NSLog(@"post liked list: %@", postInfo);
-    // check if current user has liked this post
+    // check if current user has bookmarked this post
     cell.likeButton.tintColor = [UIColor blueColor];
     for (PFUser *user in postInfo.likedList) {
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
