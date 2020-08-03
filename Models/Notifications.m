@@ -31,7 +31,7 @@
 }
 
 + (void)sendNotification:(PFUser *)triggerUser withReceiver:(PFUser *)receiverUser withPost:(Post *)post withType:(NSString *)type {
-    if (![receiverUser.objectId isEqualToString:triggerUser.objectId]) {
+    //if (![receiverUser.objectId isEqualToString:triggerUser.objectId]) {
         [Notifications createNotification:triggerUser withReceiver:receiverUser withPost:post withType:type withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"Sent %@ notification", type);
@@ -39,7 +39,7 @@
                 NSLog(@"%@", error.localizedDescription);
             }
         }];
-    }
+    //}
 }
 
 @end

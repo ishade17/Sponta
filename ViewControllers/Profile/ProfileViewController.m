@@ -51,7 +51,6 @@
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
     CGFloat postersPerLine = 3;
-    //layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
@@ -95,7 +94,7 @@
           }
           else {
               // handle error
-              NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+              NSLog(@"Error getting home timeline: %@", error.localizedDescription);
           }
       }];
 }

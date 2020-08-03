@@ -53,6 +53,7 @@
             }];
         } else {
             NSLog(@"User logged in successfully");
+            NSLog(@"current: %@", [PFUser currentUser]);
             // display view controller that needs to shown after successful login
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
@@ -61,9 +62,6 @@
 
 - (IBAction)tappedSignUp:(id)sender {
     [self registerUser];
-    
-    PFUser *currentUser = [PFUser currentUser];
-    currentUser[@"bookmarkedList"] = [NSMutableArray<Post *> new];
 }
 
 
@@ -113,6 +111,15 @@
         } else {
             NSLog(@"User registered successfully");
             // manually segue to logged in view
+            newUser[@"upcomingTrips"] = [NSMutableArray<Post *> new];
+            newUser[@"bookmarkedList"] = [NSMutableArray<Post *> new];
+            [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    NSLog(@"upcomingTrips updated");
+                } else {
+                    NSLog(@"Error updating upcomingTrips: %@", error.localizedDescription);
+                }
+            }];
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];

@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JoinLeaveTrip : NSObject
+@property (nonatomic, strong) NSMutableArray *test;
 
 + (void)joinLeaveTrip:(Post *)post withLabel:(UILabel *)spotsCountLabel withLabelFormat:(BOOL)longFormat withButton:(UIButton *)addGuestButton;
 

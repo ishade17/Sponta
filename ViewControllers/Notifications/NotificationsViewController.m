@@ -12,11 +12,17 @@
 #import "PFImageView.h"
 #import <Parse/Parse.h>
 #import "DetailsViewController.h"
+#import "UpcomingTripCell.h"
+#import "UpcomingTrip.h"
+#import "Post.h"
 
-@interface NotificationsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NotificationsViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *notifsArray;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIView *collectionViewBorder;
+@property (nonatomic, strong) NSMutableArray<Notifications *> *notifsArray;
+@property (nonatomic, strong) NSMutableArray<UpcomingTrip *> *upcomingTripsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
@@ -29,6 +35,12 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
+    [self configureCollectionView];
+    
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchNotifications) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -37,8 +49,21 @@
     
 }
 
+- (void)configureCollectionView {
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 20;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    CGFloat itemWidth = 186;
+    CGFloat itemHeight = 90;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    self.collectionViewBorder.layer.borderColor = [[UIColor blueColor] CGColor];
+    self.collectionViewBorder.layer.borderWidth = 0.5;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [self fetchNotifications];
+    [self fetchUpcomingTrips];
 }
 
 - (void)fetchNotifications {
@@ -58,6 +83,23 @@
             self.notifsArray = (NSMutableArray *)notifs;
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
+        }
+    }];
+}
+
+- (void)fetchUpcomingTrips {
+    PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
+    [query includeKey:@"trip"];
+    [query includeKey:@"host"];
+    [query includeKey:@"guest"];
+    [query whereKey:@"guest" equalTo:PFUser.currentUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *upcomingTrips, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            self.upcomingTripsArray = (NSMutableArray *)upcomingTrips;
+            [self.collectionView reloadData];
+            //NSLog(@"upcomingTripsArray: %@", self.upcomingTripsArray);
         }
     }];
 }
@@ -105,6 +147,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"toDetailsFromNotif" sender:self];
+}
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UpcomingTripCell *upcomingTripCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UpcomingTripCell" forIndexPath:indexPath];
+    UpcomingTrip *upcomingTrip = self.upcomingTripsArray[indexPath.row];
+    
+    upcomingTripCell.hostNameLabel.text = upcomingTrip.host.username;
+    upcomingTripCell.tripNameLabel.text = upcomingTrip.trip.title;
+    
+    upcomingTripCell.hostProfilePic.file = [upcomingTrip.host objectForKey:@"profileImage"];
+    [upcomingTripCell.hostProfilePic loadInBackground];
+    upcomingTripCell.hostProfilePic.layer.cornerRadius = upcomingTripCell.hostProfilePic.frame.size.height / 2;
+    [upcomingTripCell.hostProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [upcomingTripCell.hostProfilePic.layer setBorderWidth: 1.0];
+    
+    upcomingTripCell.layer.borderColor = [[UIColor blueColor] CGColor];
+    upcomingTripCell.layer.borderWidth = 0.5;
+    
+    return upcomingTripCell;
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.upcomingTripsArray.count;
 }
 
 

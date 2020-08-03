@@ -42,6 +42,12 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
     [query orderByDescending:@"createdAt"];
+    
+//    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    // or @"yyyy-MM-dd hh:mm:ss a" if you prefer the time with AM/PM
+//   [dateFormatter stringFromDate:[NSDate date]];
+    
     query.limit = 20;
 
     // fetch data asynchronously
@@ -106,9 +112,7 @@
             cell.likeButton.tintColor = [UIColor greenColor];
         }
     }
-    
-    NSLog(@"color of %@: %@", cell.post.title, cell.likeButton.tintColor);
-    
+        
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];
     
