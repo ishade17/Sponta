@@ -79,7 +79,7 @@
         }
     }];
     
-    [BookmarkedTrip bookmarkTrip:[PFUser currentUser] withTrip:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [BookmarkedTrip bookmarkTrip:[PFUser currentUser] withHost:self.post.author withTrip:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Trip bookmarked!");
         } else {

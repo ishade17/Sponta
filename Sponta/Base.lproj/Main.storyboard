@@ -790,7 +790,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="3 Bookmarks"/>
                                 <connections>
-                                    <segue destination="l9I-Bu-a97" kind="showDetail" id="aGf-FS-0Qw"/>
+                                    <segue destination="l9I-Bu-a97" kind="show" id="aGf-FS-0Qw"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="32 Trips Hosted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT5-dJ-P7a">
@@ -951,7 +951,7 @@
             <objects>
                 <viewController id="l9I-Bu-a97" customClass="BookmarkedTripsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Dp-rI-nd7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nVR-U4-grj">
@@ -959,7 +959,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="75" id="qhu-SL-NL3" customClass="BookmarkedTripCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookmarkedTripCell" rowHeight="75" id="qhu-SL-NL3" customClass="BookmarkedTripCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qhu-SL-NL3" id="NqJ-JU-t05">
@@ -995,6 +995,7 @@
                                             <outlet property="hostUsernameLabel" destination="H5Z-Vt-B2V" id="hkp-RB-boT"/>
                                             <outlet property="tripPreviewImageView" destination="oDG-ya-nuw" id="Nu3-sP-X4q"/>
                                             <outlet property="tripTimeLabel" destination="fUm-2p-KiO" id="hT9-av-nnR"/>
+                                            <segue destination="ubU-4M-ll0" kind="showDetail" identifier="toDetailsFromBookmarked" id="3nn-pD-FJB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1010,6 +1011,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="8Ln-zF-bJj"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lDd-4b-aLV"/>
+                    <connections>
+                        <outlet property="tableView" destination="nVR-U4-grj" id="kS0-45-5JN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IgL-lu-Zcy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1418,7 +1423,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6Wn-3y-bkq"/>
+        <segue reference="3nn-pD-FJB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>

@@ -15,8 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) Post *trip;
 @property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) PFUser *host;
 
-+ (void)bookmarkTrip:(PFUser *)user withTrip:(Post *)trip withCompletion: (PFBooleanResultBlock _Nullable)completion;
++ (void)bookmarkTrip:(PFUser *)user withHost:(PFUser *)host withTrip:(Post *)trip withCompletion: (PFBooleanResultBlock _Nullable)completion;
 
 @end
 
