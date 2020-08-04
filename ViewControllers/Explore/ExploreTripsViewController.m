@@ -52,7 +52,7 @@
     cell.tripTitleLabel.text = post.title;
     cell.usernameLabel.text = post.author.username;
     cell.descriptionLabel.text = post.tripDescription;
-    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots Filled: %lu / %@", (unsigned long)post.guestList.count, post.spots];
+    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
     [post.previewImage getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         cell.previewImageView.image = [UIImage imageWithData:data];
     }];
@@ -87,6 +87,9 @@
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
             cell.addGuestButton.backgroundColor = [UIColor greenColor];
             [cell.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
+            [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
+            cell.spotsFilledIcon.tintColor = [UIColor greenColor];
+            cell.spotsFilledLabel.textColor = [UIColor greenColor];
         }
     }
 }
@@ -99,7 +102,7 @@
     if (indexPath != nil) {
         Post *post = self.postsArray[indexPath.row];
         ExploreTripsCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [JoinLeaveTrip joinLeaveTrip:post withLabel:cell.spotsFilledLabel withLabelFormat:YES withButton:button];
+        [JoinLeaveTrip joinLeaveTrip:post withLabel:cell.spotsFilledLabel withButton:button withIcon:cell.spotsFilledIcon];
     }
 }
 

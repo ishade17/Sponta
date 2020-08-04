@@ -14,6 +14,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
+    self.spotsFilledIcon.tintColor = [UIColor blueColor];
+    self.spotsFilledLabel.textColor = [UIColor blueColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

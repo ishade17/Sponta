@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *commentMessageField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *spotsFilledIcon;
 @property (nonatomic, strong) NSMutableArray *commentsArray;
 @property (nonatomic, strong) NSMutableArray *guestsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -61,6 +62,9 @@
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
             self.addGuestButton.backgroundColor = [UIColor greenColor];
             [self.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
+            [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
+            self.spotsFilledIcon.tintColor = [UIColor greenColor];
+            self.spotsCountLabel.textColor = [UIColor greenColor];
         }
     }
     
@@ -184,10 +188,17 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     GuestProfilePicCell *guestProfilePicCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GuestProfilePicCell" forIndexPath:indexPath];
-    UpcomingTrip *upcomingTrip = self.guestsArray[indexPath.row];
-    
-    [self configureGuestProfilePic:guestProfilePicCell withUpcomingTrip:upcomingTrip];
-    guestProfilePicCell.guestUsername.text = upcomingTrip.guest.username;
+    if (indexPath.row < self.guestsArray.count) {
+        UpcomingTrip *upcomingTrip = self.guestsArray[indexPath.row];
+        
+        [self configureGuestProfilePic:guestProfilePicCell withUpcomingTrip:upcomingTrip];
+        guestProfilePicCell.guestUsername.text = upcomingTrip.guest.username;
+    } else {
+        guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
+        [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+        [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 0.5];
+        guestProfilePicCell.guestUsername.text = @"Open";
+    }
     
     return guestProfilePicCell;
 }
@@ -202,16 +213,14 @@
 
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.guestsArray.count;
+    //return self.guestsArray.count;
+    return [self.post.spots integerValue];
 }
 
 - (IBAction)tappedJoinTrip:(id)sender {
-    [JoinLeaveTrip joinLeaveTrip:self.post withLabel:self.spotsCountLabel withLabelFormat:NO withButton:self.addGuestButton];
+    [JoinLeaveTrip joinLeaveTrip:self.post withLabel:self.spotsCountLabel withButton:self.addGuestButton withIcon:self.spotsFilledIcon];
     [self fetchGuests];
 }
-
-
-
 
 /*
 #pragma mark - Navigation

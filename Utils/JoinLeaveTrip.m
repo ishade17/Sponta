@@ -19,88 +19,82 @@
     return @"JoinLeaveTrip";
 }
 
-+ (void)joinLeaveTrip:(Post *)post withLabel:(UILabel *)spotsCountLabel withLabelFormat:(BOOL)longFormat withButton:(UIButton *)addGuestButton {
-    //if (![post.objectId isEqual: PFUser.currentUser.objectId]) { //change to object id
++ (void)joinLeaveTrip:(Post *)post withLabel:(UILabel *)spotsCountLabel withButton:(UIButton *)addGuestButton withIcon:(UIButton *)spotsFilledIcon {
+    //if (![post.objectId isEqual: PFUser.currentUser.objectId]) {
         for (PFUser *guest in post.guestList) {
-            
             if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
-                [post.guestList removeObject:guest];
-                [post setObject:post.guestList forKey:@"guestList"];
-                if (longFormat) {
-                    spotsCountLabel.text = [NSString stringWithFormat:@"Spots Filled: %lu / %@", (unsigned long)post.guestList.count, post.spots];
-                } else {
-                    spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
-                }
-                addGuestButton.backgroundColor = [UIColor blueColor];
-                [addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
-                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    if (succeeded) {
-                        NSLog(@"Guest removed from trip!");
-                        [Notifications sendNotification:[PFUser currentUser] withReceiver:post.author withPost:post withType:@"left"];
-                    } else {
-                        NSLog(@"Error updating post: %@", error.localizedDescription);
-                    }
-                }];
-                
-                PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
-                [query includeKey:@"trip"];
-                [query includeKey:@"guest"];
-                [query whereKey:@"trip" equalTo:post];
-                [query whereKey:@"guest" equalTo:PFUser.currentUser];
-                [query findObjectsInBackgroundWithBlock:^(NSArray *upcomingTrips, NSError *error) {
-                    if (!error) {
-                        for (PFObject *upcomingTrip in upcomingTrips) {
-                            [upcomingTrip deleteInBackground];
-                        }
-                        NSLog(@"Upcoming trips (delete): %@", upcomingTrips);
-                    }
-                }];
-                
+                [self configureSpotsFilled:post withLabel:spotsCountLabel withGuest:guest withAdd:NO];
+                [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Join Trip" withColor:[UIColor blueColor]];
+                [self savePost:post withNotifType:@"left"];
+                [self deleteUpcomingTrip:post];
                 return;
             }
         }
-        
-        [post.guestList addObject:PFUser.currentUser];
-        [post setObject:post.guestList forKey:@"guestList"];
-        if (longFormat) {
-            spotsCountLabel.text = [NSString stringWithFormat:@"Spots Filled: %lu / %@", (unsigned long)post.guestList.count, post.spots];
-        } else {
-            spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
-        }
-        addGuestButton.backgroundColor = [UIColor greenColor];
-        [addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
-        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (succeeded) {
-                NSLog(@"Guest added to trip!");
-                [Notifications sendNotification:[PFUser currentUser] withReceiver:post.author withPost:post withType:@"join"];
-            } else {
-                NSLog(@"Error updating post: %@", error.localizedDescription);
-            }
-        }];
-            
-        
-        [UpcomingTrip createUpcomingTrip:[PFUser currentUser] withHost:post.author withTrip:post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            if (succeeded) {
-                NSLog(@"Added upcoming trip");
-            } else {
-                NSLog(@"Error updating post: %@", error.localizedDescription);
-            }
-        }];
+        [self configureSpotsFilled:post withLabel:spotsCountLabel withGuest:PFUser.currentUser withAdd:YES];
+        [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Leave Trip" withColor:[UIColor greenColor]];
+        [self savePost:post withNotifType:@"join"];
+        [self addUpcomingTrip:post];
     //}
 }
 
-
-/*
-[PFUser.currentUser[@"upcomingTrips"] addObject:post];
-[PFUser.currentUser setObject:PFUser.currentUser[@"upcomingTrips"] forKey:@"upcomingTrips"];
-NSLog(@"upcoming trips (add): %@", PFUser.currentUser[@"upcomingTrips"]);
-[PFUser.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-    if (succeeded) {
-        NSLog(@"Upcoming trip list updated");
++ (void)configureSpotsFilled:(Post *)post withLabel:(UILabel *)spotsCountLabel withGuest:(PFUser *)guest withAdd:(BOOL)add {
+    if (add) {
+        [post.guestList addObject:guest];
+        spotsCountLabel.textColor = [UIColor greenColor];
     } else {
-        NSLog(@"Error updating upcoming trip list: %@", error.localizedDescription);
+        [post.guestList removeObject:guest];
+        spotsCountLabel.textColor = [UIColor blueColor];
     }
-}];
- */
+    [post setObject:post.guestList forKey:@"guestList"];
+    spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
+}
+
++ (void)configureButtons:(UIButton *)addGuestButton withIcon:(UIButton *)spotsFilledIcon withState:(NSString *)state withColor:(UIColor *)color {
+    addGuestButton.backgroundColor = color;
+    [addGuestButton setTitle:state forState:UIControlStateNormal];
+    spotsFilledIcon.tintColor = color;
+    if ([state isEqualToString:@"Leave Trip"]) {
+        [spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
+    } else {
+        [spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
+    }
+}
+
++ (void)savePost:(Post *)post withNotifType:(NSString *)type {
+    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"Guest %@ trip!", type);
+            [Notifications sendNotification:[PFUser currentUser] withReceiver:post.author withPost:post withType:type];
+        } else {
+            NSLog(@"Error updating post: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)deleteUpcomingTrip:(Post *)post {
+    PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
+    [query includeKey:@"trip"];
+    [query includeKey:@"guest"];
+    [query whereKey:@"trip" equalTo:post];
+    [query whereKey:@"guest" equalTo:PFUser.currentUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *upcomingTrips, NSError *error) {
+        if (!error) {
+            for (PFObject *upcomingTrip in upcomingTrips) {
+                [upcomingTrip deleteInBackground];
+            }
+            NSLog(@"Upcoming trips (delete): %@", upcomingTrips);
+        }
+    }];
+}
+
++ (void)addUpcomingTrip:(Post *)post {
+    [UpcomingTrip createUpcomingTrip:[PFUser currentUser] withHost:post.author withTrip:post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"Added upcoming trip");
+        } else {
+            NSLog(@"Error updating post: %@", error.localizedDescription);
+        }
+    }];
+}
 
 @end

@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
+@property (nonatomic, strong) UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIButton *searchLocationButton;
 
 
@@ -60,6 +61,35 @@
     self.searchLocationButton.layer.borderColor = [UIColor blueColor].CGColor;
     self.searchLocationButton.layer.cornerRadius = 20;
     
+    self.datePicker=[[UIDatePicker alloc]init];
+    self.datePicker.datePickerMode=UIDatePickerModeDate;
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:0];
+    NSDate *minDate = [gregorian dateByAddingComponents:comps toDate:currentDate  options:0];
+    [comps setDay:7];
+    NSDate *maxDate = [gregorian dateByAddingComponents:comps toDate:currentDate  options:0];
+
+    self.datePicker.minimumDate = minDate;
+    self.datePicker.maximumDate = maxDate;
+    
+    [self.tripDateTextView setInputView:self.datePicker];
+    UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor blueColor]];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(ShowSelectedDate)];
+    UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
+    [self.tripDateTextView setInputAccessoryView:toolBar];
+    
+}
+
+-(void)ShowSelectedDate {
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"MM/dd/YYYY"];
+    self.tripDateTextView.text=[NSString stringWithFormat:@"%@",[formatter stringFromDate:self.datePicker.date]];
+    [self.tripDateTextView resignFirstResponder];
 }
 
 - (IBAction)tappedSelectImage:(id)sender {
@@ -140,7 +170,6 @@
             self.descriptionBodyTextView.text = @"";
             self.selectedImage.image = nil;
             self.uploadImageLabel.alpha = 1;
-            //self.addressTextView.text = @"";
             [self.searchLocationButton setTitle:@" Search for destination location " forState:UIControlStateNormal];
             self.tripDateTextView.text = @"";
             self.startTimeTextView.text = @"";

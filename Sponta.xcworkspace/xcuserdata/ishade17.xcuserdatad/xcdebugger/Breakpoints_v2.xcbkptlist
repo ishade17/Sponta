@@ -7,49 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4797F58E-9912-43E3-81A4-A800E6A9A7B3"
+            uuid = "B5892F0C-0341-47F4-9F5C-88C8B7463659"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Views/PostCell.m"
+            filePath = "ViewControllers/Main Feed/DetailsViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-tappedLike:"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4797F58E-9912-43E3-81A4-A800E6A9A7B3 - d54ac1dd1eb24aca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PostCell tappedLike:]"
-                  moduleName = "Sponta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ishade17/Desktop/Sponta/Views/PostCell.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "82"
-                  endingLineNumber = "82"
-                  offsetFromSymbolStart = "3826">
-               </Location>
-               <Location
-                  uuid = "4797F58E-9912-43E3-81A4-A800E6A9A7B3 - 7bc0de0c825cb028"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__23-[PostCell tappedLike:]_block_invoke_4"
-                  moduleName = "Sponta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ishade17/Desktop/Sponta/Views/PostCell.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "55">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
-    self.mainFeedTableView.rowHeight = 440;
+    self.mainFeedTableView.rowHeight = 425;
     
     [self fetchFeed];
     
@@ -83,6 +83,7 @@
     
     cell.tripTitleLabel.text = postInfo.title;
     cell.usernameLabel.text = postInfo.author.username;
+    cell.usernameLabel.textColor = [UIColor blueColor];
     
     if (postInfo.likedList.count == 1) {
         cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)postInfo.likedList.count];
@@ -96,6 +97,7 @@
     if (postInfo.publicTrip) {
         cell.publicTag.text = @"Public";
         cell.publicTag.layer.borderColor = [[UIColor blueColor] CGColor];
+        cell.publicTag.textColor = [UIColor blueColor];
         cell.publicTag.layer.borderWidth = 0.5f;
         cell.publicTag.layer.cornerRadius = 8;
     } else {
@@ -107,8 +109,19 @@
     cell.likeButton.tintColor = [UIColor blueColor];
     for (PFUser *user in postInfo.likedList) {
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
-            //NSLog(@"called for %@", cell.post.title);
             cell.likeButton.tintColor = [UIColor greenColor];
+        }
+    }
+    
+    [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
+    cell.spotsFilledIcon.tintColor = [UIColor blueColor];
+    cell.spotsFilledLabel.textColor = [UIColor blueColor];
+    
+    for (PFUser *guest in postInfo.guestList) { //create util
+        if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
+            [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
+            cell.spotsFilledIcon.tintColor = [UIColor greenColor];
+            cell.spotsFilledLabel.textColor = [UIColor greenColor];
         }
     }
         
@@ -116,7 +129,7 @@
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];
     
     cell.tripStartLabel.text = [NSString stringWithFormat:@"%@ on %@", postInfo.startTime, [daysOfWeek objectAtIndex:weekday]];
-    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"Spots Filled: %lu / %@", (unsigned long)postInfo.guestList.count, postInfo.spots];
+    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)postInfo.guestList.count, postInfo.spots];
         
     return cell;
 }
