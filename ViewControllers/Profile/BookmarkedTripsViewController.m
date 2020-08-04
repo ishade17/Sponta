@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "BookmarkedTrip.h"
 #import "BookmarkedTripCell.h"
+#import "DetailsViewController.h"
 
 @interface BookmarkedTripsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -73,14 +74,25 @@
     return self.bookmarkedTrips.count;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqual:@"toDetailsFromBookmarked"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        
+        BookmarkedTrip *bookmarkedTrip = self.bookmarkedTrips[indexPath.row];
+        Post *post = bookmarkedTrip.trip;
+        
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = post;
+    }
 }
-*/
+
 
 @end
