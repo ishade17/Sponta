@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *uploadImageLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet UITextField *tripNameTextView;
-@property (weak, nonatomic) IBOutlet UITextField *addressTextView;
 @property (weak, nonatomic) IBOutlet UITextField *startTimeTextView;
 @property (weak, nonatomic) IBOutlet UITextField *endTimeTextView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionBodyTextView;
@@ -28,10 +27,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *numSpotsTextView;
 @property (weak, nonatomic) IBOutlet UISwitch *postSettingSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
+@property (weak, nonatomic) IBOutlet UIButton *searchLocationButton;
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, strong) UIDatePicker *datePicker;
-@property (weak, nonatomic) IBOutlet UIButton *searchLocationButton;
+@property (nonatomic, strong) UIDatePicker *timePicker;
 
 
 @end
@@ -41,32 +41,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configureSelectedImage];
+    [self configurePostLabel];
+    [self configureDescriptionTextView];
+    [self configureSearchLocationButton];
+    [self configureDatePicker];
+    [self configureTimePicker:self.startTimeTextView];
+    [self configureTimePicker:self.endTimeTextView];
+    
+}
+
+- (void)configureSelectedImage {
     [self.selectedImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [self.selectedImage.layer setBorderWidth: 0.5];
     self.selectedImage.image = nil;
     self.uploadImageLabel.alpha = 1;
-    
+}
+
+- (void)configurePostLabel {
     self.postLabel.text = @"Private Post";
     [self.postSettingSwitch setOn:false];
     self.postLabel.textColor = UIColor.linkColor;
-    
+}
+
+- (void)configureDescriptionTextView {
     self.descriptionTextView.layer.borderWidth = 0.5f;
     self.descriptionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
     self.descriptionTextView.delegate = self;
     self.descriptionTextView.text = @"Add a description...";
     self.descriptionTextView.textColor = UIColor.lightGrayColor;
-    
+}
+
+- (void)configureSearchLocationButton {
     [self.searchLocationButton setTitle:@" Search for destination location " forState:UIControlStateNormal];
     self.searchLocationButton.layer.borderWidth = 0.5f;
     self.searchLocationButton.layer.borderColor = [UIColor blueColor].CGColor;
     self.searchLocationButton.layer.cornerRadius = 20;
-    
-    self.datePicker=[[UIDatePicker alloc]init];
-    self.datePicker.datePickerMode=UIDatePickerModeDate;
+}
+
+- (void)configureDatePicker {
+    self.datePicker = [UIDatePicker new];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDate *currentDate = [NSDate date];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSDateComponents *comps = [NSDateComponents new];
     [comps setDay:0];
     NSDate *minDate = [gregorian dateByAddingComponents:comps toDate:currentDate  options:0];
     [comps setDay:7];
@@ -75,21 +94,54 @@
     self.datePicker.minimumDate = minDate;
     self.datePicker.maximumDate = maxDate;
     
+    [self initToolbar];
+}
+
+- (void)initToolbar {
     [self.tripDateTextView setInputView:self.datePicker];
     UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     [toolBar setTintColor:[UIColor blueColor]];
-    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(ShowSelectedDate)];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedDate)];
     UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
     [self.tripDateTextView setInputAccessoryView:toolBar];
-    
 }
 
--(void)ShowSelectedDate {
+- (void)showSelectedDate {
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"MM/dd/YYYY"];
     self.tripDateTextView.text=[NSString stringWithFormat:@"%@",[formatter stringFromDate:self.datePicker.date]];
     [self.tripDateTextView resignFirstResponder];
+}
+
+- (void)configureTimePicker:(UITextField *)textField {
+    self.timePicker = [UIDatePicker new];
+    self.timePicker.datePickerMode = UIDatePickerModeTime;
+    [textField setInputView:self.timePicker];
+    
+    UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor blueColor]];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedTime)];
+    UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
+    [textField setInputAccessoryView:toolBar];
+}
+
+- (void)showSelectedTime {
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"hh:mm a"];
+    UITextField *textField;
+    if ([self.startTimeTextView isFirstResponder]) {
+        textField = self.startTimeTextView;
+    } else if ([self.endTimeTextView isFirstResponder]) {
+        textField = self.endTimeTextView;
+    } else {
+        NSLog(@"Error: couldn't identify selected text field");
+        return;
+    }
+    textField.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:self.timePicker.date]];
+    [textField resignFirstResponder];
 }
 
 - (IBAction)tappedSelectImage:(id)sender {

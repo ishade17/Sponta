@@ -120,15 +120,16 @@
     for (PFUser *guest in postInfo.guestList) { //create util
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
             [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
-            cell.spotsFilledIcon.tintColor = [UIColor greenColor];
-            cell.spotsFilledLabel.textColor = [UIColor greenColor];
+            cell.spotsFilledIcon.tintColor = [UIColor systemGreenColor];
+            cell.spotsFilledLabel.textColor = [UIColor systemGreenColor];
         }
     }
-        
+    
+    // util!
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];
-    
     cell.tripStartLabel.text = [NSString stringWithFormat:@"%@ on %@", postInfo.startTime, [daysOfWeek objectAtIndex:weekday]];
+    
     cell.spotsFilledLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)postInfo.guestList.count, postInfo.spots];
         
     return cell;

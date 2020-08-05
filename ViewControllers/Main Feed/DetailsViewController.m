@@ -60,11 +60,11 @@
     [self.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
     for (PFUser *guest in self.post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
-            self.addGuestButton.backgroundColor = [UIColor greenColor];
+            self.addGuestButton.backgroundColor = [UIColor systemGreenColor];
             [self.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
             [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
-            self.spotsFilledIcon.tintColor = [UIColor greenColor];
-            self.spotsCountLabel.textColor = [UIColor greenColor];
+            self.spotsFilledIcon.tintColor = [UIColor systemGreenColor];
+            self.spotsCountLabel.textColor = [UIColor systemGreenColor];
         }
     }
     

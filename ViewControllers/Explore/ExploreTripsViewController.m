@@ -85,11 +85,11 @@
     [cell.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
     for (PFUser *guest in post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
-            cell.addGuestButton.backgroundColor = [UIColor greenColor];
+            cell.addGuestButton.backgroundColor = [UIColor systemGreenColor];
             [cell.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
             [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
-            cell.spotsFilledIcon.tintColor = [UIColor greenColor];
-            cell.spotsFilledLabel.textColor = [UIColor greenColor];
+            cell.spotsFilledIcon.tintColor = [UIColor systemGreenColor];
+            cell.spotsFilledLabel.textColor = [UIColor systemGreenColor];
         }
     }
 }

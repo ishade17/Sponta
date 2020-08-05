@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *hostNameLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *hostProfilePic;
 @property (weak, nonatomic) IBOutlet UILabel *tripNameLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *tripDateTimeLabel;
 
 @end
 

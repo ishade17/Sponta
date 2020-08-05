@@ -53,7 +53,7 @@
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 20;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    CGFloat itemWidth = self.collectionView.frame.size.width / 2;
+    CGFloat itemWidth = self.collectionView.frame.size.width / 1.8;
     CGFloat itemHeight = self.collectionView.frame.size.height * 0.85;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     self.collectionViewBorder.layer.borderColor = [[UIColor blueColor] CGColor];
@@ -99,7 +99,6 @@
         } else {
             self.upcomingTripsArray = (NSMutableArray *)upcomingTrips;
             [self.collectionView reloadData];
-            //NSLog(@"upcomingTripsArray: %@", self.upcomingTripsArray);
         }
     }];
 }
@@ -158,6 +157,7 @@
     
     upcomingTripCell.layer.borderColor = [[UIColor blueColor] CGColor];
     upcomingTripCell.layer.borderWidth = 0.5;
+    upcomingTripCell.layer.cornerRadius = 15;
     
     return upcomingTripCell;
 }
@@ -173,6 +173,9 @@
 - (void)configureUpcomingTripLabels:(UpcomingTripCell *)upcomingTripCell withUpcomingTrip:(UpcomingTrip *)upcomingTrip {
     upcomingTripCell.hostNameLabel.text = upcomingTrip.host.username;
     upcomingTripCell.tripNameLabel.text = upcomingTrip.trip.title;
+    NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
+    NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:upcomingTrip.trip.tripDate];
+    upcomingTripCell.tripDateTimeLabel.text = [NSString stringWithFormat:@"%@ on %@", upcomingTrip.trip.startTime, [daysOfWeek objectAtIndex:weekday]];
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
