@@ -13,6 +13,7 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "DetailsViewController.h"
+#import "NonCurrentProfileViewController.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -82,8 +83,8 @@
     [cell.profilePicImage.layer setBorderWidth: 1.0];
     
     cell.tripTitleLabel.text = postInfo.title;
-    cell.usernameLabel.text = postInfo.author.username;
-    cell.usernameLabel.textColor = [UIColor blueColor];
+    [cell.usernameLabel setTitle:postInfo.author.username forState:UIControlStateNormal];
+    cell.usernameLabel.titleLabel.textColor = [UIColor blueColor];
     
     if (postInfo.likedList.count == 1) {
         cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)postInfo.likedList.count];
@@ -146,9 +147,18 @@
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.mainFeedTableView indexPathForCell:tappedCell];
     Post *post = self.postsArray[indexPath.row];
+    if ([segue.identifier isEqualToString:@"toDetailsFromMain"]) {
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = post;
+    } else if ([segue.identifier isEqualToString:@"toNonCurrentProfileFromMain"]) {
+        NonCurrentProfileViewController *nonCurrentProfileViewController = [segue destinationViewController];
+        nonCurrentProfileViewController.user = post.author;
+        
+    }
+    
+    
 
-    DetailsViewController *detailsViewController = [segue destinationViewController];
-    detailsViewController.post = post;
+    
 }
 
 

@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) Post *post;
 @property (weak, nonatomic) IBOutlet UILabel *tripTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *spotsFilledLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tripStartLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
@@ -26,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *publicTag;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *spotsFilledIcon;
+@property (weak, nonatomic) IBOutlet UIButton *usernameLabel;
 
 @end
 

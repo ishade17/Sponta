@@ -10,6 +10,8 @@
 #import "ExploreTripsCell.h"
 #import "Post.h"
 #import "JoinLeaveTrip.h"
+#import "GuestProfilePicCell.h"
+#import "NonCurrentProfileViewController.h"
 
 @interface ExploreTripsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -26,7 +28,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.tableView.rowHeight = 565;
+    self.tableView.rowHeight = 600;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -41,16 +43,22 @@
     [self configureCellProfilePic:cell withPost:post];
     [self configureCellDate:cell withPost:post];
     [self configureCellAddress:cell withPost:post];
-    [self configureCellButton:cell withPost:post];    
+    [self configureCellButton:cell withPost:post];
     
     [cell.addGuestButton addTarget:self action:@selector(joinLeaveTrip:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+//    [cell setCollectionViewDataSourceDelegate:self indexPath:indexPath];
+//    NSInteger index = cell.collectionView.indexPath.row;
+//    CGFloat horizontalOffset = [self.contentOffsetDictionary[[@(index) stringValue]] floatValue];
+//    [cell.collectionView setContentOffset:CGPointMake(horizontalOffset, 0)];
     
     return cell;
 }
 
 - (void)configureEasyCellFields:(ExploreTripsCell *)cell withPost:(Post *)post {
     cell.tripTitleLabel.text = post.title;
-    cell.usernameLabel.text = post.author.username;
+    [cell.usernameLabel setTitle:post.author.username forState:UIControlStateNormal];
     cell.descriptionLabel.text = post.tripDescription;
     cell.spotsFilledLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
     [post.previewImage getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
@@ -59,7 +67,7 @@
 }
 
 - (void)configureCellProfilePic:(ExploreTripsCell *)cell withPost:(Post *)post {
-    cell.profilePicImageView.layer.cornerRadius = cell.profilePicImageView.frame.size.height /2;
+    cell.profilePicImageView.layer.cornerRadius = cell.profilePicImageView.frame.size.height / 2;
     [cell.profilePicImageView.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [cell.profilePicImageView.layer setBorderWidth: 1.0];
     cell.profilePicImageView.file = [post.author objectForKey:@"profileImage"];
@@ -94,6 +102,38 @@
     }
 }
 
+/*
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    GuestProfilePicCell *guestProfilePicCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GuestProfilePicCell" forIndexPath:indexPath];
+    if (indexPath.row < self.guestsArray.count) {
+        UpcomingTrip *upcomingTrip = self.guestsArray[indexPath.row];
+        
+        [self configureGuestProfilePic:guestProfilePicCell withUpcomingTrip:upcomingTrip];
+        guestProfilePicCell.guestUsername.text = upcomingTrip.guest.username;
+    } else {
+        guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
+        [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+        [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 0.5];
+        guestProfilePicCell.guestUsername.text = @"Open";
+    }
+    
+    return guestProfilePicCell;
+}
+
+- (void)configureGuestProfilePic:(GuestProfilePicCell *)guestProfilePicCell withUpcomingTrip:(UpcomingTrip *)upcomingTrip {
+    guestProfilePicCell.guestProfilePic.file = [upcomingTrip.guest objectForKey:@"profileImage"];
+    [guestProfilePicCell.guestProfilePic loadInBackground];
+    guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
+    [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 1.0];
+}
+
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.postsArray[collectionView.index].count;
+}*/
+
+
 
 - (IBAction)joinLeaveTrip:(id)sender {
     UIButton *button = (UIButton *)sender;
@@ -107,15 +147,24 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"toNonCurrentProfile"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post *post = self.postsArray[indexPath.row];
+        
+        NonCurrentProfileViewController *nonCurrentProfileViewController = [segue destinationViewController];
+        nonCurrentProfileViewController.user = post.author;
+    }
+    
 }
-*/
+
 
 
 @end

@@ -138,6 +138,7 @@
     CGFloat itemWidth = self.collectionView.frame.size.width / 3.4;
     CGFloat itemHeight = self.collectionView.frame.size.height;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    self.collectionView.showsHorizontalScrollIndicator = NO;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
