@@ -31,7 +31,7 @@
             }
         }
         [self configureSpotsFilled:post withLabel:spotsCountLabel withGuest:PFUser.currentUser withAdd:YES];
-        [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Leave Trip" withColor:[UIColor greenColor]];
+        [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Leave Trip" withColor:[UIColor systemGreenColor]];
         [self savePost:post withNotifType:@"join"];
         [self addUpcomingTrip:post];
     //}
@@ -40,7 +40,7 @@
 + (void)configureSpotsFilled:(Post *)post withLabel:(UILabel *)spotsCountLabel withGuest:(PFUser *)guest withAdd:(BOOL)add {
     if (add) {
         [post.guestList addObject:guest];
-        spotsCountLabel.textColor = [UIColor greenColor];
+        spotsCountLabel.textColor = [UIColor systemGreenColor];
     } else {
         [post.guestList removeObject:guest];
         spotsCountLabel.textColor = [UIColor blueColor];

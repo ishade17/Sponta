@@ -43,13 +43,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
     [query orderByDescending:@"createdAt"];
-    
-//    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    // or @"yyyy-MM-dd hh:mm:ss a" if you prefer the time with AM/PM
-//   [dateFormatter stringFromDate:[NSDate date]];
-    
-    query.limit = 20;
+    //query.limit = 20;
 
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -84,6 +78,7 @@
     
     cell.tripTitleLabel.text = postInfo.title;
     [cell.usernameLabel setTitle:postInfo.author.username forState:UIControlStateNormal];
+    cell.usernameLabel.tag = indexPath.row;
     cell.usernameLabel.titleLabel.textColor = [UIColor blueColor];
     
     if (postInfo.likedList.count == 1) {
@@ -144,21 +139,18 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    UITableViewCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.mainFeedTableView indexPathForCell:tappedCell];
-    Post *post = self.postsArray[indexPath.row];
     if ([segue.identifier isEqualToString:@"toDetailsFromMain"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.mainFeedTableView indexPathForCell:tappedCell];
+        Post *post = self.postsArray[indexPath.row];
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.post = post;
     } else if ([segue.identifier isEqualToString:@"toNonCurrentProfileFromMain"]) {
+        UIButton *usernameLabel = sender;
+        Post *post = self.postsArray[usernameLabel.tag];
         NonCurrentProfileViewController *nonCurrentProfileViewController = [segue destinationViewController];
-        nonCurrentProfileViewController.user = post.author;
-        
+        nonCurrentProfileViewController.profUser = post.author;
     }
-    
-    
-
-    
 }
 
 

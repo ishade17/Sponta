@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NonCurrentProfileViewController : UIViewController
 
-@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) PFUser *profUser;
 
 @end
 

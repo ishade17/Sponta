@@ -160,7 +160,7 @@
         Post *post = self.postsArray[indexPath.row];
         
         NonCurrentProfileViewController *nonCurrentProfileViewController = [segue destinationViewController];
-        nonCurrentProfileViewController.user = post.author;
+        nonCurrentProfileViewController.profUser = post.author;
     }
     
 }
