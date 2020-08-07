@@ -14,6 +14,7 @@
 #import "ProfilePostDetailsViewController.h"
 #import "FriendRequest.h"
 #import "FriendsList.h"
+#import "Notifications.h"
 
 @interface NonCurrentProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -226,6 +227,9 @@
                 self.addFriendButton.layer.borderColor = [[UIColor blueColor] CGColor];
                 [self.addFriendButton setTitle:@"Request Sent" forState:UIControlStateNormal];
                 [self.addFriendButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                
+
+                [Notifications sendNotification:self.currentUser withReceiver:self.profUser withPost:self.userPosts[0] withType:@"friend request"];
             } else {
                 NSLog(@"Error sending friend request: %@", error.localizedDescription);
             }

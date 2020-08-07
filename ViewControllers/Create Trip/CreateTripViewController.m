@@ -119,18 +119,18 @@
     self.timePicker.datePickerMode = UIDatePickerModeTime;
     [textField setInputView:self.timePicker];
     
-    UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     [toolBar setTintColor:[UIColor blueColor]];
-    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedTime)];
-    UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedTime)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
     [textField setInputAccessoryView:toolBar];
 }
 
-- (void)showSelectedTime {
+- (void)showSelectedTime { // TODO: timePicker setting wrong date for start time
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"HH:mm a"];
+    [formatter setDateFormat:@"hh:mm a"];
     UITextField *textField;
     if ([self.startTimeTextView isFirstResponder]) {
         textField = self.startTimeTextView;
@@ -140,7 +140,7 @@
         NSLog(@"Error: couldn't identify selected text field");
         return;
     }
-    textField.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:self.timePicker.date]];
+    textField.text = [NSString stringWithFormat:@"%@", [formatter stringFromDate:self.timePicker.date]];
     [textField resignFirstResponder];
 }
 

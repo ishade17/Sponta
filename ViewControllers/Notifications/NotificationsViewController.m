@@ -15,6 +15,7 @@
 #import "UpcomingTripCell.h"
 #import "UpcomingTrip.h"
 #import "Post.h"
+#import "NonCurrentProfileViewController.h"
 
 @interface NotificationsViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray<Notifications *> *notifsArray;
 @property (nonatomic, strong) NSMutableArray<UpcomingTrip *> *upcomingTripsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSIndexPath *segueIndexPath;
 
 @end
 
@@ -125,9 +127,15 @@
 }
 
 - (void)configureTargetPost:(NotificationCell *)notifCell withNotif:(Notifications *)notif {
-    notifCell.post = notif.targetPost;
-    notifCell.targetPostPreviewImage.file = notif.targetPost.previewImage;
-    [notifCell.targetPostPreviewImage loadInBackground];
+    if (![notif.type isEqualToString:@"friend request"]) {
+        notifCell.post = notif.targetPost;
+        notifCell.targetPostPreviewImage.file = notif.targetPost.previewImage;
+        [notifCell.targetPostPreviewImage loadInBackground];
+    } else {
+        notifCell.post = notif.targetPost;
+        notifCell.targetPostPreviewImage.file = [notif.triggerUser objectForKey:@"profileImage"];
+        [notifCell.targetPostPreviewImage loadInBackground];
+    }
 }
 
 - (void)configureType:(NotificationCell *)notifCell withNotif:(Notifications *)notif {
@@ -137,6 +145,8 @@
         notifCell.notifTypeLabel.text = @"left your trip!";
     } else if ([notif.type isEqualToString:@"comment"]) {
         notifCell.notifTypeLabel.text = @"commented on your trip!";
+    } else if ([notif.type isEqualToString:@"friend request"]) {
+        notifCell.notifTypeLabel.text = @"sent you a friend request!";
     }
 }
 
@@ -145,7 +155,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"toDetailsFromNotif" sender:self];
+    Notifications *notif = self.notifsArray[indexPath.row];
+    self.segueIndexPath = indexPath;
+    if (![notif.type isEqualToString:@"friend request"]) {
+        [self performSegueWithIdentifier:@"toDetailsFromNotif2" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"toProfileFromNotif" sender:self];
+    }
+    
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -182,6 +199,10 @@
     return self.upcomingTripsArray.count;
 }
 
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    [self performSegueWithIdentifier:@"toDetailsFromUpcoming" sender:self];
+//}
+
 
 #pragma mark - Navigation
 
@@ -190,15 +211,14 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([segue.identifier isEqual:@"toDetailsFromNotif"]) {
-        UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-        
-        Notifications *notif = self.notifsArray[indexPath.row];
+    if ([segue.identifier isEqual:@"toDetailsFromNotif2"]) {
+        Notifications *notif = self.notifsArray[self.segueIndexPath.row];
+        if ([notif.type isEqualToString:@"friend request"]) return;
         Post *post = notif.targetPost;
         
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.post = post;
+        
     } else if ([segue.identifier isEqual:@"toDetailsFromUpcoming"]) {
         UICollectionViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
@@ -208,6 +228,13 @@
         
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.post = post;
+    
+    } else if ([segue.identifier isEqual:@"toProfileFromNotif"]) {
+        Notifications *notif = self.notifsArray[self.segueIndexPath.row];
+        PFUser *profUser = notif.triggerUser;
+        
+        NonCurrentProfileViewController *nonCurrentProfileViewController = [segue destinationViewController];
+        nonCurrentProfileViewController.profUser = profUser;
     }
 }
 

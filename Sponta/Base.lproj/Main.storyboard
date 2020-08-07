@@ -652,7 +652,6 @@
                                             <outlet property="profilePic" destination="PfR-Fi-5X3" id="hRm-vr-JQy"/>
                                             <outlet property="targetPostPreviewImage" destination="Ei1-6w-U92" id="P6w-AY-Bpc"/>
                                             <outlet property="triggerUserLabel" destination="34a-xB-wRv" id="zJI-bD-yQR"/>
-                                            <segue destination="ubU-4M-ll0" kind="showDetail" identifier="toDetailsFromNotif" id="Adx-oB-Dkf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -722,6 +721,8 @@
                         <outlet property="collectionView" destination="xgc-LH-YmX" id="4hD-C4-zaA"/>
                         <outlet property="collectionViewBorder" destination="OI6-FG-jw1" id="aTA-dr-NNj"/>
                         <outlet property="tableView" destination="h7E-aK-DZA" id="Ztj-sZ-Jam"/>
+                        <segue destination="D2B-m5-xWW" kind="show" identifier="toProfileFromNotif" id="Puh-Hy-bFt"/>
+                        <segue destination="ubU-4M-ll0" kind="showDetail" identifier="toDetailsFromNotif2" id="2qz-kF-HLs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJn-UN-4Xb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1615,9 +1616,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D1f-Bp-LOy"/>
+        <segue reference="Puh-Hy-bFt"/>
         <segue reference="ebL-Ks-w3K"/>
-        <segue reference="6Wn-3y-bkq"/>
+        <segue reference="2qz-kF-HLs"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
