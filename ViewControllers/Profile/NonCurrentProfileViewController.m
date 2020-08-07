@@ -13,6 +13,7 @@
 #import "Post.h"
 #import "ProfilePostDetailsViewController.h"
 #import "FriendRequest.h"
+#import "FriendsList.h"
 
 @interface NonCurrentProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -129,10 +130,8 @@
     if ([self.profUser.username isEqualToString:self.currentUser.username]) return;
     
     if (self.friends == TRUE) { // if friends, then unfriend
-        // remove current user from profile user friend list
-        [self.profFriendsList removeObject:self.currentUser.username];
-        [self.profUser setObject:self.profFriendsList forKey:@"friendsList"];
-        [self.profUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) { // TODO: can't save non current user
+        // remove profile user from current user friend list
+        [FriendsList removeFriend:self.profUser fromUser:self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"Friendship removed!");
             } else {
@@ -140,10 +139,8 @@
             }
         }];
         
-        // remove profile user from current user friend list
-        [self.currFriendsList removeObject:self.profUser.username];
-        [self.currentUser setObject:self.currFriendsList forKey:@"friendsList"];
-        [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        // remove current user from profile user friend list
+        [FriendsList removeFriend:self.currentUser fromUser:self.profUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"Friendship removed!");
             } else {
@@ -159,10 +156,8 @@
         self.friends = FALSE;
         
     } else if (self.requested == TRUE) { // if received a request, confirm request
-        // add current user to profile user friend list
-        [self.profFriendsList addObject:self.currentUser.username];
-        [self.profUser setObject:self.profFriendsList forKey:@"friendsList"];
-        [self.profUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) { // TODO: can't save non current user
+        // add profile user to current user friend list
+        [FriendsList addFriend:self.profUser toUser:self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"Friend request approved!");
             } else {
@@ -170,10 +165,8 @@
             }
         }];
         
-        // add profile user to current user friend list
-        [self.currFriendsList addObject:self.profUser.username];
-        [self.currentUser setObject:self.currFriendsList forKey:@"friendsList"];
-        [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        // add current user to profile user friend list
+        [FriendsList addFriend:self.currentUser toUser:self.profUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"Friend request approved!");
             } else {

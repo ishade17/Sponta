@@ -130,7 +130,7 @@
 
 - (void)showSelectedTime {
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"hh:mm a"];
+    [formatter setDateFormat:@"HH:mm a"];
     UITextField *textField;
     if ([self.startTimeTextView isFirstResponder]) {
         textField = self.startTimeTextView;

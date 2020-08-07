@@ -9,6 +9,7 @@
 #import "SignInViewController.h"
 #import <Parse/Parse.h>
 #import "Post.h"
+#import "FriendsList.h"
 
 @interface SignInViewController ()
 
@@ -113,9 +114,16 @@
             // manually segue to logged in view
             [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    NSLog(@"upcomingTrips updated");
+                    NSLog(@"User registered successfully");
+                    [FriendsList createFriendsList:newUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (succeeded) {
+                            NSLog(@"Successfully created newUser's friend list!");
+                        } else {
+                            NSLog(@"Error creating newUser's friend list: %@", error.localizedDescription);
+                        }
+                    }];
                 } else {
-                    NSLog(@"Error updating upcomingTrips: %@", error.localizedDescription);
+                    NSLog(@"Error registering user: %@", error.localizedDescription);
                 }
             }];
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];

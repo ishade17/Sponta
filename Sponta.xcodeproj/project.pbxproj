@@ -48,6 +48,7 @@
 		48C0891E24BCE69F00C83FE0 /* SpontaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0891D24BCE69F00C83FE0 /* SpontaUITests.m */; };
 		48CD512B24DB597C00D80D1B /* NonCurrentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CD512A24DB597C00D80D1B /* NonCurrentProfileViewController.m */; };
 		48CD513824DBA3EA00D80D1B /* FriendRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CD513724DBA3EA00D80D1B /* FriendRequest.m */; };
+		48CD513B24DD0C4D00D80D1B /* FriendsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CD513A24DD0C4D00D80D1B /* FriendsList.m */; };
 		7098A176F8E4BEB4605C7A1E /* libPods-Sponta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DD39D269093C117694A284 /* libPods-Sponta.a */; };
 		FA8E2A462602BEBB31679C07 /* libPods-SpontaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C03A6037C223DAD1A6F7EE /* libPods-SpontaTests.a */; };
 /* End PBXBuildFile section */
@@ -155,6 +156,8 @@
 		48CD512A24DB597C00D80D1B /* NonCurrentProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonCurrentProfileViewController.m; sourceTree = "<group>"; };
 		48CD513624DBA3EA00D80D1B /* FriendRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendRequest.h; sourceTree = "<group>"; };
 		48CD513724DBA3EA00D80D1B /* FriendRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRequest.m; sourceTree = "<group>"; };
+		48CD513924DD0C4D00D80D1B /* FriendsList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsList.h; sourceTree = "<group>"; };
+		48CD513A24DD0C4D00D80D1B /* FriendsList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsList.m; sourceTree = "<group>"; };
 		6EED79704637BF000D6436C6 /* Pods-Sponta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta.release.xcconfig"; path = "Target Support Files/Pods-Sponta/Pods-Sponta.release.xcconfig"; sourceTree = "<group>"; };
 		94C11DEE04F4D468CAB7CF09 /* Pods-Sponta-SpontaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponta-SpontaUITests.release.xcconfig"; path = "Target Support Files/Pods-Sponta-SpontaUITests/Pods-Sponta-SpontaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95C03A6037C223DAD1A6F7EE /* libPods-SpontaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpontaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +318,8 @@
 				488120EA24D8C8B5004EAC14 /* BookmarkedTrip.m */,
 				48CD513624DBA3EA00D80D1B /* FriendRequest.h */,
 				48CD513724DBA3EA00D80D1B /* FriendRequest.m */,
+				48CD513924DD0C4D00D80D1B /* FriendsList.h */,
+				48CD513A24DD0C4D00D80D1B /* FriendsList.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -689,6 +694,7 @@
 				486D3ABA24C698A800D7C3E6 /* CommentCell.m in Sources */,
 				4828261924BFDAA400A65A72 /* LocationPreviewCell.m in Sources */,
 				48A9C10924D15B46003D9C31 /* ProfilePostDetailsViewController.m in Sources */,
+				48CD513B24DD0C4D00D80D1B /* FriendsList.m in Sources */,
 				48CD512B24DB597C00D80D1B /* NonCurrentProfileViewController.m in Sources */,
 				488120EB24D8C8B6004EAC14 /* BookmarkedTrip.m in Sources */,
 				486D3AD324CD192B00D7C3E6 /* ExploreTripsViewController.m in Sources */,
