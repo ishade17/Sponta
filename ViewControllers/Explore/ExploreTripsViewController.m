@@ -38,7 +38,9 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ExploreTripsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ExploreTripsCell"];
     Post *post = self.postsArray[indexPath.row];
-                          
+    
+    [self fetchGuests:post withCell:cell];
+    
     [self configureEasyCellFields:cell withPost:post];
     [self configureCellProfilePic:cell withPost:post];
     [self configureCellDate:cell withPost:post];
@@ -54,6 +56,24 @@
 //    [cell.collectionView setContentOffset:CGPointMake(horizontalOffset, 0)];
     
     return cell;
+}
+
+- (void)fetchGuests:(Post *)post withCell:(ExploreTripsCell *)cell {
+    PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
+    [query includeKey:@"trip"];
+    [query includeKey:@"guest"];
+    [query whereKey:@"trip" equalTo:post];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *tripGuests, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            cell.guestsArray = (NSMutableArray *)tripGuests;
+            //cell.collectionView.delegate = cell;
+            //cell.collectionView.dataSource = cell;
+            [cell.collectionView reloadData];
+        }
+    }];
 }
 
 - (void)configureEasyCellFields:(ExploreTripsCell *)cell withPost:(Post *)post {
@@ -101,39 +121,6 @@
         }
     }
 }
-
-/*
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    GuestProfilePicCell *guestProfilePicCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GuestProfilePicCell" forIndexPath:indexPath];
-    if (indexPath.row < self.guestsArray.count) {
-        UpcomingTrip *upcomingTrip = self.guestsArray[indexPath.row];
-        
-        [self configureGuestProfilePic:guestProfilePicCell withUpcomingTrip:upcomingTrip];
-        guestProfilePicCell.guestUsername.text = upcomingTrip.guest.username;
-    } else {
-        guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
-        [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
-        [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 0.5];
-        guestProfilePicCell.guestUsername.text = @"Open";
-    }
-    
-    return guestProfilePicCell;
-}
-
-- (void)configureGuestProfilePic:(GuestProfilePicCell *)guestProfilePicCell withUpcomingTrip:(UpcomingTrip *)upcomingTrip {
-    guestProfilePicCell.guestProfilePic.file = [upcomingTrip.guest objectForKey:@"profileImage"];
-    [guestProfilePicCell.guestProfilePic loadInBackground];
-    guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
-    [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
-    [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 1.0];
-}
-
-
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.postsArray[collectionView.index].count;
-}*/
-
-
 
 - (IBAction)joinLeaveTrip:(id)sender {
     UIButton *button = (UIButton *)sender;

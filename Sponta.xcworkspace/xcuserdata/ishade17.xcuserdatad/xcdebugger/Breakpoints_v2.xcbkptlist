@@ -87,32 +87,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0106FEFF-B985-4BEF-A720-D6DFF8F76050"
+            uuid = "685DB0EB-9EC3-420F-8D54-0732D3A8A911"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ViewControllers/Notifications/NotificationsViewController.m"
+            filePath = "ViewControllers/Explore/ExploreTripsViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "-prepareForSegue:sender:"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "26846779-8D7D-4E20-85D1-6F9A07F90C34"
+            uuid = "60AE0F0A-0C17-4651-BAAE-DA7CF4D6BC75"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ViewControllers/Notifications/NotificationsViewController.m"
+            filePath = "ViewControllers/Explore/ExploreTripsViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "-prepareForSegue:sender:"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

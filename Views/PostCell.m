@@ -17,6 +17,9 @@
     [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
     self.spotsFilledIcon.tintColor = [UIColor blueColor];
     self.spotsFilledLabel.textColor = [UIColor blueColor];
+    
+    //[self.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
+    //self.likeButton.tintColor = [UIColor blueColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -31,6 +34,7 @@
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
             [self.post.likedList removeObject:user]; // CHANGE
             [self.post setObject:self.post.likedList forKey:@"likedList"]; // CHANGE
+            [self.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
             self.likeButton.tintColor = [UIColor blueColor];
             if (self.post.likedList.count == 1) {
                 self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
@@ -66,7 +70,8 @@
     //like
     [self.post.likedList addObject:PFUser.currentUser]; // CHANGE
     [self.post setObject:self.post.likedList forKey:@"likedList"];
-    self.likeButton.tintColor = [UIColor greenColor];
+    [self.likeButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
+    self.likeButton.tintColor = [UIColor systemGreenColor];
     
     if (self.post.likedList.count == 1) {
         self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];

@@ -102,10 +102,12 @@
     }
     
     // check if current user has bookmarked this post
+    [cell.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
     cell.likeButton.tintColor = [UIColor blueColor];
     for (PFUser *user in postInfo.likedList) {
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
-            cell.likeButton.tintColor = [UIColor greenColor];
+            [cell.likeButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
+            cell.likeButton.tintColor = [UIColor systemGreenColor];
         }
     }
     

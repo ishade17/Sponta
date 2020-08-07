@@ -14,15 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//@interface AFIndexedCollectionView : UICollectionView
-//
-//@property (nonatomic, strong) NSIndexPath *indexPath;
-//
-//@end
-//
-//static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
-
-@interface ExploreTripsCell : UITableViewCell
+@interface ExploreTripsCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicImageView;
 @property (weak, nonatomic) IBOutlet UILabel *tripTitleLabel;
@@ -37,11 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *usernameLabel;
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSMutableArray *guestsArray;
-
-
-//@property (nonatomic, strong) AFIndexedCollectionView *collectionView;
-//
-//- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath;
 
 @end
 

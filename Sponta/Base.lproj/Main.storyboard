@@ -624,11 +624,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PfR-Fi-5X3" customClass="PFImageView">
-                                                    <rect key="frame" x="20" y="11" width="53" height="53"/>
+                                                    <rect key="frame" x="20" y="19" width="38" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34a-xB-wRv">
-                                                    <rect key="frame" x="81" y="27" width="70" height="22"/>
+                                                    <rect key="frame" x="66" y="27" width="70" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -639,7 +639,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="joined your trip!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnY-QR-P6L">
-                                                    <rect key="frame" x="159" y="28" width="114" height="20"/>
+                                                    <rect key="frame" x="144" y="28" width="114" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -1616,9 +1616,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Puh-Hy-bFt"/>
+        <segue reference="D1f-Bp-LOy"/>
         <segue reference="ebL-Ks-w3K"/>
-        <segue reference="2qz-kF-HLs"/>
+        <segue reference="6Wn-3y-bkq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>

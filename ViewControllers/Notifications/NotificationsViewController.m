@@ -175,6 +175,8 @@
     upcomingTripCell.layer.borderColor = [[UIColor blueColor] CGColor];
     upcomingTripCell.layer.borderWidth = 0.5;
     upcomingTripCell.layer.cornerRadius = 15;
+    upcomingTripCell.layer.shadowColor = [[UIColor grayColor] CGColor];
+    upcomingTripCell.layer.shadowRadius = 5;
     
     return upcomingTripCell;
 }
@@ -198,10 +200,6 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.upcomingTripsArray.count;
 }
-
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    [self performSegueWithIdentifier:@"toDetailsFromUpcoming" sender:self];
-//}
 
 
 #pragma mark - Navigation
