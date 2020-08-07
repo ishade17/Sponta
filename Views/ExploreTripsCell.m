@@ -14,23 +14,20 @@
 @implementation ExploreTripsCell 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    
+}
+
+- (void)updateCollectionView {
+    [self fetchGuests:self.post];
+    [self configureCollectionView];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
-    [self configureCollectionView];
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
 
- 
 - (void)configureCollectionView {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 0;
@@ -41,21 +38,21 @@
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
-//- (void)fetchGuests:(Post *)post {
-//    PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
-//    [query includeKey:@"trip"];
-//    [query includeKey:@"guest"];
-//    [query whereKey:@"trip" equalTo:post];
-//
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *tripGuests, NSError *error) {
-//        if (error) {
-//            NSLog(@"%@", error.localizedDescription);
-//        } else {
-//            self.guestsArray = (NSMutableArray *)tripGuests;
-//            [self.collectionView reloadData];
-//        }
-//    }];
-//}
+- (void)fetchGuests:(Post *)post {
+    PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
+    [query includeKey:@"trip"];
+    [query includeKey:@"guest"];
+    [query whereKey:@"trip" equalTo:post];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *tripGuests, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            self.guestsArray = (NSMutableArray *)tripGuests;
+            [self.collectionView reloadData];
+        }
+    }];
+}
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     GuestProfilePicCell *guestProfilePicCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GuestProfilePicCell" forIndexPath:indexPath];

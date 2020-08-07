@@ -24,7 +24,7 @@
         for (PFUser *guest in post.guestList) {
             if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
                 [self configureSpotsFilled:post withLabel:spotsCountLabel withGuest:guest withAdd:NO];
-                [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Join Trip" withColor:[UIColor blueColor]];
+                [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Join Trip" withColor:[UIColor systemBlueColor]];
                 [self savePost:post withNotifType:@"left"];
                 [self deleteUpcomingTrip:post];
                 return;
@@ -43,7 +43,7 @@
         spotsCountLabel.textColor = [UIColor systemGreenColor];
     } else {
         [post.guestList removeObject:guest];
-        spotsCountLabel.textColor = [UIColor blueColor];
+        spotsCountLabel.textColor = [UIColor systemBlueColor];
     }
     [post setObject:post.guestList forKey:@"guestList"];
     spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];

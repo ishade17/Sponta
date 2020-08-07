@@ -89,9 +89,9 @@
             if (requests.count > 0) {
                 [self.addFriendButton setBackgroundColor:[UIColor whiteColor]];
                 self.addFriendButton.layer.borderWidth = 1.0;
-                self.addFriendButton.layer.borderColor = [[UIColor blueColor] CGColor];
+                self.addFriendButton.layer.borderColor = [[UIColor systemBlueColor] CGColor];
                 [self.addFriendButton setTitle:@"Accept Request?" forState:UIControlStateNormal];
-                [self.addFriendButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                [self.addFriendButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
                 self.requested = TRUE;
                 return;
             }
@@ -109,9 +109,9 @@
             if (requests.count > 0) {
                 [self.addFriendButton setBackgroundColor:[UIColor whiteColor]];
                 self.addFriendButton.layer.borderWidth = 1.0;
-                self.addFriendButton.layer.borderColor = [[UIColor blueColor] CGColor];
+                self.addFriendButton.layer.borderColor = [[UIColor systemBlueColor] CGColor];
                 [self.addFriendButton setTitle:@"Request Sent" forState:UIControlStateNormal];
-                [self.addFriendButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                [self.addFriendButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
                 self.sentRequest = TRUE;
                 return;
             }
@@ -119,7 +119,7 @@
     }
     // if not friend and no one has sent a request, then configure button to default state
     if (self.friends == FALSE && self.requested == FALSE && self.sentRequest == FALSE) {
-        [self.addFriendButton setBackgroundColor:[UIColor blueColor]];
+        [self.addFriendButton setBackgroundColor:[UIColor systemBlueColor]];
         [self.addFriendButton setTitle:@"Add Friend" forState:UIControlStateNormal];
         self.addFriendButton.titleLabel.textColor = [UIColor whiteColor];
     }
@@ -150,7 +150,7 @@
         }];
         
         // change button to default state
-        [self.addFriendButton setBackgroundColor:[UIColor blueColor]];
+        [self.addFriendButton setBackgroundColor:[UIColor systemBlueColor]];
         [self.addFriendButton setTitle:@"Add Friend" forState:UIControlStateNormal];
         [self.addFriendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -199,7 +199,7 @@
         
     } else if (self.sentRequest == TRUE) { // if sent a request, delete request
         // change button to default state
-        [self.addFriendButton setBackgroundColor:[UIColor blueColor]];
+        [self.addFriendButton setBackgroundColor:[UIColor systemBlueColor]];
         [self.addFriendButton setTitle:@"Add Friend" forState:UIControlStateNormal];
         [self.addFriendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -224,9 +224,9 @@
                 // if request is made, configure the button to request state
                 [self.addFriendButton setBackgroundColor:[UIColor whiteColor]];
                 self.addFriendButton.layer.borderWidth = 1.0;
-                self.addFriendButton.layer.borderColor = [[UIColor blueColor] CGColor];
+                self.addFriendButton.layer.borderColor = [[UIColor systemBlueColor] CGColor];
                 [self.addFriendButton setTitle:@"Request Sent" forState:UIControlStateNormal];
-                [self.addFriendButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                [self.addFriendButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
                 
 
                 [Notifications sendNotification:self.currentUser withReceiver:self.profUser withPost:self.userPosts[0] withType:@"friend request"];
@@ -251,7 +251,7 @@
 
 - (void)styleProfilePicture {
     self.profilePicImageView.layer.cornerRadius = self.profilePicImageView.frame.size.height / 2;
-    [self.profilePicImageView.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [self.profilePicImageView.layer setBorderColor: [[UIColor systemBlueColor] CGColor]];
     [self.profilePicImageView.layer setBorderWidth: 1.0];
 }
 

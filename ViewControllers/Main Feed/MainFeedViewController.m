@@ -73,13 +73,13 @@
     cell.profilePicImage.file = [postInfo.author objectForKey:@"profileImage"];
     [cell.profilePicImage loadInBackground];
     cell.profilePicImage.layer.cornerRadius = cell.profilePicImage.frame.size.height / 2;
-    [cell.profilePicImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [cell.profilePicImage.layer setBorderColor: [[UIColor systemBlueColor] CGColor]];
     [cell.profilePicImage.layer setBorderWidth: 1.0];
     
     cell.tripTitleLabel.text = postInfo.title;
     [cell.usernameLabel setTitle:postInfo.author.username forState:UIControlStateNormal];
     cell.usernameLabel.tag = indexPath.row;
-    cell.usernameLabel.titleLabel.textColor = [UIColor blueColor];
+    cell.usernameLabel.titleLabel.textColor = [UIColor systemBlueColor];
     
     if (postInfo.likedList.count == 1) {
         cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)postInfo.likedList.count];
@@ -92,8 +92,8 @@
     
     if (postInfo.publicTrip) {
         cell.publicTag.text = @"Public";
-        cell.publicTag.layer.borderColor = [[UIColor blueColor] CGColor];
-        cell.publicTag.textColor = [UIColor blueColor];
+        cell.publicTag.layer.borderColor = [[UIColor systemBlueColor] CGColor];
+        cell.publicTag.textColor = [UIColor systemBlueColor];
         cell.publicTag.layer.borderWidth = 0.5f;
         cell.publicTag.layer.cornerRadius = 8;
     } else {
@@ -103,7 +103,7 @@
     
     // check if current user has bookmarked this post
     [cell.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
-    cell.likeButton.tintColor = [UIColor blueColor];
+    cell.likeButton.tintColor = [UIColor systemBlueColor];
     for (PFUser *user in postInfo.likedList) {
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
             [cell.likeButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
@@ -112,8 +112,8 @@
     }
     
     [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
-    cell.spotsFilledIcon.tintColor = [UIColor blueColor];
-    cell.spotsFilledLabel.textColor = [UIColor blueColor];
+    cell.spotsFilledIcon.tintColor = [UIColor systemBlueColor];
+    cell.spotsFilledLabel.textColor = [UIColor systemBlueColor];
     
     for (PFUser *guest in postInfo.guestList) { //create util
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {

@@ -54,7 +54,6 @@
             }];
         } else {
             NSLog(@"User logged in successfully");
-            NSLog(@"current: %@", [PFUser currentUser]);
             // display view controller that needs to shown after successful login
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }

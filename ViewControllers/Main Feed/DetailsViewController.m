@@ -53,10 +53,10 @@
     
     self.descriptionLabel.text = self.post.tripDescription;
     self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
-    self.spotsCountLabel.textColor = [UIColor blueColor];
+    self.spotsCountLabel.textColor = [UIColor systemBlueColor];
     
     self.addGuestButton.titleLabel.textColor = [UIColor whiteColor];
-    self.addGuestButton.backgroundColor = [UIColor blueColor];
+    self.addGuestButton.backgroundColor = [UIColor systemBlueColor];
     [self.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
     for (PFUser *guest in self.post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
@@ -196,7 +196,7 @@
         guestProfilePicCell.guestUsername.text = upcomingTrip.guest.username;
     } else {
         guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
-        [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+        [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor systemBlueColor] CGColor]];
         [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 0.5];
         guestProfilePicCell.guestUsername.text = @"Open";
     }
@@ -208,7 +208,7 @@
     guestProfilePicCell.guestProfilePic.file = [upcomingTrip.guest objectForKey:@"profileImage"];
     [guestProfilePicCell.guestProfilePic loadInBackground];
     guestProfilePicCell.guestProfilePic.layer.cornerRadius = guestProfilePicCell.guestProfilePic.frame.size.height / 2;
-    [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [guestProfilePicCell.guestProfilePic.layer setBorderColor: [[UIColor systemBlueColor] CGColor]];
     [guestProfilePicCell.guestProfilePic.layer setBorderWidth: 1.0];
 }
 

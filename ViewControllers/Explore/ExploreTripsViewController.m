@@ -38,9 +38,8 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ExploreTripsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ExploreTripsCell"];
     Post *post = self.postsArray[indexPath.row];
-    
-    [self fetchGuests:post withCell:cell];
-    
+    cell.post = post;
+    [cell updateCollectionView];
     [self configureEasyCellFields:cell withPost:post];
     [self configureCellProfilePic:cell withPost:post];
     [self configureCellDate:cell withPost:post];
@@ -49,31 +48,7 @@
     
     [cell.addGuestButton addTarget:self action:@selector(joinLeaveTrip:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-//    [cell setCollectionViewDataSourceDelegate:self indexPath:indexPath];
-//    NSInteger index = cell.collectionView.indexPath.row;
-//    CGFloat horizontalOffset = [self.contentOffsetDictionary[[@(index) stringValue]] floatValue];
-//    [cell.collectionView setContentOffset:CGPointMake(horizontalOffset, 0)];
-    
     return cell;
-}
-
-- (void)fetchGuests:(Post *)post withCell:(ExploreTripsCell *)cell {
-    PFQuery *query = [PFQuery queryWithClassName:@"UpcomingTrip"];
-    [query includeKey:@"trip"];
-    [query includeKey:@"guest"];
-    [query whereKey:@"trip" equalTo:post];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *tripGuests, NSError *error) {
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            cell.guestsArray = (NSMutableArray *)tripGuests;
-            //cell.collectionView.delegate = cell;
-            //cell.collectionView.dataSource = cell;
-            [cell.collectionView reloadData];
-        }
-    }];
 }
 
 - (void)configureEasyCellFields:(ExploreTripsCell *)cell withPost:(Post *)post {

@@ -23,8 +23,8 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
+    //[super setSelected:selected animated:animated];
+    
     // Configure the view for the selected state
 }
 
@@ -35,7 +35,7 @@
             [self.post.likedList removeObject:user]; // CHANGE
             [self.post setObject:self.post.likedList forKey:@"likedList"]; // CHANGE
             [self.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
-            self.likeButton.tintColor = [UIColor blueColor];
+            self.likeButton.tintColor = [UIColor systemBlueColor];
             if (self.post.likedList.count == 1) {
                 self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
             } else {
