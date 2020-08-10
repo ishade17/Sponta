@@ -45,6 +45,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.currentUser = [PFUser currentUser];
+    self.userPosts = [NSMutableArray new];
         
     [self configureCollectionView];
     
@@ -308,7 +309,7 @@
     [postQuery whereKey:@"author" equalTo:self.profUser];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-
+    
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
@@ -333,12 +334,18 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProfilePostCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePostCell" forIndexPath:indexPath];
     Post *post = self.userPosts[indexPath.row];
-    cell.postImage.file = post.previewImage;
+    cell.postImage.file = [post objectForKey:@"previewImage"];
+    [cell.postImage loadInBackground];
+    //cell.postImage.file = post.previewImage;
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    self.tripsHostedLabel.text = [NSString stringWithFormat:@"%lu Trips Hosted", (unsigned long)self.userPosts.count];
+    NSString *trips = @"Trips";
+    if (self.userPosts.count == 1) {
+        trips = @"Trip";
+    }
+    self.tripsHostedLabel.text = [NSString stringWithFormat:@"%lu %@ Hosted", (unsigned long)self.userPosts.count, trips];
     return self.userPosts.count;
 }
 
