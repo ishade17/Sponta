@@ -179,6 +179,8 @@
 
 - (void)configureShadow:(UpcomingTripCell *)upcomingTripCell {
     upcomingTripCell.layer.cornerRadius = 15;
+    upcomingTripCell.layer.borderWidth = 0.1;
+    upcomingTripCell.layer.borderColor = [UIColor systemBlueColor].CGColor;
     
     upcomingTripCell.contentView.layer.cornerRadius = 20;
     upcomingTripCell.contentView.layer.borderWidth = 1.0f;

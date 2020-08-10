@@ -31,7 +31,7 @@
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
     self.mainFeedTableView.rowHeight = 425;
-    
+
     [self fetchFriendsList];
         
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -115,8 +115,8 @@
     
     if (postInfo.publicTrip) {
         cell.publicTag.text = @"Public";
-        cell.publicTag.layer.borderColor = [[UIColor systemGrayColor] CGColor];
-        cell.publicTag.textColor = [UIColor systemGrayColor];
+        cell.publicTag.layer.borderColor = [[UIColor blackColor] CGColor];
+        cell.publicTag.textColor = [UIColor blackColor];
         cell.publicTag.layer.borderWidth = 0.5f;
         cell.publicTag.layer.cornerRadius = 8;
     } else {

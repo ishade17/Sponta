@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.passwordTextField.secureTextEntry = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -33,6 +34,7 @@
 - (void)loginUser {
     NSString *username = self.usernameTextField.text;
     NSString *password = self.passwordTextField.text;
+    
     
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
