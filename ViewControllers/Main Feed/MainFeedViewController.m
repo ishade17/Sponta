@@ -152,8 +152,8 @@
     NSArray *daysOfWeek = @[@"",@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday"];
     NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:postInfo.tripDate];
     cell.tripStartLabel.text = [NSString stringWithFormat:@"%@ on %@", postInfo.startTime, [daysOfWeek objectAtIndex:weekday]];
-    
-    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)postInfo.guestList.count, postInfo.spots];
+    int spotsRemaining = postInfo.spots.floatValue - postInfo.guestList.count;
+    cell.spotsFilledLabel.text = [NSString stringWithFormat:@"%d Spots Remaining", spotsRemaining];
         
     return cell;
 }

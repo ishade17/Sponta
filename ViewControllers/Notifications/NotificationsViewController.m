@@ -60,6 +60,7 @@
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     self.collectionViewBorder.layer.borderColor = [[UIColor blueColor] CGColor];
     self.collectionViewBorder.layer.borderWidth = 0.5;
+    self.collectionView.showsHorizontalScrollIndicator = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -171,14 +172,26 @@
     
     [self configureUpcomingTripLabels:upcomingTripCell withUpcomingTrip:upcomingTrip];
     [self configureHostProfilePic:upcomingTripCell withUpcomingTrip:upcomingTrip];
-    
-    upcomingTripCell.layer.borderColor = [[UIColor blueColor] CGColor];
-    upcomingTripCell.layer.borderWidth = 0.5;
-    upcomingTripCell.layer.cornerRadius = 15;
-    upcomingTripCell.layer.shadowColor = [[UIColor grayColor] CGColor];
-    upcomingTripCell.layer.shadowRadius = 5;
+    [self configureShadow:upcomingTripCell];
     
     return upcomingTripCell;
+}
+
+- (void)configureShadow:(UpcomingTripCell *)upcomingTripCell {
+    upcomingTripCell.layer.cornerRadius = 15;
+    
+    upcomingTripCell.contentView.layer.cornerRadius = 20;
+    upcomingTripCell.contentView.layer.borderWidth = 1.0f;
+    upcomingTripCell.contentView.layer.borderColor = [UIColor clearColor].CGColor;
+    upcomingTripCell.contentView.layer.masksToBounds = YES;
+
+    upcomingTripCell.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    upcomingTripCell.layer.shadowColor = [UIColor systemBlueColor].CGColor;
+    upcomingTripCell.layer.shadowOffset = CGSizeMake(0, 2.0f);
+    upcomingTripCell.layer.shadowRadius = 5;
+    upcomingTripCell.layer.shadowOpacity = 0.25;
+    upcomingTripCell.layer.masksToBounds = NO;
+    upcomingTripCell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:upcomingTripCell.bounds cornerRadius:upcomingTripCell.contentView.layer.cornerRadius].CGPath;
 }
 
 - (void)configureHostProfilePic:(UpcomingTripCell *)upcomingTripCell withUpcomingTrip:(UpcomingTrip *)upcomingTrip {
