@@ -49,22 +49,28 @@
     NSArray *chunks = [self.post.address componentsSeparatedByString: @", "];
     [(NSMutableArray *)chunks removeObjectAtIndex: chunks.count - 1];
     NSString *addressTitle = [chunks componentsJoinedByString:@", "];
-    self.destinationAddress.text = [NSString stringWithFormat:@"%@", addressTitle];
-    
+    self.destinationAddress.text = [[NSString stringWithFormat:@"%@", addressTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+
     self.descriptionLabel.text = self.post.tripDescription;
     self.spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)self.post.guestList.count, self.post.spots];
     self.spotsCountLabel.textColor = [UIColor systemBlueColor];
     
+    self.spotsFilledIcon.tintColor = [UIColor systemGrayColor];
+    self.spotsCountLabel.textColor = [UIColor systemGrayColor];
     self.addGuestButton.titleLabel.textColor = [UIColor whiteColor];
     self.addGuestButton.backgroundColor = [UIColor systemBlueColor];
     [self.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
     for (PFUser *guest in self.post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
-            self.addGuestButton.backgroundColor = [UIColor systemGreenColor];
+            self.addGuestButton.backgroundColor = [UIColor whiteColor];
+            self.addGuestButton.layer.borderColor = [[UIColor systemBlueColor] CGColor];
+            self.addGuestButton.layer.borderWidth = 1.0;
+            [self.addGuestButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
             [self.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
             [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
-            self.spotsFilledIcon.tintColor = [UIColor systemGreenColor];
-            self.spotsCountLabel.textColor = [UIColor systemGreenColor];
+            self.spotsFilledIcon.tintColor = [UIColor systemBlueColor];
+            self.spotsCountLabel.textColor = [UIColor systemBlueColor];
         }
     }
     

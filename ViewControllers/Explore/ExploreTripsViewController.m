@@ -78,20 +78,22 @@
     NSArray *chunks = [post.address componentsSeparatedByString: @", "];
     [(NSMutableArray *)chunks removeObjectAtIndex: chunks.count - 1];
     NSString *addressTitle = [chunks componentsJoinedByString:@", "];
-    cell.addressLabel.text = [NSString stringWithFormat:@"%@", addressTitle];
+    cell.addressLabel.text = [[NSString stringWithFormat:@"%@", addressTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 - (void)configureCellButton:(ExploreTripsCell *)cell withPost:(Post *)post {
     cell.addGuestButton.titleLabel.textColor = [UIColor whiteColor];
     cell.addGuestButton.backgroundColor = [UIColor systemBlueColor];
     [cell.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
+    cell.spotsFilledIcon.tintColor = [UIColor systemGrayColor];
+    cell.spotsFilledLabel.textColor = [UIColor systemGrayColor];
     for (PFUser *guest in post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
             cell.addGuestButton.backgroundColor = [UIColor systemGreenColor];
             [cell.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
             [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
-            cell.spotsFilledIcon.tintColor = [UIColor systemGreenColor];
-            cell.spotsFilledLabel.textColor = [UIColor systemGreenColor];
+            cell.spotsFilledIcon.tintColor = [UIColor systemBlueColor];
+            cell.spotsFilledLabel.textColor = [UIColor systemBlueColor];
         }
     }
 }

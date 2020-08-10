@@ -24,14 +24,14 @@
         for (PFUser *guest in post.guestList) {
             if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
                 [self configureSpotsFilled:post withLabel:spotsCountLabel withGuest:guest withAdd:NO];
-                [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Join Trip" withColor:[UIColor systemBlueColor]];
+                [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Join Trip"];
                 [self savePost:post withNotifType:@"left"];
                 [self deleteUpcomingTrip:post];
                 return;
             }
         }
         [self configureSpotsFilled:post withLabel:spotsCountLabel withGuest:PFUser.currentUser withAdd:YES];
-        [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Leave Trip" withColor:[UIColor systemGreenColor]];
+        [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Leave Trip"];
         [self savePost:post withNotifType:@"join"];
         [self addUpcomingTrip:post];
     //}
@@ -40,22 +40,28 @@
 + (void)configureSpotsFilled:(Post *)post withLabel:(UILabel *)spotsCountLabel withGuest:(PFUser *)guest withAdd:(BOOL)add {
     if (add) {
         [post.guestList addObject:guest];
-        spotsCountLabel.textColor = [UIColor systemGreenColor];
+        spotsCountLabel.textColor = [UIColor systemBlueColor];
     } else {
         [post.guestList removeObject:guest];
-        spotsCountLabel.textColor = [UIColor systemBlueColor];
+        spotsCountLabel.textColor = [UIColor systemGrayColor];
     }
     [post setObject:post.guestList forKey:@"guestList"];
     spotsCountLabel.text = [NSString stringWithFormat:@"%lu / %@", (unsigned long)post.guestList.count, post.spots];
 }
 
-+ (void)configureButtons:(UIButton *)addGuestButton withIcon:(UIButton *)spotsFilledIcon withState:(NSString *)state withColor:(UIColor *)color {
-    addGuestButton.backgroundColor = color;
++ (void)configureButtons:(UIButton *)addGuestButton withIcon:(UIButton *)spotsFilledIcon withState:(NSString *)state {
     [addGuestButton setTitle:state forState:UIControlStateNormal];
-    spotsFilledIcon.tintColor = color;
     if ([state isEqualToString:@"Leave Trip"]) {
+        addGuestButton.backgroundColor = [UIColor whiteColor];
+        addGuestButton.layer.borderColor = [[UIColor systemBlueColor] CGColor];
+        addGuestButton.layer.borderWidth = 1.0;
+        [addGuestButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+        spotsFilledIcon.tintColor = [UIColor systemBlueColor];
         [spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
     } else {
+        addGuestButton.backgroundColor = [UIColor systemBlueColor];
+        [addGuestButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        spotsFilledIcon.tintColor = [UIColor grayColor];
         [spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
     }
 }

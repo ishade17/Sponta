@@ -14,9 +14,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
-    self.spotsFilledIcon.tintColor = [UIColor blueColor];
-    self.spotsFilledLabel.textColor = [UIColor blueColor];
+//    [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3"] forState:UIControlStateNormal];
+//    self.spotsFilledIcon.tintColor = [UIColor blueColor];
+//    self.spotsFilledLabel.textColor = [UIColor blueColor];
     
     //[self.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
     //self.likeButton.tintColor = [UIColor blueColor];
@@ -35,7 +35,8 @@
             [self.post.likedList removeObject:user]; // CHANGE
             [self.post setObject:self.post.likedList forKey:@"likedList"]; // CHANGE
             [self.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
-            self.likeButton.tintColor = [UIColor systemBlueColor];
+            self.likeButton.tintColor = [UIColor systemGrayColor];
+            self.likeCountLabel.textColor = [UIColor systemGrayColor];
             if (self.post.likedList.count == 1) {
                 self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
             } else {
@@ -71,8 +72,8 @@
     [self.post.likedList addObject:PFUser.currentUser]; // CHANGE
     [self.post setObject:self.post.likedList forKey:@"likedList"];
     [self.likeButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
-    self.likeButton.tintColor = [UIColor systemGreenColor];
-    
+    self.likeButton.tintColor = [UIColor systemBlueColor];
+    self.likeCountLabel.textColor = [UIColor systemBlueColor];
     if (self.post.likedList.count == 1) {
         self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
     } else {
