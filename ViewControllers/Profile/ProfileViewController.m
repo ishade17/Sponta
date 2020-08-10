@@ -15,6 +15,7 @@
 #import "SignInViewController.h"
 #import "SceneDelegate.h"
 #import "BookmarkedTripsViewController.h"
+#import "BookmarkedTrip.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -55,8 +56,8 @@
 
 - (void)configureCollectionView {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = 0;
+    layout.minimumInteritemSpacing = 5;
+    layout.minimumLineSpacing = 5;
     CGFloat postersPerLine = 3;
     CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
     CGFloat itemHeight = itemWidth;
@@ -103,26 +104,26 @@
 
 - (void)fetchUserPosts {
     // construct PFQuery
-      PFQuery *postQuery = [Post query];
-      [postQuery whereKey:@"author" equalTo:[PFUser currentUser]];
-      [postQuery orderByDescending:@"createdAt"];
-      [postQuery includeKey:@"author"];
+    PFQuery *postQuery = [Post query];
+    [postQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
 
-      // fetch data asynchronously
-      [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-          if (posts) {
-              // do something with the data fetched
-              self.userPosts = [NSMutableArray arrayWithArray:posts];
-              [self.collectionView reloadData];
-          }
-          else {
-              // handle error
-              NSLog(@"Error getting home timeline: %@", error.localizedDescription);
-          }
-      }];
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.userPosts = [NSMutableArray arrayWithArray:posts];
+            [self.collectionView reloadData];
+        } else {
+            // handle error
+            NSLog(@"Error getting home timeline: %@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)configureBookmarkCount {
+    self.bookmarkedTrips = [NSMutableArray new];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"BookmarkedTrip"];
     [query includeKey:@"trip"];
     [query includeKey:@"user"];
@@ -130,9 +131,12 @@
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *bookmarkedTrips, NSError *error) {
         if (!error) {
-            self.bookmarkedTrips = (NSMutableArray *)bookmarkedTrips;
+            for (BookmarkedTrip *trip in bookmarkedTrips) {
+                if ([trip.trip.tripDate compare:[NSDate date]] == NSOrderedDescending) {
+                    [self.bookmarkedTrips addObject:trip];
+                }
+            }
             [self.bookmarksButton setTitle:[NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)self.bookmarkedTrips.count] forState:UIControlStateNormal];
-            
         }
     }];
 }

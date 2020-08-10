@@ -202,7 +202,7 @@
 
 - (IBAction)tappedMakePublic:(id)sender {
     if (self.postSettingSwitch.on) {
-        self.postLabel.textColor = [UIColor systemGreenColor];
+        self.postLabel.textColor = [UIColor systemBlueColor];
     } else {
         self.postLabel.textColor = [UIColor grayColor];
     }

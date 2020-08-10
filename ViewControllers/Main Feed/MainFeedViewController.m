@@ -30,7 +30,8 @@
     [super viewDidLoad];
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
-    self.mainFeedTableView.rowHeight = 425;
+    self.mainFeedTableView.rowHeight = 440;
+    [self.mainFeedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
     [self fetchFriendsList];
         
@@ -68,10 +69,11 @@
         if (posts != nil) {
             for (Post *post in posts) {
                 if ([self.friendsList containsObject:post.author.username] || [post.author.username isEqual:[PFUser currentUser].username]) {
-                    [self.postsArray addObject:post];
+                    //if ([post.tripDate compare:[NSDate date]] == NSOrderedDescending) {
+                        [self.postsArray addObject:post];
+                    //}
                 }
             }
-            //self.postsArray = (NSMutableArray *)posts;
         } else {
             NSLog(@"%@", error.localizedDescription);
         }

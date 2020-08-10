@@ -30,22 +30,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    //[self fetchBookmarkedTrips];
 }
-
-//- (void)fetchBookmarkedTrips {
-//    PFQuery *query = [PFQuery queryWithClassName:@"BookmarkedTrip"];
-//    [query includeKey:@"trip"];
-//    [query includeKey:@"user"];
-//    [query includeKey:@"host"];
-//    [query whereKey:@"user" equalTo:PFUser.currentUser];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *bookmarkedTrips, NSError *error) {
-//        if (!error) {
-//            self.bookmarkedTrips = (NSMutableArray *)bookmarkedTrips;
-//            [self.tableView reloadData];
-//        }
-//    }];
-//}
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
