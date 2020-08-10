@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *addFriendButton;
 
-@property (nonatomic, strong) NSArray *userPosts;
+@property (nonatomic, strong) NSMutableArray *userPosts;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray<NSString *> *currFriendsList;
 @property (nonatomic, strong) NSMutableArray<NSString *> *profFriendsList;
@@ -44,25 +44,58 @@
     // Do any additional setup after loading the view.
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.currentUser = [PFUser currentUser];
         
     [self configureCollectionView];
     
-    [self configureFriendship];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+    [self configureFriendLists];
+    
     [self styleProfilePicture];
         
     [self configureUserFields];
     
-    [self fetchUserPosts];
+}
+
+- (void)configureFriendLists {
+    PFQuery *queryCurr = [PFQuery queryWithClassName:@"FriendsList"];
+    [queryCurr includeKey:@"user"];
+    [queryCurr includeKey:@"friendsList"];
+    [queryCurr whereKey:@"user" equalTo:self.currentUser];
+    
+    [queryCurr findObjectsInBackgroundWithBlock:^(NSArray * _Nullable currFriendsList, NSError * _Nullable error) {
+        if (currFriendsList.count == 1) {
+            self.currFriendsList = (NSMutableArray *)[currFriendsList[0] objectForKey:@"friendsList"];
+            [self waitToConfigureFriendship];
+        } else if (error) {
+            NSLog(@"Error retreiving profUser's friendships: %@", error.localizedDescription);
+        }
+    }];
+    
+    
+    PFQuery *queryProf = [PFQuery queryWithClassName:@"FriendsList"];
+    [queryProf includeKey:@"user"];
+    [queryProf includeKey:@"friendsList"];
+    [queryProf whereKey:@"user" equalTo:self.profUser];
+    
+    [queryProf findObjectsInBackgroundWithBlock:^(NSArray * _Nullable profFriendsList, NSError * _Nullable error) {
+        if (profFriendsList.count == 1) {
+            self.profFriendsList = (NSMutableArray *)[profFriendsList[0] objectForKey:@"friendsList"];
+            [self waitToConfigureFriendship];
+        } else if (error) {
+            NSLog(@"Error retreiving profUser's friendships: %@", error.localizedDescription);
+        }
+    }];
     
 }
 
+- (void)waitToConfigureFriendship {
+    if (self.currFriendsList != nil && self.profFriendsList != nil) {
+        [self configureFriendship];
+    }
+}
+
 - (void)configureFriendship {
-    self.currentUser = [PFUser currentUser];
-    self.currFriendsList = [self.currentUser objectForKey:@"friendsList"];
-    self.profFriendsList = [self.profUser objectForKey:@"friendsList"];
+    
     self.friends = FALSE;
     self.requested = FALSE;
     self.sentRequest = FALSE;
@@ -74,6 +107,7 @@
             [self.addFriendButton setTitle:@"Friends" forState:UIControlStateNormal];
             self.addFriendButton.titleLabel.textColor = [UIColor whiteColor];
             self.friends = TRUE;
+            [self fetchUserPosts:TRUE];
             return;
         }
     }
@@ -93,6 +127,7 @@
                 [self.addFriendButton setTitle:@"Accept Request?" forState:UIControlStateNormal];
                 [self.addFriendButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
                 self.requested = TRUE;
+                [self fetchUserPosts:FALSE];
                 return;
             }
         }];
@@ -113,6 +148,7 @@
                 [self.addFriendButton setTitle:@"Request Sent" forState:UIControlStateNormal];
                 [self.addFriendButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
                 self.sentRequest = TRUE;
+                [self fetchUserPosts:FALSE];
                 return;
             }
         }];
@@ -122,7 +158,9 @@
         [self.addFriendButton setBackgroundColor:[UIColor systemBlueColor]];
         [self.addFriendButton setTitle:@"Add Friend" forState:UIControlStateNormal];
         self.addFriendButton.titleLabel.textColor = [UIColor whiteColor];
+        [self fetchUserPosts:FALSE];
     }
+    
 }
 
 
@@ -264,7 +302,7 @@
     [self.profilePicImageView loadInBackground];
 }
 
-- (void)fetchUserPosts {
+- (void)fetchUserPosts:(BOOL)friends {
     // construct PFQuery
     PFQuery *postQuery = [Post query];
     [postQuery whereKey:@"author" equalTo:self.profUser];
@@ -274,11 +312,17 @@
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            // do something with the data fetched
-            self.userPosts = [NSMutableArray arrayWithArray:posts];
+            if (friends) {
+                self.userPosts = (NSMutableArray *)posts;
+            } else {
+                for (Post *post in posts) {
+                    if (post.publicTrip) {
+                        [self.userPosts addObject:post];
+                    }
+                }
+            }
             [self.collectionView reloadData];
-        }
-        else {
+        } else {
             // handle error
             NSLog(@"Error getting home timeline: %@", error.localizedDescription);
         }

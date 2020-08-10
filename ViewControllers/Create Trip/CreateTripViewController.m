@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *postSettingSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
 @property (weak, nonatomic) IBOutlet UIButton *searchLocationButton;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, strong) UIDatePicker *datePicker;
@@ -48,20 +49,26 @@
     [self configureDatePicker];
     [self configureTimePicker:self.startTimeTextView];
     [self configureTimePicker:self.endTimeTextView];
+    [self configurePostButton];
     
 }
 
 - (void)configureSelectedImage {
-    [self.selectedImage.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [self.selectedImage.layer setBorderColor: [[UIColor systemBlueColor] CGColor]];
     [self.selectedImage.layer setBorderWidth: 0.5];
     self.selectedImage.image = nil;
     self.uploadImageLabel.alpha = 1;
 }
 
 - (void)configurePostLabel {
-    self.postLabel.text = @"Private Post";
+    self.postLabel.text = @"Public Post";
     [self.postSettingSwitch setOn:false];
-    self.postLabel.textColor = UIColor.linkColor;
+    self.postLabel.textColor = [UIColor grayColor];
+}
+
+- (void)configurePostButton {
+    self.postButton.titleLabel.textColor = [UIColor whiteColor];
+    self.postButton.backgroundColor = [UIColor systemBlueColor];
 }
 
 - (void)configureDescriptionTextView {
@@ -75,7 +82,7 @@
 - (void)configureSearchLocationButton {
     [self.searchLocationButton setTitle:@" Search for destination location " forState:UIControlStateNormal];
     self.searchLocationButton.layer.borderWidth = 0.5f;
-    self.searchLocationButton.layer.borderColor = [UIColor blueColor].CGColor;
+    self.searchLocationButton.layer.borderColor = [UIColor systemBlueColor].CGColor;
     self.searchLocationButton.layer.cornerRadius = 20;
 }
 
@@ -100,7 +107,7 @@
 - (void)initToolbar {
     [self.tripDateTextView setInputView:self.datePicker];
     UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [toolBar setTintColor:[UIColor blueColor]];
+    [toolBar setTintColor:[UIColor systemBlueColor]];
     UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedDate)];
     UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
@@ -120,7 +127,7 @@
     [textField setInputView:self.timePicker];
     
     UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [toolBar setTintColor:[UIColor blueColor]];
+    [toolBar setTintColor:[UIColor systemBlueColor]];
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedTime)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
@@ -195,18 +202,16 @@
 
 - (IBAction)tappedMakePublic:(id)sender {
     if (self.postSettingSwitch.on) {
-        self.postLabel.text = @"Public Post";
-        self.postLabel.textColor = UIColor.greenColor;
+        self.postLabel.textColor = [UIColor systemGreenColor];
     } else {
-        self.postLabel.text = @"Private Post";
-        self.postLabel.textColor = UIColor.linkColor;
+        self.postLabel.textColor = [UIColor grayColor];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.postLabel.text = @"Private Post";
+    self.postLabel.text = @"Public Post";
     [self.postSettingSwitch setOn:false];
-    self.postLabel.textColor = UIColor.linkColor;
+    self.postLabel.textColor = [UIColor grayColor];
 }
 
 

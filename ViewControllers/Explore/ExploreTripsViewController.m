@@ -15,7 +15,6 @@
 
 @interface ExploreTripsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -63,7 +62,7 @@
 
 - (void)configureCellProfilePic:(ExploreTripsCell *)cell withPost:(Post *)post {
     cell.profilePicImageView.layer.cornerRadius = cell.profilePicImageView.frame.size.height / 2;
-    [cell.profilePicImageView.layer setBorderColor: [[UIColor blueColor] CGColor]];
+    [cell.profilePicImageView.layer setBorderColor: [[UIColor systemBlueColor] CGColor]];
     [cell.profilePicImageView.layer setBorderWidth: 1.0];
     cell.profilePicImageView.file = [post.author objectForKey:@"profileImage"];
     [cell.profilePicImageView loadInBackground];
@@ -84,7 +83,7 @@
 
 - (void)configureCellButton:(ExploreTripsCell *)cell withPost:(Post *)post {
     cell.addGuestButton.titleLabel.textColor = [UIColor whiteColor];
-    cell.addGuestButton.backgroundColor = [UIColor blueColor];
+    cell.addGuestButton.backgroundColor = [UIColor systemBlueColor];
     [cell.addGuestButton setTitle:@"Join Trip" forState:UIControlStateNormal];
     for (PFUser *guest in post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {

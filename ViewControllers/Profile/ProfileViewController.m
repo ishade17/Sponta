@@ -14,6 +14,7 @@
 #import "ProfilePostDetailsViewController.h"
 #import "SignInViewController.h"
 #import "SceneDelegate.h"
+#import "BookmarkedTripsViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -21,7 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *tripsHostedLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
+@property (weak, nonatomic) IBOutlet UIButton *bookmarksButton;
 @property (nonatomic, strong) NSArray *userPosts;
+@property (nonatomic, strong) NSMutableArray *bookmarkedTrips;
 
 @end
 
@@ -36,6 +39,10 @@
     [self configureEditButton];
     
     [self configureCollectionView];
+    
+    [self configureFriendCount];
+    
+    [self configureBookmarkCount];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,13 +84,29 @@
     self.editProfileButton.layer.borderColor = [[UIColor blueColor] CGColor];
 }
 
+- (void)configureFriendCount {
+    PFQuery *query = [PFQuery queryWithClassName:@"FriendsList"];
+    [query includeKey:@"user"];
+    [query includeKey:@"friendsList"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable friendsList, NSError * _Nullable error) {
+        if (friendsList.count == 1) {
+            NSArray *currUserFriendsList = [friendsList[0] objectForKey:@"friendsList"];
+            self.friendsCountLabel.text = [NSString stringWithFormat:@"%lu Friends", (unsigned long)currUserFriendsList.count];
+        } else if (error) {
+            NSLog(@"Error retreiving profUser's friendships: %@", error.localizedDescription);
+        }
+    }];
+    
+}
+
 - (void)fetchUserPosts {
     // construct PFQuery
       PFQuery *postQuery = [Post query];
       [postQuery whereKey:@"author" equalTo:[PFUser currentUser]];
       [postQuery orderByDescending:@"createdAt"];
       [postQuery includeKey:@"author"];
-      //postQuery.limit = 20;
 
       // fetch data asynchronously
       [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
@@ -97,6 +120,21 @@
               NSLog(@"Error getting home timeline: %@", error.localizedDescription);
           }
       }];
+}
+
+- (void)configureBookmarkCount {
+    PFQuery *query = [PFQuery queryWithClassName:@"BookmarkedTrip"];
+    [query includeKey:@"trip"];
+    [query includeKey:@"user"];
+    [query includeKey:@"host"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *bookmarkedTrips, NSError *error) {
+        if (!error) {
+            self.bookmarkedTrips = (NSMutableArray *)bookmarkedTrips;
+            [self.bookmarksButton setTitle:[NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)self.bookmarkedTrips.count] forState:UIControlStateNormal];
+            
+        }
+    }];
 }
 
 
@@ -138,6 +176,9 @@
         
         ProfilePostDetailsViewController *profilePostDetailsViewController = [segue destinationViewController];
         profilePostDetailsViewController.post = post;
+    } else if ([segue.identifier isEqualToString:@"toBookmarksFromProfileView"]) {
+        BookmarkedTripsViewController *bookmarkedTripsViewController = [segue destinationViewController];
+        bookmarkedTripsViewController.bookmarkedTrips = self.bookmarkedTrips;
     }
 }
 

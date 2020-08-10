@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BookmarkedTripsViewController : UIViewController
 
+@property (nonatomic, strong) NSMutableArray *bookmarkedTrips;
+
 @end
 
 NS_ASSUME_NONNULL_END

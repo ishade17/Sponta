@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *postsArray;
 @property (weak, nonatomic) IBOutlet UITableView *mainFeedTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSSet *friendsList;
 
 @end
 
@@ -31,11 +32,28 @@
     self.mainFeedTableView.delegate = self;
     self.mainFeedTableView.rowHeight = 425;
     
-    [self fetchFeed];
-    
+    [self fetchFriendsList];
+        
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchFeed) forControlEvents:UIControlEventValueChanged];
     [self.mainFeedTableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)fetchFriendsList {
+    PFQuery *query = [PFQuery queryWithClassName:@"FriendsList"];
+    [query includeKey:@"user"];
+    [query includeKey:@"friendsList"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable friendsList, NSError * _Nullable error) {
+        if (friendsList.count == 1) {
+            self.friendsList = (NSSet *)[friendsList[0] objectForKey:@"friendsList"];
+            [self fetchFeed];
+        } else if (error) {
+            NSLog(@"Error retreiving profUser's friendships: %@", error.localizedDescription);
+        }
+    }];
+    
 }
 
 - (void)fetchFeed {
@@ -43,12 +61,18 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
     [query orderByDescending:@"createdAt"];
-    //query.limit = 20;
 
+    self.postsArray = [NSMutableArray new];
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.postsArray = (NSMutableArray *)posts;
+            for (Post *post in posts) {
+                NSLog(@"%@", post.author.username);
+                if ([self.friendsList containsObject:post.author.username] || [post.author.username isEqual:[PFUser currentUser].username]) {
+                    [self.postsArray addObject:post];
+                }
+            }
+            //self.postsArray = (NSMutableArray *)posts;
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
