@@ -26,6 +26,8 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.layoutMargins = UIEdgeInsetsZero;
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     
     self.tableView.rowHeight = 600;
 }
@@ -38,6 +40,8 @@
     ExploreTripsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ExploreTripsCell"];
     Post *post = self.postsArray[indexPath.row];
     cell.post = post;
+    cell.layoutMargins = UIEdgeInsetsZero;
+    
     [cell updateCollectionView];
     [self configureEasyCellFields:cell withPost:post];
     [self configureCellProfilePic:cell withPost:post];

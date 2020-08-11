@@ -31,6 +31,8 @@
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
     self.mainFeedTableView.rowHeight = 430;
+    self.mainFeedTableView.layoutMargins = UIEdgeInsetsZero;
+    self.mainFeedTableView.separatorInset = UIEdgeInsetsZero;
 
     [self fetchFriendsList];
         
@@ -93,6 +95,7 @@
     // if current date/time is after trip date/time then return
     
     cell.post = postInfo;
+    cell.layoutMargins = UIEdgeInsetsZero;
     
     cell.profilePicImage.file = [postInfo.author objectForKey:@"profileImage"];
     [cell.profilePicImage loadInBackground];
