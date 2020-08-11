@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *tripTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *spotsFilledLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tripStartLabel;
-@property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *previewImage;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicImage;
 @property (weak, nonatomic) IBOutlet UILabel *publicTag;

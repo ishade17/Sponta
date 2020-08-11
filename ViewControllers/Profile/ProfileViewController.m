@@ -56,8 +56,8 @@
 
 - (void)configureCollectionView {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    layout.minimumInteritemSpacing = 5;
-    layout.minimumLineSpacing = 5;
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 0;
     CGFloat postersPerLine = 3;
     CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
     CGFloat itemHeight = itemWidth;

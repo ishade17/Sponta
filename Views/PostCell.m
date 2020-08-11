@@ -35,13 +35,6 @@
             [self.post.likedList removeObject:user]; // CHANGE
             [self.post setObject:self.post.likedList forKey:@"likedList"]; // CHANGE
             [self.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
-            self.likeButton.tintColor = [UIColor systemGrayColor];
-            self.likeCountLabel.textColor = [UIColor systemGrayColor];
-            if (self.post.likedList.count == 1) {
-                self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
-            } else {
-                self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)self.post.likedList.count];
-            }
             [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (succeeded) {
                     NSLog(@"Post unliked!");
@@ -69,16 +62,10 @@
     }
     
     //like
-    [self.post.likedList addObject:PFUser.currentUser]; // CHANGE
+    [self.post.likedList addObject:PFUser.currentUser];
     [self.post setObject:self.post.likedList forKey:@"likedList"];
     [self.likeButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
-    self.likeButton.tintColor = [UIColor systemBlueColor];
-    self.likeCountLabel.textColor = [UIColor systemBlueColor];
-    if (self.post.likedList.count == 1) {
-        self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)self.post.likedList.count];
-    } else {
-        self.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)self.post.likedList.count];
-    }
+
     
     [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {

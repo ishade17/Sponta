@@ -64,9 +64,9 @@
     for (PFUser *guest in self.post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
             self.addGuestButton.backgroundColor = [UIColor whiteColor];
-            self.addGuestButton.layer.borderColor = [[UIColor systemBlueColor] CGColor];
+            self.addGuestButton.layer.borderColor = [[UIColor systemGrayColor] CGColor];
             self.addGuestButton.layer.borderWidth = 1.0;
-            [self.addGuestButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+            [self.addGuestButton setTitleColor:[UIColor systemGrayColor] forState:UIControlStateNormal];
             [self.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
             [self.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
             self.spotsFilledIcon.tintColor = [UIColor systemBlueColor];
@@ -76,7 +76,8 @@
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
-    
+    [self.commentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -139,7 +140,7 @@
 - (void)configureCollectionView {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = 10;
+    layout.minimumLineSpacing = 3;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     CGFloat itemWidth = self.collectionView.frame.size.width / 3.4;
     CGFloat itemHeight = self.collectionView.frame.size.height;

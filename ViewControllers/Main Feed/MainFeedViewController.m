@@ -30,8 +30,7 @@
     [super viewDidLoad];
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
-    self.mainFeedTableView.rowHeight = 440;
-    [self.mainFeedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.mainFeedTableView.rowHeight = 430;
 
     [self fetchFriendsList];
         
@@ -106,12 +105,6 @@
     cell.usernameLabel.tag = indexPath.row;
     cell.usernameLabel.titleLabel.textColor = [UIColor blackColor];
     
-    if (postInfo.likedList.count == 1) {
-        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmark", (unsigned long)postInfo.likedList.count];
-    } else {
-        cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu Bookmarks", (unsigned long)postInfo.likedList.count];
-    }
-    
     cell.previewImage.file = postInfo[@"previewImage"];
     [cell.previewImage loadInBackground];
     
@@ -129,12 +122,10 @@
     // check if current user has bookmarked this post
     [cell.likeButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
     cell.likeButton.tintColor = [UIColor systemGrayColor];
-    cell.likeCountLabel.textColor = [UIColor systemGrayColor];
     for (PFUser *user in postInfo.likedList) {
         if ([user.objectId isEqual:PFUser.currentUser.objectId]) {
             [cell.likeButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
-            cell.likeButton.tintColor = [UIColor systemBlueColor];
-            cell.likeCountLabel.textColor = [UIColor systemBlueColor];
+            cell.likeButton.tintColor = [UIColor systemGrayColor];
         }
     }
     

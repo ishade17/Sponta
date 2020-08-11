@@ -89,7 +89,10 @@
     cell.spotsFilledLabel.textColor = [UIColor systemGrayColor];
     for (PFUser *guest in post.guestList) {
         if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
-            cell.addGuestButton.backgroundColor = [UIColor systemGreenColor];
+            cell.addGuestButton.backgroundColor = [UIColor whiteColor];
+            cell.addGuestButton.layer.borderColor = [[UIColor systemGrayColor] CGColor];
+            cell.addGuestButton.layer.borderWidth = 1.0;
+            [cell.addGuestButton setTitleColor:[UIColor systemGrayColor] forState:UIControlStateNormal];
             [cell.addGuestButton setTitle:@"Leave Trip" forState:UIControlStateNormal];
             [cell.spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
             cell.spotsFilledIcon.tintColor = [UIColor systemBlueColor];

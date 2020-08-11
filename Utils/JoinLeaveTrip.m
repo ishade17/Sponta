@@ -20,7 +20,7 @@
 }
 
 + (void)joinLeaveTrip:(Post *)post withLabel:(UILabel *)spotsCountLabel withButton:(UIButton *)addGuestButton withIcon:(UIButton *)spotsFilledIcon {
-    //if (![post.objectId isEqual: PFUser.currentUser.objectId]) {
+    if (![post.objectId isEqual: PFUser.currentUser.objectId]) { // fix?
         for (PFUser *guest in post.guestList) {
             if ([guest.objectId isEqual:PFUser.currentUser.objectId]) {
                 [self configureSpotsFilled:post withLabel:spotsCountLabel withGuest:guest withAdd:NO];
@@ -34,7 +34,7 @@
         [self configureButtons:addGuestButton withIcon:spotsFilledIcon withState:@"Leave Trip"];
         [self savePost:post withNotifType:@"join"];
         [self addUpcomingTrip:post];
-    //}
+    }
 }
 
 + (void)configureSpotsFilled:(Post *)post withLabel:(UILabel *)spotsCountLabel withGuest:(PFUser *)guest withAdd:(BOOL)add {
@@ -53,9 +53,9 @@
     [addGuestButton setTitle:state forState:UIControlStateNormal];
     if ([state isEqualToString:@"Leave Trip"]) {
         addGuestButton.backgroundColor = [UIColor whiteColor];
-        addGuestButton.layer.borderColor = [[UIColor systemBlueColor] CGColor];
+        addGuestButton.layer.borderColor = [[UIColor systemGrayColor] CGColor];
         addGuestButton.layer.borderWidth = 1.0;
-        [addGuestButton setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+        [addGuestButton setTitleColor:[UIColor systemGrayColor] forState:UIControlStateNormal];
         spotsFilledIcon.tintColor = [UIColor systemBlueColor];
         [spotsFilledIcon setBackgroundImage:[UIImage systemImageNamed:@"person.3.fill"] forState:UIControlStateNormal];
     } else {
