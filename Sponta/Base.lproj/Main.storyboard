@@ -231,6 +231,7 @@
                                                 <constraint firstItem="Qqe-hx-waN" firstAttribute="top" secondItem="ZOw-Pv-O4q" secondAttribute="bottom" constant="6" id="F4B-IC-ZKI"/>
                                                 <constraint firstAttribute="trailing" secondItem="d4v-E2-Gtc" secondAttribute="trailing" constant="21" id="KXz-ig-pry"/>
                                                 <constraint firstItem="b1Y-WF-m73" firstAttribute="top" secondItem="Ftk-mt-gMM" secondAttribute="bottom" constant="8" id="M5n-je-WdF"/>
+                                                <constraint firstAttribute="bottom" secondItem="d4v-E2-Gtc" secondAttribute="bottom" constant="11" id="QtU-cX-3VA"/>
                                                 <constraint firstItem="5p0-cm-0cf" firstAttribute="top" secondItem="y5D-o9-1Kr" secondAttribute="top" constant="19" id="SQk-K7-Hhb"/>
                                                 <constraint firstItem="ndn-S4-ej0" firstAttribute="top" secondItem="ZOw-Pv-O4q" secondAttribute="bottom" constant="5.5" id="Vro-aC-35N"/>
                                                 <constraint firstItem="980-4p-Ql0" firstAttribute="leading" secondItem="y5D-o9-1Kr" secondAttribute="leading" constant="19" id="aOv-yf-osS"/>
@@ -806,6 +807,7 @@
                                                 <constraint firstItem="34a-xB-wRv" firstAttribute="leading" secondItem="PfR-Fi-5X3" secondAttribute="trailing" constant="8" id="8BZ-n0-M80"/>
                                                 <constraint firstItem="LnY-QR-P6L" firstAttribute="top" secondItem="mP6-Gi-Uxp" secondAttribute="top" constant="29" id="BaL-Yl-nN1"/>
                                                 <constraint firstItem="PfR-Fi-5X3" firstAttribute="top" secondItem="mP6-Gi-Uxp" secondAttribute="top" constant="19" id="CJl-4u-WGw"/>
+                                                <constraint firstAttribute="bottom" secondItem="PfR-Fi-5X3" secondAttribute="bottom" constant="18" id="Ia1-Bm-lRv"/>
                                                 <constraint firstItem="34a-xB-wRv" firstAttribute="top" secondItem="mP6-Gi-Uxp" secondAttribute="top" constant="27" id="Vg7-oj-3kd"/>
                                                 <constraint firstItem="LnY-QR-P6L" firstAttribute="leading" secondItem="34a-xB-wRv" secondAttribute="trailing" constant="5" id="h3F-GW-CvK"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ei1-6w-U92" secondAttribute="trailing" constant="20" id="nsx-eE-nV9"/>
@@ -1263,6 +1265,7 @@
                                                 <constraint firstItem="H5Z-Vt-B2V" firstAttribute="top" secondItem="NqJ-JU-t05" secondAttribute="top" constant="26" id="NB7-Fa-lzd"/>
                                                 <constraint firstItem="fUm-2p-KiO" firstAttribute="top" secondItem="NqJ-JU-t05" secondAttribute="top" constant="26" id="XhL-pw-WbP"/>
                                                 <constraint firstAttribute="trailing" secondItem="oDG-ya-nuw" secondAttribute="trailing" constant="20" id="Yi1-eG-vZ0"/>
+                                                <constraint firstAttribute="bottom" secondItem="BKm-b8-eVI" secondAttribute="bottom" constant="15" id="aSy-8n-KnV"/>
                                                 <constraint firstItem="fUm-2p-KiO" firstAttribute="leading" secondItem="H5Z-Vt-B2V" secondAttribute="trailing" constant="8" id="hMK-JG-adB"/>
                                                 <constraint firstItem="oDG-ya-nuw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fUm-2p-KiO" secondAttribute="trailing" constant="5" id="tEB-71-9Zt"/>
                                                 <constraint firstItem="H5Z-Vt-B2V" firstAttribute="leading" secondItem="BKm-b8-eVI" secondAttribute="trailing" constant="8" id="wZx-gk-eL3"/>
@@ -1647,6 +1650,7 @@
                                                 <constraint firstItem="941-pm-dEW" firstAttribute="top" secondItem="a44-jq-iAh" secondAttribute="top" constant="11" id="ciM-Re-M6C"/>
                                                 <constraint firstItem="Qg7-sE-p3q" firstAttribute="top" secondItem="a44-jq-iAh" secondAttribute="top" constant="6" id="g9t-sv-2jw"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yhL-wZ-rJ2" secondAttribute="trailing" constant="10" id="puB-8m-1B5"/>
+                                                <constraint firstAttribute="bottom" secondItem="Qg7-sE-p3q" secondAttribute="bottom" constant="5" id="zoI-CK-X61"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1850,6 +1854,7 @@
                                                 <constraint firstItem="lrS-ex-j9R" firstAttribute="leading" secondItem="zvs-PY-Sxl" secondAttribute="trailing" constant="-2" id="6h8-CG-hvz"/>
                                                 <constraint firstItem="cyE-2D-54o" firstAttribute="top" secondItem="0mW-rM-vK3" secondAttribute="top" constant="15" id="7Ws-h0-gxb"/>
                                                 <constraint firstItem="XjE-Jk-cal" firstAttribute="leading" secondItem="0mW-rM-vK3" secondAttribute="leading" constant="24" id="BWw-aU-BDM"/>
+                                                <constraint firstAttribute="bottom" secondItem="JCM-4n-YNZ" secondAttribute="bottom" constant="26" id="F2f-4s-kdj"/>
                                                 <constraint firstAttribute="trailing" secondItem="55B-Fe-w1Q" secondAttribute="trailing" constant="20" id="Gfu-cL-0zn"/>
                                                 <constraint firstItem="zvs-PY-Sxl" firstAttribute="top" secondItem="XjE-Jk-cal" secondAttribute="bottom" constant="29" id="O4o-Lx-xJM"/>
                                                 <constraint firstItem="uMM-Ve-BRq" firstAttribute="top" secondItem="oL6-sA-hgV" secondAttribute="bottom" constant="2" id="OV1-HC-0i1"/>
@@ -2012,7 +2017,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="d7U-Vn-NbY"/>
         <segue reference="SCb-jW-YaU"/>
-        <segue reference="3nn-pD-FJB"/>
+        <segue reference="2qz-kF-HLs"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Sponta Logo" width="90" height="90"/>

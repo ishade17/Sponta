@@ -30,7 +30,7 @@
     [super viewDidLoad];
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
-    self.mainFeedTableView.rowHeight = 430;
+    
     self.mainFeedTableView.layoutMargins = UIEdgeInsetsZero;
     self.mainFeedTableView.separatorInset = UIEdgeInsetsZero;
 

@@ -23,13 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     
-    self.tableView.rowHeight = 600;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -132,7 +131,6 @@
         NonCurrentProfileViewController *nonCurrentProfileViewController = [segue destinationViewController];
         nonCurrentProfileViewController.profUser = post.author;
     }
-    
 }
 
 

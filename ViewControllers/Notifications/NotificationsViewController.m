@@ -45,9 +45,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchNotifications) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    
-    self.tableView.rowHeight = 75;
-    
+        
 }
 
 - (void)configureCollectionView {
