@@ -30,8 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.commentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     self.tripTitleLabel.text = self.post.title;
-
+    
     NSDateFormatter *df = [NSDateFormatter new];
     [df setDateStyle:NSDateFormatterLongStyle]; // day, Full month and year
     [df setTimeStyle:NSDateFormatterNoStyle];  // nothing
@@ -40,7 +42,7 @@
     NSArray *chunks = [self.post.address componentsSeparatedByString: @", "];
     [(NSMutableArray *)chunks removeObjectAtIndex: chunks.count - 1];
     NSString *addressTitle = [chunks componentsJoinedByString:@", "];
-    self.destinationAddress.text = [NSString stringWithFormat:@"%@", addressTitle];
+    self.destinationAddress.text = [[NSString stringWithFormat:@"%@", addressTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     self.descriptionLabel.text = self.post.tripDescription;
     
