@@ -476,22 +476,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6k8-c8-Y0o">
-                                <rect key="frame" x="366" y="12.5" width="39" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22.5" id="AxK-07-Atn"/>
-                                    <constraint firstAttribute="width" constant="39" id="F0c-R3-TJe"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="person.3" catalog="system">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 / 6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc9-Rm-pmy">
-                                <rect key="frame" x="321" y="11" width="36.5" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guests:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-xu-VeA">
                                 <rect key="frame" x="20" y="77" width="55.5" height="20"/>
                                 <constraints>
@@ -501,6 +485,22 @@
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" misplaced="YES" text="4 / 6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc9-Rm-pmy">
+                                <rect key="frame" x="310" y="18" width="48" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6k8-c8-Y0o">
+                                <rect key="frame" x="366" y="18.5" width="39" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22.5" id="AxK-07-Atn"/>
+                                    <constraint firstAttribute="width" constant="39" id="F0c-R3-TJe"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="person.3" catalog="system">
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -509,7 +509,7 @@
                             <constraint firstItem="oeW-xu-VeA" firstAttribute="leading" secondItem="lef-dq-jGA" secondAttribute="leading" constant="20" id="2LB-4x-BzH"/>
                             <constraint firstItem="oeW-xu-VeA" firstAttribute="top" secondItem="iJ2-AW-R1T" secondAttribute="bottom" constant="34" id="AZh-up-Yer"/>
                             <constraint firstItem="rB5-h8-5ip" firstAttribute="top" secondItem="xQ7-LH-a1b" secondAttribute="bottom" constant="8" id="Ehl-Ow-UXk"/>
-                            <constraint firstItem="6k8-c8-Y0o" firstAttribute="top" secondItem="lef-dq-jGA" secondAttribute="top" constant="11" id="K9j-6r-i9C"/>
+                            <constraint firstItem="6k8-c8-Y0o" firstAttribute="top" secondItem="lef-dq-jGA" secondAttribute="top" constant="17" id="K9j-6r-i9C"/>
                             <constraint firstItem="xQ7-LH-a1b" firstAttribute="leading" secondItem="lef-dq-jGA" secondAttribute="leading" constant="20" id="Mrh-hp-jdE"/>
                             <constraint firstItem="eym-QL-CIN" firstAttribute="leading" secondItem="lef-dq-jGA" secondAttribute="leading" id="U57-Ws-sBP"/>
                             <constraint firstItem="eym-QL-CIN" firstAttribute="top" secondItem="t6g-xa-xI4" secondAttribute="bottom" constant="1" id="VTd-HJ-qw9"/>
@@ -517,7 +517,7 @@
                             <constraint firstItem="iJ2-AW-R1T" firstAttribute="top" secondItem="4vj-qb-YU3" secondAttribute="top" constant="14" id="Vyo-zU-tWM"/>
                             <constraint firstItem="8bl-zM-APZ" firstAttribute="top" secondItem="rB5-h8-5ip" secondAttribute="bottom" constant="18.5" id="ZvE-e8-fOq"/>
                             <constraint firstItem="yc9-Rm-pmy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iJ2-AW-R1T" secondAttribute="trailing" constant="10" id="a8I-20-liz"/>
-                            <constraint firstItem="yc9-Rm-pmy" firstAttribute="top" secondItem="lef-dq-jGA" secondAttribute="top" constant="11" id="c84-lO-rKf"/>
+                            <constraint firstItem="yc9-Rm-pmy" firstAttribute="top" secondItem="lef-dq-jGA" secondAttribute="top" constant="18" id="c84-lO-rKf"/>
                             <constraint firstItem="dtD-y0-dUT" firstAttribute="top" secondItem="eym-QL-CIN" secondAttribute="bottom" constant="8" id="cnx-yG-1w6"/>
                             <constraint firstAttribute="trailing" secondItem="6k8-c8-Y0o" secondAttribute="trailing" constant="9" id="dnT-Ee-5D2"/>
                             <constraint firstItem="xQ7-LH-a1b" firstAttribute="top" secondItem="dtD-y0-dUT" secondAttribute="bottom" constant="7" id="hCC-uu-1SA"/>
@@ -632,18 +632,6 @@
                                     <action selector="tappedSelectImage:" destination="FVN-Y8-KiZ" eventType="touchUpInside" id="SUF-Xl-lX3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2k-Vj-GUQ">
-                                <rect key="frame" x="55" y="707" width="304" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
-                                <state key="normal" title="Post">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="tappedPost:" destination="FVN-Y8-KiZ" eventType="touchUpInside" id="0gX-Uf-dkp"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trip Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6OF-Lg-Y1l">
                                 <rect key="frame" x="57" y="395" width="301" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -720,6 +708,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2k-Vj-GUQ">
+                                <rect key="frame" x="51" y="689" width="308" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
+                                <state key="normal" title="Post">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedPost:" destination="FVN-Y8-KiZ" eventType="touchUpInside" id="0gX-Uf-dkp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="pGs-y1-eYe"/>
